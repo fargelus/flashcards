@@ -8,20 +8,20 @@
   <section id="container">
 
     <header class="clearfix">
-      <h1>Флэшкарточкер</h1>
+      <h1><%=t(:title)%></h1>
       <ul class="navigation-links nav">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Все карточки</a>
+          <a class="nav-link active" href="#"><%=t(:all_cards)%></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Добавить карточку</a>
+          <a class="nav-link disabled" href="#"><%=t(:add_card)%></a>
         </li>
       </ul>
     </header>
 
     <section>
-      <p style="font-size: 22px;">
-        Первый в мире удобный менеджер флеш-карточек. Именно так.
+      <p class="desc">
+        <%=t('desc')%>
       </p>
     </section>
 
