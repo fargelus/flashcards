@@ -1,0 +1,22 @@
+<head>
+  <%= stylesheet_link_tag 'bootstrap.min', 'application' %>
+</head>
+
+<body>
+  <section class="container">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th><%=t(:original_text)%></th>
+          <th><%=t(:translated_text)%></th>
+        </tr>
+      </thead>
+      <% @cards.each do |card| %>
+        <tr>
+          <td><%=card.original_text%></td>
+          <td><%=card.translated_text%></td>
+        </tr>
+      <% end %>
+    </table>
+  </section>
+</body>
