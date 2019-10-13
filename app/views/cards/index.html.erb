@@ -11,12 +11,14 @@
         <tr>
           <th><%=t(:original_text)%></th>
           <th><%=t(:translated_text)%></th>
+          <th><%=t(:review_date)%></th>
         </tr>
       </thead>
       <% @cards.each do |card| %>
         <tr>
           <td><%=card.original_text%></td>
           <td><%=card.translated_text%></td>
+          <td><%=format_date(card.review_date)%></td>
         </tr>
       <% end %>
     </table>
