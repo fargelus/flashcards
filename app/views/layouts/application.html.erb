@@ -1,0 +1,10 @@
+<head>
+  <title><%=@page_title%></title>
+  <%= stylesheet_link_tag 'bootstrap.min', 'application' %>
+  <%= javascript_include_tag 'application' %>
+</head>
+<body>
+  <section id="container">
+    <%= yield %>
+  </section>
+</body>

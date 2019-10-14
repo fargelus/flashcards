@@ -1,0 +1,19 @@
+<% @page_title = t(:all_cards) %>
+<h1><%=@page_title%></h1>
+
+<table class="table mt-4">
+  <thead class="thead-dark">
+    <tr>
+      <th><%=t(:original_text)%></th>
+      <th><%=t(:translated_text)%></th>
+      <th><%=t(:review_date)%></th>
+    </tr>
+  </thead>
+  <% @cards.each do |card| %>
+    <tr>
+      <td><%=card.original_text%></td>
+      <td><%=card.translated_text%></td>
+      <td><%=format_date(card.review_date)%></td>
+    </tr>
+  <% end %>
+</table>
