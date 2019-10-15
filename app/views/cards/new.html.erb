@@ -1,6 +1,7 @@
+<% @page_title = t(:add_card) %>
 <%= simple_form_for @card do |f| %>
-  <%= f.input :original_text, label: t(:original_text_input) %>
-  <%= f.input :translated_text, label: t(:translated_text_input) %>
-  <%= f.input :review_date, as: :date, html5: true, label: t(:review_date_input) %>
-  <%= f.button :submit, class: 'btn-primary' %>
+  <%= f.input :original_text, label: t(:original_text_input), error: t(:original_text_input_err) %>
+  <%= f.input :translated_text, label: t(:translated_text_input), error: t(:translated_text_input_err) %>
+  <%= f.input :review_date, as: :date, html5: true, label: t(:review_date_input), :required => false %>
+  <%= f.button :submit, t(:add_card), class: 'btn-primary'%>
 <% end %>

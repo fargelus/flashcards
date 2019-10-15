@@ -9,4 +9,18 @@ class CardsController < ApplicationController
   def new
     @card = Card.new
   end
+
+  def create
+    @card = Card.create(card_params)
+    if @card.errors.empty?
+      redirect_to '/'
+    else
+      render 'new'
+    end
+  end
+
+  private
+  def card_params
+    params.require(:card).permit(:original_text, :translated_text, :review_date)
+  end
 end
