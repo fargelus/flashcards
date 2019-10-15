@@ -6,7 +6,7 @@
       <%= link_to t(:all_cards), cards_path, class: 'nav-link active' %>
     </li>
     <li class="nav-item">
-      <a class="nav-link disabled" href="#"><%=t(:add_card)%></a>
+      <%= link_to t(:add_card), new_card_path, class: 'nav-link active' %>
     </li>
   </ul>
 </header>

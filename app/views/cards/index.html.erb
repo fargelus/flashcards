@@ -7,6 +7,7 @@
       <th><%=t(:original_text)%></th>
       <th><%=t(:translated_text)%></th>
       <th><%=t(:review_date)%></th>
+      <th><%=t(:action)%></th>
     </tr>
   </thead>
   <% @cards.each do |card| %>
@@ -14,6 +15,17 @@
       <td><%=card.original_text%></td>
       <td><%=card.translated_text%></td>
       <td><%=format_date(card.review_date)%></td>
+      <td>
+        <div>
+          <button class="btn card-action-btn mr-1">
+            <%=image_tag 'edit.png', :width => '24' %>
+          </button>
+
+          <button class="btn card-action-btn">
+            <%=image_tag 'garbage.png', :width => '24' %>
+          </button>
+        </div>
+      </td>
     </tr>
   <% end %>
 </table>

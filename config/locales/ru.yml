@@ -6,3 +6,7 @@ ru:
   original_text: "Оригинал"
   translated_text: "Перевод"
   review_date: "Дата просмотра"
+  action: "Действие"
+  original_text_input: "Введите фразу на Вашем языке"
+  translated_text_input: "Введите перевод"
+  review_date_input: "Введите дату просмотра"
