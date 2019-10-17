@@ -12,3 +12,4 @@ ru:
   review_date_input: "Введите дату просмотра"
   original_text_input_err: "Пожалуйста введите фразу."
   translated_text_input_err: "Пожалуйста введите перевод."
+  review_date_input_err: "Пожалуйста выберите дату"
