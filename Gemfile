@@ -13,8 +13,8 @@ gem 'rspec', '~> 3.9.0'
 gem 'rspec-rails', '~> 3.9.0'
 gem 'rubocop', '~> 0.75.0'
 gem 'sass-rails', '~> 5.0'
-gem 'simple_form'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'simple_form'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 

@@ -17,7 +17,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.create(card_params)
     if @card.errors.empty? && @card.save
-      redirect_to action: "index"
+      redirect_to action: 'index'
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
 
     if @card.update(card_params)
-      redirect_to action: "index"
+      redirect_to action: 'index'
     else
       render 'edit'
     end
@@ -41,6 +41,7 @@ class CardsController < ApplicationController
   end
 
   private
+
   def card_params
     params.require(:card).permit(:original_text, :translated_text, :review_date)
   end
