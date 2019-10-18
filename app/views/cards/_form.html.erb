@@ -1,0 +1,8 @@
+<%= simple_form_for @card, html: {class: 'mt-4'} do |f| %>
+  <%= f.input :original_text, label: t(:original_text_input), error: t(:original_text_input_err) %>
+  <%= f.input :translated_text, label: t(:translated_text_input), error: t(:translated_text_input_err) %>
+  <%= f.input :review_date, input_html: { value: DateTime.now.to_date.to_s },
+      as: :date, html5: true, error: t(:review_date_input_err),
+      label: t(:review_date_input), :required => false %>
+  <%= f.button :submit, submit_txt, class: 'btn-primary mt-2'%>
+<% end %>

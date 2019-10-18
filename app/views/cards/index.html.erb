@@ -17,7 +17,9 @@
       <td>
         <div>
           <button class="btn card-action-btn mr-1">
-            <%=image_tag 'edit.png', :width => '24' %>
+            <%= link_to edit_card_path(card) do %>
+              <%=image_tag 'edit.png', :width => '24' %>
+            <% end %>
           </button>
 
           <button class="btn card-action-btn">

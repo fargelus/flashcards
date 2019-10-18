@@ -15,3 +15,4 @@ ru:
   review_date_input_err: "Пожалуйста выберите дату"
   delete_card_confirm: "Вы хотите удалить эту карточку?"
   orig_text_trn_text_match_err: "Фраза для перевода не должна совпадать с переводом"
+  edit_card: "Редактировать карточку"
