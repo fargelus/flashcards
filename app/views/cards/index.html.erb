@@ -22,7 +22,11 @@
           </button>
 
           <button class="btn card-action-btn">
-            <%=image_tag 'garbage.png', :width => '24' %>
+            <%= link_to card_path(card),
+               method: :delete,
+               data: {confirm: t(:delete_card_confirm)} do %>
+                  <%=image_tag 'garbage.png', :width => '24' %>
+              <% end %>
           </button>
         </div>
       </td>

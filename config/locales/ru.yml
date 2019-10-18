@@ -13,3 +13,5 @@ ru:
   original_text_input_err: "Пожалуйста введите фразу."
   translated_text_input_err: "Пожалуйста введите перевод."
   review_date_input_err: "Пожалуйста выберите дату"
+  delete_card_confirm: "Вы хотите удалить эту карточку?"
+  orig_text_trn_text_match_err: "Фраза для перевода не должна совпадать с переводом"
