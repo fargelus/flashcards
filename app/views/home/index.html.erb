@@ -1,6 +1,6 @@
-<% @page_title = t(:title) %>
+<%= render partial: 'partials/page-title', locals: {title: t(:title)} %>
+
 <header class="clearfix">
-  <h1><%=@page_title%></h1>
   <ul class="navigation-links nav">
     <li class="nav-item">
       <%= link_to t(:all_cards), cards_path, class: 'nav-link active' %>
