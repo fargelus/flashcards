@@ -1,7 +1,10 @@
 <%= simple_form_for @card, html: {class: 'mt-4'} do |f| %>
   <%= f.input :original_text %>
   <%= f.input :translated_text %>
-  <%= f.input :review_date, input_html: { value: DateTime.now.to_date.to_s },
+  <%= f.input :review_date, input_html: {
+        value: days_after(3),
+        min: today
+      },
       as: :date, html5: true, :required => false %>
   <%= f.button :submit, class: 'btn-primary mt-2' %>
 <% end %>

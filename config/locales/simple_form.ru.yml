@@ -12,7 +12,7 @@ ru:
       card:
           original_text: 'Введите фразу для перевода:'
           translated_text: 'Введите перевод:'
-          review_date: 'Введите дату просмотра:'
+          review_date: 'Введите дату пересмотра:'
     placeholders:
       card:
           original_text: 'Ваша фраза для перевода'

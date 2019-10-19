@@ -50,3 +50,8 @@
   margin-bottom: 0;
   animation: .8s ease-in 2s fade-out forwards;
 }
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
