@@ -15,9 +15,9 @@ class CardsController < ApplicationController
   end
 
   def create
-    @card = Card.create(card_params)
-    if @card.errors.empty? && @card.save
-      redirect_to action: 'index'
+    @card = Card.new(card_params)
+    if @card.save
+      redirect_to cards_path, :notice => I18n.t(:card_create)
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
 
     if @card.update(card_params)
-      redirect_to action: 'index'
+      redirect_to cards_path
     else
       render 'edit'
     end

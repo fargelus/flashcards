@@ -36,3 +36,17 @@
 .card-action-btn:hover {
   border: 1px solid gray;
 }
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.notice {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0;
+  animation: .8s ease-in 2s fade-out forwards;
+}

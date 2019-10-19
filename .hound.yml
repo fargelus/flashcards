@@ -1,0 +1,2 @@
+ruby:
+  ignore_file: config/initializers/simple_form_bootstrap.rb
