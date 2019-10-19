@@ -1,6 +1,6 @@
 <%= simple_form_for @card, html: {class: 'mt-4'} do |f| %>
-  <%= f.input :original_text %>
-  <%= f.input :translated_text %>
+  <%= f.input :original_text, error: t(:original_text_err) %>
+  <%= f.input :translated_text, error: t(:translated_text_err) %>
   <%= f.input :review_date, input_html: {
         value: days_after(3),
         min: today

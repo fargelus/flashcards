@@ -12,3 +12,5 @@ ru:
   edit_card: "Редактировать карточку"
   card_created: "Карточка успешно создана"
   card_updated: "Карточка обновлена"
+  original_text_err: 'Пожалуйста введите фразу'
+  translated_text_err: 'Пожалуйста введите перевод'
