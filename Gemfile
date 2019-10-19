@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'byebug'
+  gem 'i18n-debug', '~> 1.2.0'
 end
 
 group :development do

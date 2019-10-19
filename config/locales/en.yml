@@ -1,2 +1,12 @@
 en:
-  hello: "Hello world"
+  title: "Flashcards"
+  all_cards: "All cards"
+  add_card: "Add card"
+  desc: "The world's first handy flash card manager. Exactly."
+  original_text: "Original text"
+  translated_text: "Translated text"
+  review_date: "Review date"
+  action: "Action"
+  delete_card_confirm: "Do you sure? You deleting this card!"
+  edit_card: "Edit card"
+  card_create: "Card successfully create"
