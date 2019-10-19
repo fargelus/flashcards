@@ -1,2 +1,3 @@
 <%= render partial: 'partials/page-title', locals: {title: t(:edit_card)} %>
 <%= render partial: 'form', locals: {submit_txt: t(:edit_card)} %>
+<%= render partial: 'partials/notice', locals: {notice_text: flash.notice} %>

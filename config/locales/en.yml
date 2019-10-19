@@ -9,4 +9,5 @@ en:
   action: "Action"
   delete_card_confirm: "Do you sure? You deleting this card!"
   edit_card: "Edit card"
-  card_create: "Card successfully created"
+  card_created: "Card successfully created"
+  card_updated: "Card successfully updated"

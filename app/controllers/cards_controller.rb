@@ -17,7 +17,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.new(card_params)
     if @card.save
-      redirect_to cards_path, notice: I18n.t(:card_create)
+      redirect_to cards_path, notice: I18n.t(:card_created)
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
 
     if @card.update(card_params)
-      redirect_to cards_path
+      redirect_to cards_path, notice: I18n.t(:card_updated)
     else
       render 'edit'
     end

@@ -35,8 +35,4 @@
   <% end %>
 </table>
 
-<% if flash.key?('notice')%>
-  <div class="alert alert-primary notice" role="alert">
-    <%=flash.notice%>
-  </div>
-<% end %>
+<%= render partial: 'partials/notice', locals: {notice_text: flash.notice} %>
