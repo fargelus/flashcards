@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompareFieldsValidator < ActiveModel::Validator
   def validate(record)
     if record.original_text.casecmp?(record.translated_text)

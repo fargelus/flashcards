@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
-  before_action :fetch_card, only: [:edit, :update, :destroy]
+  before_action :fetch_card, only: %i[edit update destroy]
 
   def index
     @cards = Card.all
@@ -12,8 +12,7 @@ class CardsController < ApplicationController
     @card = Card.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @card = Card.new(card_params)
