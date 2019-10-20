@@ -31,7 +31,7 @@ RSpec.describe Card, type: :model do
   end
 
   describe 'validations' do
-     it { should validate_uniqueness_of(:original_text) }
+    it { should validate_uniqueness_of(:original_text) }
   end
 
   it 'is not valid when original_text eq translated_text' do
