@@ -1,0 +1,19 @@
+ru:
+  helpers:
+    submit:
+      card:
+        create: 'Создать карточку'
+        update: 'Обновить карточку'
+  simple_form:
+    required:
+      text: 'обязательное поле'
+      mark: '*'
+    labels:
+      card:
+          original_text: 'Введите фразу для перевода:'
+          translated_text: 'Введите перевод:'
+          review_date: 'Введите дату пересмотра:'
+    placeholders:
+      card:
+          original_text: 'Ваша фраза для перевода'
+          translated_text: 'Перевод'

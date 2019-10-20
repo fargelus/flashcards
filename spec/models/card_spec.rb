@@ -15,7 +15,7 @@ RSpec.describe Card, type: :model do
     expect(subject).to be_valid
   end
 
-  it 'is not valid without original_text is null' do
+  it 'is not valid when original_text is null' do
     subject.original_text = nil
     expect(subject).to_not be_valid
   end
@@ -27,6 +27,15 @@ RSpec.describe Card, type: :model do
 
   it 'is not valid without review_date' do
     subject.review_date = nil
+    expect(subject).to_not be_valid
+  end
+
+  describe 'validations' do
+    it { should validate_uniqueness_of(:original_text) }
+  end
+
+  it 'is not valid when original_text eq translated_text' do
+    subject.original_text = subject.translated_text
     expect(subject).to_not be_valid
   end
 end

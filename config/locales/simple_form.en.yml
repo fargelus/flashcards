@@ -1,0 +1,19 @@
+ru:
+  helpers:
+    submit:
+      card:
+        create: 'Create card'
+        update: 'Update card'
+  simple_form:
+    required:
+      text: 'required'
+      mark: '*'
+    labels:
+      card:
+          original_text: 'Enter text for translate:'
+          translated_text: 'Enter translation:'
+          review_date: 'Enter review date:'
+    placeholders:
+      card:
+          original_text: 'Your text for translation'
+          translated_text: 'Translation'
