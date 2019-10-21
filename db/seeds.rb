@@ -18,6 +18,7 @@ def fill_dict_from_page(dict)
       dict_item = Hash.new
       dict_item['original_text'] = orig_text
       dict_item['translated_text'] = tr_text.content
+      dict_item['review_date'] = Date.today.to_time
       dict.push(dict_item)
     end
   end
