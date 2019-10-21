@@ -14,13 +14,13 @@ def fill_dict_from_page(dict)
     orig_text = link.content
     tr_text = words[i + 1]
 
-    unless tr_text.nil?
-      dict_item = Hash.new
-      dict_item['original_text'] = orig_text
-      dict_item['translated_text'] = tr_text.content
-      dict_item['review_date'] = Date.today.to_time
-      dict.push(dict_item)
-    end
+    next if tr_text.nil?
+
+    dict_item = {}
+    dict_item['original_text'] = orig_text
+    dict_item['translated_text'] = tr_text.content
+    dict_item['review_date'] = Date.today.to_time
+    dict.push(dict_item)
   end
 
   dict
