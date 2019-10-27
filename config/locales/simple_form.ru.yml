@@ -4,7 +4,6 @@ ru:
       card:
         create: 'Создать карточку'
         update: 'Обновить карточку'
-        home: 'Проверить'
   simple_form:
     required:
       text: 'обязательное поле'
@@ -18,3 +17,4 @@ ru:
       card:
           original_text: 'Ваша фраза для перевода'
           translated_text: 'Перевод'
+          answer: 'Введите ответ'

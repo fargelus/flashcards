@@ -18,6 +18,10 @@
     </p>
   </div>
 
-  <p><%=@card.original_text%>?</p>
-
+  <%= simple_form_for :card, html: {class: ''} do |f| %>
+    <%= f.input :answer, label: @guess_card_text,
+        label_html: { class: 'font-weight-bold' },
+        input_html: { value: nil } %>
+    <%= f.button :submit, t(:check), class: 'btn-primary mt-2' %>
+  <% end %>
 </main>

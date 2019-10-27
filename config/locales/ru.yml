@@ -15,3 +15,4 @@ ru:
   original_text_err: 'Пожалуйста введите фразу'
   translated_text_err: 'Пожалуйста введите перевод'
   back: 'Вернуться'
+  check: 'Проверить'
