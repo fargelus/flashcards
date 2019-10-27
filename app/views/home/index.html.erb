@@ -1,5 +1,3 @@
-<%= render partial: 'partials/page-title', locals: {title: t(:title)} %>
-
 <header class="clearfix">
   <ul class="navigation-links nav">
     <li class="nav-item">
@@ -11,8 +9,15 @@
   </ul>
 </header>
 
-<section>
-  <p class="desc">
-    <%=t('desc')%>
-  </p>
-</section>
+<main>
+  <%= render partial: 'partials/page-title', locals: {title: t(:title)} %>
+
+  <div>
+    <p class="desc">
+      <%=t('desc')%>
+    </p>
+  </div>
+
+  <p><%=@card.original_text%>?</p>
+
+</main>

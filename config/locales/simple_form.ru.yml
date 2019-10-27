@@ -4,6 +4,7 @@ ru:
       card:
         create: 'Создать карточку'
         update: 'Обновить карточку'
+        home: 'Проверить'
   simple_form:
     required:
       text: 'обязательное поле'
