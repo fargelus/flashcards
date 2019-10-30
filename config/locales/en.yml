@@ -13,3 +13,7 @@ en:
   card_updated: "Card successfully updated"
   back: 'Back'
   check: 'Check'
+  next_card: 'Next card'
+  checking: 'Checking...'
+  wrong_answer: 'Wrong answer'
+  correct_answer: 'Correct answer'
