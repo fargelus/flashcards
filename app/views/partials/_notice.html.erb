@@ -1,5 +1,6 @@
 <% unless notice_text.to_s.empty? %>
-  <div class="<%='alert alert-primary notice ' + class_name%>" role="alert">
+  <% class_name = class_name ? class_name : 'alert-primary' %>
+  <div class="<%='alert notice ' + class_name%>" role="alert">
     <%=notice_text%>
   </div>
 <% end %>
