@@ -13,9 +13,4 @@ class HomeController < ApplicationController
       @@saved_card = @card
     end
   end
-
-  def next_card
-    session[:guess_card_text] = nil
-    redirect_to root_path
-  end
 end
