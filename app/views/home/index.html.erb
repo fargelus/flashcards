@@ -19,8 +19,8 @@
   </div>
 
   <%= simple_form_for :card, html: {class: ''},
-      url: check_answer_path do |f| %>
-    <%= f.input :answer, label: @guess_card_text + '?',
+      url: check_answer_card_path(id: @card.id) do |f| %>
+    <%= f.input :answer, label: @card.original_text + '?',
         label_html: { class: 'font-weight-bold' },
         :required => true,
         input_html: { value: nil } %>
@@ -28,8 +28,7 @@
         data: { disable_with: t(:checking) } %>
   <% end %>
 
-  <%= button_to t(:next_card), { action: 'next_card' },
-      { class: 'btn-secondary' } %>
+  <%= link_to t(:next_card), root_path, class: 'btn btn-secondary' %>
 </main>
 
 <%= render partial: 'partials/notice',
