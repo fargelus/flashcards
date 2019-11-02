@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :cards do
-    post 'check_answer', on: :member
+    resources :answers, only: [:create]
   end
 end

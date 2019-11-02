@@ -18,9 +18,10 @@
     </p>
   </div>
 
-  <%= simple_form_for :card, html: {class: ''},
-      url: check_answer_card_path(id: @card.id) do |f| %>
-    <%= f.input :answer, label: @card.original_text + '?',
+  <%= simple_form_for @answer, html: {class: ''},
+      url: card_answers_path(card_id: @card.id) do |f| %>
+    <%= f.hidden_field :phrase, :value => @guess_card_text %>
+    <%= f.input :answer, label: @guess_card_text + '?',
         label_html: { class: 'font-weight-bold' },
         :required => true,
         input_html: { value: nil } %>
