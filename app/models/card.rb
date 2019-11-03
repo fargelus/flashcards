@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 
 class Card < ActiveRecord::Base
+  has_many :answers, dependent: :destroy
+
   scope :need_review, -> { where('review_date <= ?', Date.today) }
   scope :random_record, -> { order('RANDOM()').first }
 

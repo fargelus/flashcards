@@ -8,6 +8,8 @@ class AnswersController < ApplicationController
     answer.save!
 
     HandleUserAnswer.new(answer).start
+
+    session[:guess_card_id] = answer.card_id
     redirect_to root_path
   end
 

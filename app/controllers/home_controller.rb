@@ -2,30 +2,32 @@
 
 class HomeController < ApplicationController
   def index
-    @card = Card.need_review.random_record
-    @last_answer = Answer.last
-    process_last_answer if @last_answer
-
+    define_next_card
     @answer = Answer.new
-    @guess_card_text = @card.original_text
+    @guess_card_text = @card.original_text unless @card.blank?
   end
 
   private
 
+  def define_next_card
+    answered_card_id = session[:guess_card_id]
+    if answered_card_id
+      @card = Card.find(answered_card_id)
+      @last_answer = @card.answers.last
+      process_last_answer
+    else
+      fetch_random_card
+    end
+  end
+
   def process_last_answer
-    is_need_notice = @last_answer.need_notice
     is_wrong = @last_answer.wrong
-    if is_need_notice
+    if @last_answer.need_notice
       define_notice_text(is_wrong)
       notice_done
     end
 
-    get_previous_unguess_card if is_wrong
-  end
-
-  def get_previous_unguess_card
-    card_id = @last_answer.card_id
-    @card = Card.find(card_id)
+    fetch_random_card unless is_wrong
   end
 
   def define_notice_text(last_answer_was_wrong)
@@ -40,5 +42,9 @@ class HomeController < ApplicationController
   def notice_done
     @last_answer.need_notice = false
     @last_answer.save!
+  end
+
+  def fetch_random_card
+    @card = Card.need_review.random_record
   end
 end

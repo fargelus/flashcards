@@ -18,15 +18,17 @@
     </p>
   </div>
 
-  <%= simple_form_for @answer, html: {class: ''},
-      url: card_answers_path(card_id: @card.id) do |f| %>
-    <%= f.hidden_field :phrase, :value => @guess_card_text %>
-    <%= f.input :answer, label: @guess_card_text + '?',
-        label_html: { class: 'font-weight-bold' },
-        :required => true,
-        input_html: { value: nil } %>
-    <%= f.button :submit, t(:check), class: 'btn-primary mt-2',
-        data: { disable_with: t(:checking) } %>
+  <% if @guess_card_text %>
+    <%= simple_form_for @answer, html: {class: ''},
+        url: card_answers_path(card_id: @card.id) do |f| %>
+      <%= f.hidden_field :phrase, :value => @guess_card_text %>
+      <%= f.input :answer, label: @guess_card_text + '?',
+          label_html: { class: 'font-weight-bold' },
+          :required => true,
+          input_html: { value: nil } %>
+      <%= f.button :submit, t(:check), class: 'btn-primary mt-2',
+          data: { disable_with: t(:checking) } %>
+    <% end %>
   <% end %>
 </main>
 
