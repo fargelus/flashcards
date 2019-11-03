@@ -2,9 +2,7 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
-  include CardsHelper
-
-  before_action :fetch_card, only: %i[edit update destroy check_answer]
+  before_action :fetch_card, only: %i[edit update destroy]
 
   def index
     @cards = Card.all
@@ -39,16 +37,6 @@ class CardsController < ApplicationController
     redirect_to cards_path
   end
 
-  def check_answer
-    user_answer = params[:card][:answer]
-    if user_answer == @card.translated_text
-      update_card_date
-      redirect_to root_path, notice: I18n.t(:correct_answer)
-    else
-      redirect_to root_path(wrong_answer: true), notice: I18n.t(:wrong_answer)
-    end
-  end
-
   private
 
   def card_params
@@ -57,10 +45,5 @@ class CardsController < ApplicationController
 
   def fetch_card
     @card = Card.find(params[:id])
-  end
-
-  def update_card_date
-    @card.review_date = days_after(3)
-    @card.save!
   end
 end
