@@ -30,10 +30,10 @@ class HomeController < ApplicationController
 
   def define_notice_text(last_answer_was_wrong)
     if last_answer_was_wrong
-      flash[:notice] = I18n.t(:wrong_answer)
+      flash.now[:notice] = I18n.t(:wrong_answer)
       @wrong_answer = true
     else
-      flash[:notice] = I18n.t(:correct_answer)
+      flash.now[:notice] = I18n.t(:correct_answer)
     end
   end
 
