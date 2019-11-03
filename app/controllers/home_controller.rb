@@ -4,9 +4,7 @@ class HomeController < ApplicationController
   def index
     @card = Card.need_review.random_record
     @last_answer = Answer.last
-    if @last_answer
-      process_last_answer
-    end
+    process_last_answer if @last_answer
 
     @answer = Answer.new
     @guess_card_text = @card.original_text
@@ -22,9 +20,7 @@ class HomeController < ApplicationController
       notice_done
     end
 
-    if is_wrong
-      get_previous_unguess_card
-    end
+    get_previous_unguess_card if is_wrong
   end
 
   def get_previous_unguess_card
