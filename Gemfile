@@ -22,10 +22,10 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'activerecord-import', '~> 1.0.3'
   gem 'byebug'
-  gem 'i18n-debug', '~> 1.2.0'
-  gem 'nokogiri', '~> 1.10.4'
   gem 'factory_bot_rails', '~> 5.1.1'
   gem 'faker', '~> 2.2.1'
+  gem 'i18n-debug', '~> 1.2.0'
+  gem 'nokogiri', '~> 1.10.4'
 end
 
 group :development do
