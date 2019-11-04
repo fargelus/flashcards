@@ -24,6 +24,8 @@ group :development, :test do
   gem 'byebug'
   gem 'i18n-debug', '~> 1.2.0'
   gem 'nokogiri', '~> 1.10.4'
+  gem 'factory_bot_rails', '~> 5.1.1'
+  gem 'faker', '~> 2.2.1'
 end
 
 group :development do
