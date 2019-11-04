@@ -17,3 +17,4 @@ ru:
       card:
           original_text: 'Your text for translation'
           translated_text: 'Translation'
+          answer: 'Enter an answer'

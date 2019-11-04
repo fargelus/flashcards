@@ -14,3 +14,9 @@ ru:
   card_updated: "Карточка обновлена"
   original_text_err: 'Пожалуйста введите фразу'
   translated_text_err: 'Пожалуйста введите перевод'
+  back: 'Вернуться'
+  check: 'Проверить'
+  next_card: 'Следующая карточка'
+  checking: 'Проверяю'
+  wrong_answer: 'Неправильный ответ'
+  correct_answer: 'Правильный ответ'

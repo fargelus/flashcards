@@ -11,6 +11,8 @@ def fill_dict_from_page(dict)
   words = doc.css(selector)
 
   words.each_with_index do |link, i|
+    break if i == 10
+
     orig_text = link.content
     tr_text = words[i + 1]
 
