@@ -3,18 +3,22 @@
 class HandleUserAnswer
   include CardsHelper
 
-  def initialize(answer)
+  def initialize(answer, card = nil)
     @answer = answer
-    @card = Card.find(@answer.card_id)
+    @card = card || Card.find(@answer.card_id)
   end
 
   def start
-    if @answer.answer == @card.translated_text
+    if translation_correct?
       update_card_date
     else
       @answer.wrong = true
       @answer.save!
     end
+  end
+
+  def translation_correct?
+    @answer.answer == @card.translated_text
   end
 
   private
