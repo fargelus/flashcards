@@ -45,6 +45,6 @@ class HomeController < ApplicationController
   end
 
   def fetch_random_card
-    @card = Card.need_review.random_record
+    @card = Card.need_review.random.first
   end
 end
