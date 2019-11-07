@@ -42,7 +42,7 @@ RSpec.describe Card, type: :model do
 
     it '.need_review' do
       expected = Card.where('review_date <= ?', Date.today).to_sql
-      expect(Card.need_review.to_sql).to eq (expected)
+      expect(Card.need_review.to_sql).to eq expected
     end
   end
 end
