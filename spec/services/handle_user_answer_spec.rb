@@ -7,10 +7,25 @@ RSpec.describe HandleUserAnswer, type: :service do
   let (:answer) { FactoryBot.create(:answer, card_id: card.id) }
 
   describe '#translation_correct' do
-    it 'answer is correct translation' do
+    it 'answer is not correct translation' do
       user_answer_handler = HandleUserAnswer.new(answer, card)
       check_result = user_answer_handler.translation_correct?
       expect(check_result).to be false
+    end
+
+    it 'answer is correct translation' do
+      answer.answer = card.translated_text
+      user_answer_handler = HandleUserAnswer.new(answer, card)
+      check_result = user_answer_handler.translation_correct?
+      expect(check_result).to be true
+    end
+  end
+
+  describe '#start' do
+    it 'has review_date 3 days later' do
+      answer.answer = card.translated_text
+      HandleUserAnswer.new(answer, card).start
+      expect(card.review_date).to eq Date.today.next_day(3)
     end
   end
 end
