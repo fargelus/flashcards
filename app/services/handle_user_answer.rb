@@ -18,7 +18,7 @@ class HandleUserAnswer < ApplicationService
       @answer.save!
     end
 
-    return result
+    result
   end
 
   private
