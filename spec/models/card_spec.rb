@@ -3,29 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  let(:card) { FactoryBot.create(:card) }
+  let(:card) { create(:card) }
+
+  describe 'associations' do
+    it { should have_many(:answers) }
+  end
 
   context 'check attributes' do
     it 'is valid with all attrs filled' do
       expect(card).to be_valid
     end
 
-    it 'is not valid when original_text is null' do
-      card.original_text = nil
-      expect(card).to_not be_valid
-    end
-
-    it 'is not valid without translated_text' do
-      card.translated_text = nil
-      expect(card).to_not be_valid
-    end
-
-    it 'is not valid without review_date' do
-      card.review_date = nil
-      expect(card).to_not be_valid
-    end
-
     describe 'validations' do
+      it { should validate_presence_of(:original_text) }
+      it { should validate_presence_of(:translated_text) }
+      it { should validate_presence_of(:review_date) }
       it { should validate_uniqueness_of(:original_text) }
     end
 
@@ -36,13 +28,16 @@ RSpec.describe Card, type: :model do
   end
 
   context 'check scopes' do
-    it '.random' do
-      expect(Card.random.to_sql).to eq Card.order('RANDOM()').to_sql
-    end
-
     it '.need_review' do
-      expected = Card.where('review_date <= ?', Date.today).to_sql
-      expect(Card.need_review.to_sql).to eq expected
+      earliest_date = Date.yesterday
+      exist_card = Card.order(:review_date).first
+      earliest_date = exist_card.review_date - 3 unless exist_card.blank?
+
+      card.review_date = earliest_date
+      card.save!
+      expect(Card.need_review).to eq card
+
+      card.destroy
     end
   end
 end
