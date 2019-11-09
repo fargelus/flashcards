@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HandleUserAnswer
+class HandleUserAnswer < ApplicationService
   include CardsHelper
 
   def initialize(answer, card = nil)
@@ -8,20 +8,24 @@ class HandleUserAnswer
     @card = card || Card.find(@answer.card_id)
   end
 
-  def start
+  def call
+    result = false
     if translation_correct?
       update_card_date
+      result = true
     else
       @answer.wrong = true
       @answer.save!
     end
+
+    return result
   end
+
+  private
 
   def translation_correct?
     @answer.answer == @card.translated_text
   end
-
-  private
 
   def update_card_date
     @card.review_date = days_after(3)
