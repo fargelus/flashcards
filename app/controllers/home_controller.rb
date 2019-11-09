@@ -16,7 +16,7 @@ class HomeController < ApplicationController
       @last_answer = @card.answers.last
       process_last_answer
     else
-      fetch_random_card
+      fetch_card_for_review
     end
   end
 
@@ -27,7 +27,7 @@ class HomeController < ApplicationController
       notice_done
     end
 
-    fetch_random_card unless is_wrong
+    fetch_card_for_review unless is_wrong
   end
 
   def define_notice_text(last_answer_was_wrong)
@@ -44,7 +44,7 @@ class HomeController < ApplicationController
     @last_answer.save!
   end
 
-  def fetch_random_card
-    @card = Card.need_review.random.first
+  def fetch_card_for_review
+    @card = Card.need_review
   end
 end
