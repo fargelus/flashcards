@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Answer, type: :model do
-  let (:card) { create(:card) }
-  let (:answer) { create(:answer, card_id: card.id) }
+  let(:card) { create(:card) }
+  let(:answer) { create(:answer, card_id: card.id) }
 
   describe 'validations' do
     it { should validate_presence_of(:phrase) }

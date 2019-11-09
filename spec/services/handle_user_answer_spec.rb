@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe HandleUserAnswer, type: :service do
   let(:card) { create(:card) }
-  let (:answer) { create(:answer, card_id: card.id) }
+  let(:answer) { create(:answer, card_id: card.id) }
 
   before(:each) do
     answer.answer = card.translated_text
