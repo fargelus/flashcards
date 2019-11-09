@@ -4,10 +4,10 @@
 class Card < ActiveRecord::Base
   has_many :answers, dependent: :destroy
 
-  scope :need_review, -> {
+  scope :need_review, lambda {
     where('review_date <= ?', Date.today)
-    .order(:review_date)
-    .first
+      .order(:review_date)
+      .first
   }
 
   validates :original_text, :translated_text, :review_date, presence: true
