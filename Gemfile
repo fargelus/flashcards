@@ -22,6 +22,9 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'activerecord-import', '~> 1.0.3'
   gem 'byebug'
+  gem 'factory_bot_rails', '~> 5.1.1'
+  gem 'guard'
+  gem 'guard-rspec'
   gem 'i18n-debug', '~> 1.2.0'
   gem 'nokogiri', '~> 1.10.4'
 end

@@ -3,39 +3,41 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  subject do
-    described_class.new(
-      original_text: 'Hello, ruby world!',
-      translated_text: 'Привет, руби!',
-      review_date: '2019-10-13'
-    )
+  let(:card) { create(:card) }
+
+  describe 'associations' do
+    it { should have_many(:answers) }
   end
 
-  it 'is valid with all attrs filled' do
-    expect(subject).to be_valid
+  context 'check attributes' do
+    it 'is valid with all attrs filled' do
+      expect(card).to be_valid
+    end
+
+    describe 'validations' do
+      it { should validate_presence_of(:original_text) }
+      it { should validate_presence_of(:translated_text) }
+      it { should validate_presence_of(:review_date) }
+      it { should validate_uniqueness_of(:original_text) }
+    end
+
+    it 'is not valid when original_text eq translated_text' do
+      card.original_text = card.translated_text
+      expect(card).to_not be_valid
+    end
   end
 
-  it 'is not valid when original_text is null' do
-    subject.original_text = nil
-    expect(subject).to_not be_valid
-  end
+  context 'check scopes' do
+    it '.need_review' do
+      earliest_date = Date.yesterday
+      exist_card = Card.order(:review_date).first
+      earliest_date = exist_card.review_date - 3 unless exist_card.blank?
 
-  it 'is not valid without translated_text' do
-    subject.translated_text = nil
-    expect(subject).to_not be_valid
-  end
+      card.review_date = earliest_date
+      card.save!
+      expect(Card.need_review).to eq card
 
-  it 'is not valid without review_date' do
-    subject.review_date = nil
-    expect(subject).to_not be_valid
-  end
-
-  describe 'validations' do
-    it { should validate_uniqueness_of(:original_text) }
-  end
-
-  it 'is not valid when original_text eq translated_text' do
-    subject.original_text = subject.translated_text
-    expect(subject).to_not be_valid
+      card.destroy
+    end
   end
 end
