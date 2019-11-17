@@ -6,7 +6,7 @@ RSpec.describe AnswersController, type: :controller do
   let(:card) { create(:card) }
   let(:test_answer) { create(:answer, card_id: card.id) }
 
-  subject(:post_answer) {
+  subject(:post_answer) do
     {
       card_id: card.id,
       answer: {
@@ -14,7 +14,7 @@ RSpec.describe AnswersController, type: :controller do
         answer: test_answer.answer
       }
     }
-  }
+  end
 
   describe '#create' do
     it 'redirected back to root after create' do
