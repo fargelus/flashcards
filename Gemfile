@@ -22,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'activerecord-import', '~> 1.0.3'
   gem 'byebug'
+  gem 'capybara'
   gem 'factory_bot_rails', '~> 5.1.1'
   gem 'guard'
   gem 'guard-rspec'
