@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class HandleUserAnswer < ApplicationService
+class UserAnswerHandler < ApplicationService
   include CardsHelper
 
   def initialize(answer, card = nil)
