@@ -23,10 +23,7 @@ RSpec.describe AnswersController, type: :controller do
     end
 
     it 'creates one more answer after post' do
-      old_count = Answer.count
-      post :create, params: post_answer
-      new_count = Answer.count
-      expect(new_count).to be > old_count
+      expect { post :create, params: post_answer }.to change { Answer.count }.by(2)
     end
   end
 end

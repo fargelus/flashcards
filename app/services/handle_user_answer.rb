@@ -5,7 +5,8 @@ class HandleUserAnswer < ApplicationService
 
   def initialize(answer, card = nil)
     @answer = answer
-    @card = card || Card.find(@answer.card_id)
+    card ||= Card.find(@answer.card_id)
+    @card = card
   end
 
   def call
