@@ -29,6 +29,10 @@ group :development, :test do
   gem 'nokogiri', '~> 1.10.4'
 end
 
+group :test do
+  gem 'capybara'
+end
+
 group :development do
   gem 'web-console', '~> 2.0'
 
