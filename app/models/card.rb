@@ -3,6 +3,7 @@
 
 class Card < ActiveRecord::Base
   has_many :answers, dependent: :destroy
+  belongs_to :user
 
   scope :need_review, lambda {
     where('review_date <= ?', Date.today)
