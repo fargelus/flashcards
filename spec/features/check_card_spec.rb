@@ -3,12 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Check card', type: :feature do
-  let(:card) { create(:card) }
+  let!(:card) { create(:card) }
   let(:answer) { create(:answer, card_id: card.id) }
 
   describe 'checking card process' do
     it 'checks card' do
-      @answer = answer
       visit root_path
       fill_in 'answer', with: answer.answer
       click_button 'commit'
