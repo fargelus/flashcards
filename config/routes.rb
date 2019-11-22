@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :cards do
     resources :answers, only: [:create]
   end
+
+  resources :users
 end
