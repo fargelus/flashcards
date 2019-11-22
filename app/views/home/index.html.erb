@@ -18,3 +18,9 @@
     </p>
   </div>
 </main>
+
+<%= render partial: 'partials/notice',
+    locals: {
+      notice_text: flash.notice,
+      class_name: @wrong_answer ? 'alert-danger' : 'alert-success',
+    } %>
