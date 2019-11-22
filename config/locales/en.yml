@@ -21,3 +21,7 @@ en:
   sign_up: 'Sign up'
   account_creation: 'Create your account'
   reg_success: 'Registration success'
+  login_success: 'Login success'
+  login_failed: 'Login failed'
+  logout: 'Logout'
+  sign_in_to_account: 'Sign in to Flashcards'

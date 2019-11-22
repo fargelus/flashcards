@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   resources :users, except: %i[index destroy]
+  resources :user_sessions, only: %i[new create destroy]
 end
