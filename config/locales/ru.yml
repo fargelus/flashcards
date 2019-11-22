@@ -20,3 +20,5 @@ ru:
   checking: 'Проверяю'
   wrong_answer: 'Неправильный ответ'
   correct_answer: 'Правильный ответ'
+  sign_in: 'Войти'
+  sign_up: 'Регистрация'

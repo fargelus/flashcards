@@ -17,3 +17,5 @@ en:
   checking: 'Checking...'
   wrong_answer: 'Wrong answer'
   correct_answer: 'Correct answer'
+  sign_in: 'Sign in'
+  sign_up: 'Sign up'
