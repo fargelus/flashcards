@@ -1,12 +1,11 @@
-
-<%= simple_form_for(@user) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+<%= simple_form_for @user, html: {class: 'mt-4'} do |f| %>
   <div class="form-inputs">
+    <%= f.input :email %>
+    <%= f.input :crypted_password %>
+    <%= f.input :crypted_password_confirmation, :required => true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, class: 'btn-primary mt-2' %>
   </div>
 <% end %>

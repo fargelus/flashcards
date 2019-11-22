@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
   end
 
-  resources :users
+  resources :users, except: %i[index destroy]
 end

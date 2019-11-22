@@ -4,17 +4,28 @@ ru:
       card:
         create: 'Создать карточку'
         update: 'Обновить карточку'
+      user:
+        create: 'Зарегистрироваться'
   simple_form:
     required:
       text: 'обязательное поле'
       mark: '*'
     labels:
       card:
-          original_text: 'Введите фразу для перевода:'
-          translated_text: 'Введите перевод:'
-          review_date: 'Введите дату пересмотра:'
+        original_text: 'Введите фразу для перевода:'
+        translated_text: 'Введите перевод:'
+        review_date: 'Введите дату пересмотра:'
+      user:
+        email: 'Ваш email:'
+        crypted_password: 'Ваш пароль:'
+        crypted_password_confirmation: 'Повторите пароль:'
     placeholders:
       card:
-          original_text: 'Ваша фраза для перевода'
-          translated_text: 'Перевод'
-          answer: 'Введите ответ'
+        original_text: 'Ваша фраза для перевода'
+        translated_text: 'Перевод'
+        answer: 'Введите ответ'
+      user:
+        new:
+          email: 'Введите свой email'
+          crypted_password: 'Введите пароль'
+          crypted_password_confirmation: 'Пароль повторно'
