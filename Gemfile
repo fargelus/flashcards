@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 gem 'coffee-rails', '~> 4.1.0'
-gem 'font-awesome-rails'
 gem 'i18n', '~> 0.9.5'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
