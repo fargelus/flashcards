@@ -2,11 +2,14 @@
 
 source 'https://rubygems.org'
 
+gem 'bootstrap', '~> 4.3.1'
 gem 'coffee-rails', '~> 4.1.0'
+gem 'font-awesome-rails'
 gem 'i18n', '~> 0.9.5'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg', '~> 0.20'
+gem 'popper_js', '~> 1.14.5'
 gem 'rails', '~> 5.0.7'
 gem 'rake', '~> 13.0.0'
 gem 'rspec', '~> 3.9.0'

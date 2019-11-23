@@ -1,0 +1,28 @@
+<ul class="nav">
+  <li class="nav-item">
+    <%= link_to t(:all_cards), cards_path, class: 'nav-link active' %>
+  </li>
+
+  <li class="nav-item">
+    <%= link_to t(:add_card), new_card_path, class: 'nav-link active' %>
+  </li>
+
+  <li class="nav-item">
+    <ul class="dropdown show">
+      <li class="btn dropdown-toggle"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+        <i class="icon fa fa-user"></i>
+      </li>
+
+      <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to t(:logout),
+            logout_path,
+            method: :delete,
+            class: 'dropdown-item' %>
+      </li>
+    </ul>
+  </li>
+</ul>

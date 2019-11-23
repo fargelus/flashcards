@@ -1,31 +1,16 @@
-<header class="clearfix">
-  <ul class="navigation-links nav">
-    <% if current_user %>
-      <li class="nav-item">
-        <%= link_to t(:all_cards), cards_path, class: 'nav-link active' %>
-      </li>
-      <li>
-        <%= link_to t(:add_card), new_card_path, class: 'nav-link active' %>
-      </li>
-      <li>
-        <%= link_to t(:logout), logout_path, method: :delete, class: 'nav-link active' %>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to t(:sign_in), :login, class: 'nav-link active' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to t(:sign_up), new_user_path, class: 'nav-link active' %>
-      </li>
-    <% end %>
-  </ul>
+<header class="d-flex justify-content-end">
+  <% if current_user %>
+    <%= render 'partials/user-menu' %>
+  <% else %>
+    <%= render 'partials/guest-menu' %>
+  <% end %>
 </header>
 
 <main>
   <%= render partial: 'partials/page-title', locals: {title: t(:title)} %>
 
   <div>
-    <p class="desc">
+    <p class="font-size--larger">
       <%=t('desc')%>
     </p>
   </div>

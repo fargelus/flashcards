@@ -1,0 +1,8 @@
+.notice {
+  animation: .8s ease-in 2s fade-out forwards;
+  bottom: 0;
+  left: 50%;
+  margin-bottom: 0;
+  position: fixed;
+  transform: translateX(-50%);
+}
