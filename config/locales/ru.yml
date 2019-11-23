@@ -28,3 +28,6 @@ ru:
   login_failed: 'Ошибка авторизации'
   logout: 'Выйти'
   sign_in_to_account: 'Вход в аккаунт'
+  profile: 'Профиль'
+  account_edit: 'Редактирование аккаунта'
+  account_updated: 'Аккаунт обновлен'

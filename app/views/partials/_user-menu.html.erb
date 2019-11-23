@@ -18,10 +18,17 @@
       </li>
 
       <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to t(:logout),
-            logout_path,
+        <%= link_to edit_user_path(current_user),
+            class: 'dropdown-item' do %>
+              <%= t(:profile) %>
+              <i class="fa fa-edit ml-1"></i>
+            <% end %>
+        <%= link_to logout_path,
             method: :delete,
-            class: 'dropdown-item' %>
+            class: 'dropdown-item' do %>
+              <%= t(:logout) %>
+              <i class="fa fa-sign-out ml-1"></i>
+            <% end %>
       </li>
     </ul>
   </li>

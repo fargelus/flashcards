@@ -6,6 +6,7 @@ ru:
         update: 'Update card'
       user:
         create: 'Register'
+        update: 'Update'
   simple_form:
     required:
       text: 'required'

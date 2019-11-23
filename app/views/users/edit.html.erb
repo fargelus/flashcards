@@ -1,6 +1,2 @@
-<h1>Editing User</h1>
-
+<%= render partial: 'partials/page-title', locals: {title: t(:account_edit)} %>
 <%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
