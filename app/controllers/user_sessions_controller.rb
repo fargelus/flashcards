@@ -6,8 +6,12 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    if @user = login(params[:email], params[:crypted_password])
-      redirect_to user_path, notice: I18n.t(:login_success)
+    email = params[:user][:email]
+    pwd = params[:user][:password]
+
+    @user = login(email, pwd)
+    if @user
+      redirect_to root_path, notice: I18n.t(:login_success)
     else
       flash.now[:alert] = I18n.t(:login_failed)
       render 'new'
@@ -16,6 +20,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to root_path, notice: I18n.t(:logout)
+    redirect_to root_path
   end
 end

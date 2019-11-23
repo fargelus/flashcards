@@ -17,8 +17,8 @@ ru:
         review_date: 'Введите дату пересмотра:'
       user:
         email: 'Ваш email:'
-        crypted_password: 'Ваш пароль:'
-        crypted_password_confirmation: 'Повторите пароль:'
+        password: 'Ваш пароль:'
+        password_confirmation: 'Повторите пароль:'
     placeholders:
       card:
         original_text: 'Ваша фраза для перевода'
@@ -27,5 +27,5 @@ ru:
       user:
         new:
           email: 'Введите свой email'
-          crypted_password: 'Введите пароль'
-          crypted_password_confirmation: 'Пароль повторно'
+          password: 'Введите пароль'
+          password_confirmation: 'Пароль повторно'

@@ -17,7 +17,8 @@ ru:
           review_date: 'Enter review date:'
       user:
         email: 'Your email:'
-        crypted_password: 'Your password:'
+        password: 'Your password:'
+        password_confirmation: 'Repeat your password'
     placeholders:
       card:
           original_text: 'Your text for translation'
@@ -26,4 +27,5 @@ ru:
       user:
         new:
           email: 'Enter your email'
-          crypted_password: 'Enter your password'
+          password: 'Enter your password'
+          password_confirmation: 'Password again'
