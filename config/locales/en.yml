@@ -28,3 +28,4 @@ en:
   profile: 'Profile'
   account_edit: 'Edit your account'
   account_updated: 'Account was successfully updated'
+  need_login: 'Need to login before continue'

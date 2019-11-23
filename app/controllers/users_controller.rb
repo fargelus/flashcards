@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  skip_before_action :require_login, only: %i[new create]
   before_action :fetch_user, only: %i[edit update]
 
   def new
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      auto_login(@user)
       redirect_to root_path, notice: I18n.t(:reg_success)
     else
       render 'new'
