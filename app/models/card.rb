@@ -7,7 +7,7 @@ class Card < ActiveRecord::Base
 
   scope :need_review, lambda {
     relation = where('review_date <= ?', Date.today)
-                .order(:review_date)
+               .order(:review_date)
     relation = relation.present? ? relation.first : relation
   }
 
