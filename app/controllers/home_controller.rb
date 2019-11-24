@@ -4,15 +4,17 @@ class HomeController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    @has_cards = current_user && current_user.cards.count > 0
-    if @has_cards
-      define_next_card
-      @answer = Answer.new
-      @guess_card_text = @card.original_text unless @card.blank?
-    end
+    @has_cards = current_user && current_user.cards.count.positive?
+    access_allowed if @has_cards
   end
 
   private
+
+  def access_allowed
+    define_next_card
+    @answer = Answer.new
+    @guess_card_text = @card.original_text unless @card.blank?
+  end
 
   def define_next_card
     answered_card_id = session[:guess_card_id]

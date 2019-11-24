@@ -8,7 +8,7 @@ class Card < ActiveRecord::Base
   scope :need_review, lambda {
     relation = where('review_date <= ?', Date.today)
                .order(:review_date)
-    relation = relation.present? ? relation.first : relation
+    relation.present? ? relation.first : relation
   }
 
   validates :original_text, :translated_text, :review_date, presence: true
