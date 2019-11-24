@@ -4,9 +4,12 @@ class HomeController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    define_next_card
-    @answer = Answer.new
-    @guess_card_text = @card.original_text unless @card.blank?
+    @has_cards = current_user && current_user.cards.count > 0
+    if @has_cards
+      define_next_card
+      @answer = Answer.new
+      @guess_card_text = @card.original_text unless @card.blank?
+    end
   end
 
   private
@@ -14,7 +17,7 @@ class HomeController < ApplicationController
   def define_next_card
     answered_card_id = session[:guess_card_id]
     if answered_card_id
-      @card = Card.find(answered_card_id)
+      @card = current_user.cards.find(answered_card_id)
       @last_answer = @card.answers.last
       process_last_answer
     else
@@ -47,6 +50,6 @@ class HomeController < ApplicationController
   end
 
   def fetch_card_for_review
-    @card = Card.need_review
+    @card = current_user.cards.need_review
   end
 end

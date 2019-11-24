@@ -1,7 +1,9 @@
 <ul class="nav">
-  <li class="nav-item">
-    <%= link_to t(:all_cards), cards_path, class: 'nav-link active' %>
-  </li>
+  <% if @has_cards %>
+    <li class="nav-item">
+      <%= link_to t(:my_cards), cards_path, class: 'nav-link active' %>
+    </li>
+  <% end %>
 
   <li class="nav-item">
     <%= link_to t(:add_card), new_card_path, class: 'nav-link active' %>

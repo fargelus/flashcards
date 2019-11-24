@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
 
     @user = login(email, pwd)
     if @user
-      redirect_to root_path, notice: I18n.t(:login_success)
+      redirect_back_or_to root_path, notice: I18n.t(:login_success)
     else
       flash.now[:alert] = I18n.t(:login_failed)
       render 'new'
