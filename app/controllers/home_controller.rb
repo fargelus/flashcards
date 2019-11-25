@@ -2,13 +2,11 @@
 
 class HomeController < ApplicationController
   skip_before_action :require_login, only: [:index]
+  helper_method :has_cards?
 
   def index
-    @has_cards = current_user && current_user.cards.count.positive?
-    access_allowed if @has_cards
+    access_allowed if has_cards?
   end
-
-  private
 
   def access_allowed
     define_next_card
