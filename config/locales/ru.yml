@@ -32,3 +32,7 @@ ru:
   account_edit: 'Редактирование аккаунта'
   account_updated: 'Аккаунт обновлен'
   need_login: 'Необходимо войти в аккаунт'
+  external_register: 'Регистрация через внешние сервисы'
+  external_sign_in: 'Войти через внешние сервисы'
+  login_from: 'Вход из '
+  failed_login_from: 'Не удалось войти из '

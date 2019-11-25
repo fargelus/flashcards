@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OauthsController < ApplicationController
   skip_before_action :require_login
 
@@ -9,7 +11,7 @@ class OauthsController < ApplicationController
     provider = params[:provider]
     @user = login_from(provider)
     if @user # authorize existing user
-      redirect_to root_path, :notice => I18n.t(:login_success)
+      redirect_to root_path, notice: I18n.t(:login_success)
     else
       begin
         # user's registration
@@ -18,10 +20,11 @@ class OauthsController < ApplicationController
         reset_session
         auto_login(@user)
         notice_text = I18n.t(:login_from) + provider.titleize
-      rescue
+      rescue StandardError
         notice_text = I18n.t(:failed_login_from) + provider.titleize
       end
 
-      redirect_to root_path, :notice => notice_text
+      redirect_to root_path, notice: notice_text
+    end
   end
 end

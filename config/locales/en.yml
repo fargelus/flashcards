@@ -29,3 +29,7 @@ en:
   account_edit: 'Edit your account'
   account_updated: 'Account was successfully updated'
   need_login: 'Need to login before continue'
+  external_register: 'Register from external services'
+  external_sign_in: 'Sign in from external services'
+  login_from: 'Login from '
+  failed_login_from: 'Failed to login from '

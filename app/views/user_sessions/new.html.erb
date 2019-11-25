@@ -1,2 +1,3 @@
 <%= render partial: 'partials/page-title', locals: {title: t(:sign_in_to_account)} %>
-<%= render 'form'%>
+<%= render 'form' %>
+<%= render partial: 'partials/oauth', locals: { oauth_title: t(:external_sign_in)} %>
