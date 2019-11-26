@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
   let(:new_email) { 'new@mail.com' }
-  let(:generated_password) { Array.new(6).map{ rand(9) }.join('') }
+  let(:generated_password) { Array.new(6).map { rand(9) }.join('') }
 
   context 'when logged out' do
     describe 'GET #new' do
@@ -32,7 +32,7 @@ RSpec.describe UsersController, type: :controller do
           user: {
             email: new_email,
             password: generated_password,
-            password_confirmation: generated_password,
+            password_confirmation: generated_password
           }
         }
       end
@@ -66,7 +66,7 @@ RSpec.describe UsersController, type: :controller do
         expect(response).to redirect_to root_path
       end
 
-      it %q/updates user's email/ do
+      it "updates user's email" do
         patch :update, params: update_user
         saved_email = User.find(update_user[:id]).email
         expect(saved_email).to eq(new_email)
