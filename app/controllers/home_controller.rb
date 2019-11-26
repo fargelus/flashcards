@@ -8,6 +8,10 @@ class HomeController < ApplicationController
     access_allowed if has_cards?
   end
 
+  def has_cards?
+    current_user && current_user.cards.count.positive?
+  end
+
   def access_allowed
     define_next_card
     @answer = Answer.new
