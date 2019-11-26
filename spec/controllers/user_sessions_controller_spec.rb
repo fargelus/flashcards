@@ -3,24 +3,49 @@
 require 'rails_helper'
 
 RSpec.describe UserSessionsController, type: :controller do
-  describe 'GET #new' do
-    it 'returns http success' do
-      get :new
-      expect(response).to have_http_status(:success)
-    end
-  end
+  let(:user) { create(:user) }
+  let(:user_attrs) { attributes_for(:user) }
 
-  describe 'GET #create' do
-    it 'returns http success' do
-      get :create
-      expect(response).to have_http_status(:success)
+  context 'when logged out' do
+    describe 'GET #new' do
+      it 'response 200' do
+        get :new
+        expect(response.status).to eq(200)
+      end
     end
-  end
 
-  describe 'GET #destroy' do
-    it 'returns http success' do
-      get :destroy
-      expect(response).to have_http_status(:success)
+    describe 'DELETE #destroy' do
+      it 'redirects to login_path' do
+        delete :destroy
+        expect(response).to redirect_to login_path
+      end
+    end
+
+    describe 'POST #create' do
+      before(:each) {
+        login_user(user)
+        logout_user
+      }
+
+      subject (:post_user) do
+        {
+          user: {
+            email: user.email,
+            password: user_attrs[:password],
+          }
+        }
+      end
+
+      it 'logged in existing user' do
+        post :create, params: post_user
+        expect(logged_in?).to eq(true)
+      end
+
+      it 'not logged in stranger' do
+        post_user[:user][:password] = '1'
+        post :create, params: post_user
+        expect(logged_in?).to eq(false)
+      end
     end
   end
 end
