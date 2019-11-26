@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller do
   let(:user) { create(:user) }
-  let(:test_card) { build(:card, user_id: user.id) }
+  let!(:test_card) { create(:card, user_id: user.id) }
 
   before(:each) { login_user(user) }
 
@@ -35,7 +35,7 @@ RSpec.describe CardsController, type: :controller do
     subject (:post_card) do
       {
         card: {
-          original_text: test_card.original_text,
+          original_text: test_card.original_text.reverse,
           translated_text: test_card.translated_text,
           review_date: test_card.review_date
         }
@@ -44,6 +44,51 @@ RSpec.describe CardsController, type: :controller do
 
     it 'creates new card' do
       expect { post :create, params: post_card }.to change { Card.count }.by(1)
+    end
+
+    it 'redirects to index' do
+      post :create, params: post_card
+      expect(response).to redirect_to cards_path
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    subject (:delete_card) do
+      { :id => test_card.id }
+    end
+
+    it 'redirects to index after delete' do
+      delete :destroy, params: delete_card
+      expect(response).to redirect_to cards_path
+    end
+
+    it 'deletes card' do
+      expect { delete :destroy, params: delete_card }.to change { Card.count }.by(-1)
+    end
+  end
+
+  describe 'PATCH #update' do
+    subject (:update_card) do
+      {
+        id: test_card.id,
+        card: {
+          original_text: 'update',
+          translated_text: test_card.translated_text,
+          review_date: test_card.review_date
+        }
+      }
+    end
+
+    it 'redirects to index after update' do
+      patch :update, params: update_card
+      expect(response).to redirect_to cards_path
+    end
+
+    it 'update card original_text' do
+      patch :update, params: update_card
+      updated_text = Card.find(test_card.id).original_text
+      need_match_text = update_card[:card][:original_text]
+      expect(updated_text).to eq(need_match_text)
     end
   end
 end
