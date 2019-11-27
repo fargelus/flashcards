@@ -10,6 +10,8 @@ Bundler.require(*Rails.groups)
 
 Dotenv::Railtie.load
 
+require 'carrierwave/orm/activerecord'
+
 module App
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

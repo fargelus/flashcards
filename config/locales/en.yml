@@ -33,3 +33,4 @@ en:
   external_sign_in: 'Sign in from external services'
   login_from: 'Login from '
   failed_login_from: 'Failed to login from '
+  enter_answer: 'Enter an answer'

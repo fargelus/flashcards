@@ -4,6 +4,7 @@
 class Card < ActiveRecord::Base
   has_many :answers, dependent: :destroy
   belongs_to :user
+  mount_uploader :image, ImageUploader
 
   scope :need_review, lambda {
     relation = where('review_date <= ?', Date.today)
