@@ -8,8 +8,8 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    email = params[:user][:email]
-    pwd = params[:user][:password]
+    email = params[:email] || params[:user][:email]
+    pwd = params[:password] || params[:user][:password]
 
     @user = login(email, pwd)
     if @user

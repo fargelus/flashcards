@@ -4,16 +4,11 @@ require 'rails_helper'
 
 RSpec.describe OauthsController, type: :controller do
   describe 'GET #oauth' do
-    it 'returns http success' do
-      get :oauth
-      expect(response).to have_http_status(:success)
-    end
-  end
+    let(:provider) { 'github' }
 
-  describe 'GET #callback' do
-    it 'returns http success' do
-      get :callback
-      expect(response).to have_http_status(:success)
+    it 'redirects to provider' do
+      get :oauth, params: { provider: provider }
+      expect(response.location).to match(provider)
     end
   end
 end
