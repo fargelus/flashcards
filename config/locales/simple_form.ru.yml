@@ -4,17 +4,41 @@ ru:
       card:
         create: 'Создать карточку'
         update: 'Обновить карточку'
+      user:
+        create: 'Зарегистрироваться'
+        update: 'Обновить'
   simple_form:
     required:
       text: 'обязательное поле'
       mark: '*'
     labels:
       card:
-          original_text: 'Введите фразу для перевода:'
-          translated_text: 'Введите перевод:'
-          review_date: 'Введите дату пересмотра:'
+        original_text: 'Введите фразу для перевода:'
+        translated_text: 'Введите перевод:'
+        review_date: 'Введите дату пересмотра:'
+      user:
+        email: 'Ваш email:'
+        password: 'Ваш пароль:'
+        password_confirmation: 'Повторите пароль:'
     placeholders:
       card:
-          original_text: 'Ваша фраза для перевода'
-          translated_text: 'Перевод'
-          answer: 'Введите ответ'
+        original_text: 'Ваша фраза для перевода'
+        translated_text: 'Перевод'
+        answer: 'Введите ответ'
+      user:
+        new:
+          email: 'Введите свой email'
+          password: 'Введите пароль'
+          password_confirmation: 'Пароль повторно'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: 'Пароль должен быть не менее 6 символов'
+            password_confirmation:
+              confirmation: 'Пароли не совпадают'
+  attributes:
+    password: ''
+    password_confirmation: ''

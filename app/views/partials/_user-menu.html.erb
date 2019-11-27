@@ -1,0 +1,37 @@
+<ul class="nav">
+  <% if cards? %>
+    <li class="nav-item">
+      <%= link_to t(:my_cards), cards_path, class: 'nav-link active' %>
+    </li>
+  <% end %>
+
+  <li class="nav-item">
+    <%= link_to t(:add_card), new_card_path, class: 'nav-link active' %>
+  </li>
+
+  <li class="nav-item">
+    <ul class="dropdown show">
+      <li class="btn dropdown-toggle"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+        <i class="icon fa fa-user"></i>
+      </li>
+
+      <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= link_to edit_user_path(current_user),
+            class: 'dropdown-item' do %>
+              <%= t(:profile) %>
+              <i class="fa fa-edit ml-1"></i>
+            <% end %>
+        <%= link_to logout_path,
+            method: :delete,
+            class: 'dropdown-item' do %>
+              <%= t(:logout) %>
+              <i class="fa fa-sign-out ml-1"></i>
+            <% end %>
+      </li>
+    </ul>
+  </li>
+</ul>

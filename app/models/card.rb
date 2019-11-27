@@ -6,9 +6,9 @@ class Card < ActiveRecord::Base
   belongs_to :user
 
   scope :need_review, lambda {
-    where('review_date <= ?', Date.today)
-      .order(:review_date)
-      .first
+    relation = where('review_date <= ?', Date.today)
+               .order(:review_date)
+    relation.present? ? relation.first : relation
   }
 
   validates :original_text, :translated_text, :review_date, presence: true

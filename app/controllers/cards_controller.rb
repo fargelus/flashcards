@@ -5,17 +5,17 @@ class CardsController < ApplicationController
   before_action :fetch_card, only: %i[edit update destroy]
 
   def index
-    @cards = Card.all
+    @cards = current_user.cards.all
   end
 
   def new
-    @card = Card.new
+    @card = current_user.cards.new
   end
 
   def edit; end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.new(card_params)
     if @card.save
       redirect_to cards_path, notice: I18n.t(:card_created)
     else
@@ -44,6 +44,6 @@ class CardsController < ApplicationController
   end
 
   def fetch_card
-    @card = Card.find(params[:id])
+    @card = current_user.cards.find(params[:id])
   end
 end

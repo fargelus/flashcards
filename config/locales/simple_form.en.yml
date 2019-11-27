@@ -4,6 +4,9 @@ ru:
       card:
         create: 'Create card'
         update: 'Update card'
+      user:
+        create: 'Register'
+        update: 'Update'
   simple_form:
     required:
       text: 'required'
@@ -13,8 +16,17 @@ ru:
           original_text: 'Enter text for translate:'
           translated_text: 'Enter translation:'
           review_date: 'Enter review date:'
+      user:
+        email: 'Your email:'
+        password: 'Your password:'
+        password_confirmation: 'Repeat your password'
     placeholders:
       card:
           original_text: 'Your text for translation'
           translated_text: 'Translation'
           answer: 'Enter an answer'
+      user:
+        new:
+          email: 'Enter your email'
+          password: 'Enter your password'
+          password_confirmation: 'Password again'

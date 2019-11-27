@@ -1,6 +1,6 @@
 en:
   title: "Flashcards"
-  all_cards: "All cards"
+  my_cards: "My cards"
   add_card: "Add card"
   desc: "The world's first handy flash card manager. No jokes."
   original_text: "Original text"
@@ -17,3 +17,19 @@ en:
   checking: 'Checking...'
   wrong_answer: 'Wrong answer'
   correct_answer: 'Correct answer'
+  sign_in: 'Sign in'
+  sign_up: 'Sign up'
+  account_creation: 'Create your account'
+  reg_success: 'Registration success'
+  login_success: 'Login success'
+  login_failed: 'Login failed'
+  logout: 'Logout'
+  sign_in_to_account: 'Sign in to Flashcards'
+  profile: 'Profile'
+  account_edit: 'Edit your account'
+  account_updated: 'Account was successfully updated'
+  need_login: 'Need to login before continue'
+  external_register: 'Register from external services'
+  external_sign_in: 'Sign in from external services'
+  login_from: 'Login from '
+  failed_login_from: 'Failed to login from '

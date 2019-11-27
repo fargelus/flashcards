@@ -1,18 +1,29 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+  helper_method :cards?
+
   def index
+    access_allowed if cards?
+  end
+
+  private
+
+  def cards?
+    current_user && current_user.cards.count.positive?
+  end
+
+  def access_allowed
     define_next_card
     @answer = Answer.new
     @guess_card_text = @card.original_text unless @card.blank?
   end
 
-  private
-
   def define_next_card
     answered_card_id = session[:guess_card_id]
     if answered_card_id
-      @card = Card.find(answered_card_id)
+      @card = current_user.cards.find(answered_card_id)
       @last_answer = @card.answers.last
       process_last_answer
     else
@@ -45,6 +56,6 @@ class HomeController < ApplicationController
   end
 
   def fetch_card_for_review
-    @card = Card.need_review
+    @card = current_user.cards.need_review
   end
 end

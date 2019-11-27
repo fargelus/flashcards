@@ -1,0 +1,10 @@
+<div class="mt-4 oauth">
+  <h2 class="oauth__title"><%=oauth_title%></h2>
+  <div>
+    <%= link_to auth_at_provider_path(:provider => :github),
+                class: 'btn btn-secondary' do %>
+        Github
+        <i class="fa fa-github ml-1"></i>
+    <% end %>
+  </div>
+</div>

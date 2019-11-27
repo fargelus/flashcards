@@ -1,0 +1,3 @@
+<%= render partial: 'partials/page-title', locals: {title: t(:account_creation)} %>
+<%= render 'form', user: @user %>
+<%= render partial: 'partials/oauth', locals: { oauth_title: t(:external_register)} %>
