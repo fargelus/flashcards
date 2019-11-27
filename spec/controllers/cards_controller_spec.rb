@@ -53,9 +53,7 @@ RSpec.describe CardsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
-    subject (:delete_card) do
-      { id: test_card.id }
-    end
+    subject (:delete_card) { { id: test_card.id } }
 
     it 'redirects to index after delete' do
       delete :destroy, params: delete_card

@@ -22,11 +22,6 @@ RSpec.describe UserSessionsController, type: :controller do
     end
 
     describe 'POST #create' do
-      before(:each) do
-        login_user(user)
-        logout_user
-      end
-
       subject (:post_user) do
         {
           user: {
