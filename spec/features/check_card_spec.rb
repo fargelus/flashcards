@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Check card', type: :feature do
   let!(:user) { create(:user) }
-  let!(:card) { create(:card, user_id: user.id) }
+  let!(:card) { create(:card, user: user) }
   let(:answer) { create(:answer, card_id: card.id) }
 
   describe 'checking card process' do

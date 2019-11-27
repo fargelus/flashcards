@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller do
   let(:user) { create(:user) }
-  let!(:test_card) { create(:card, user_id: user.id) }
+  let!(:test_card) { create(:card, user: user) }
 
-  before(:each) { login_user(user) }
+  before { login_user(user) }
 
   describe 'GET #index' do
     render_views
@@ -18,7 +18,7 @@ RSpec.describe CardsController, type: :controller do
     end
 
     it 'shows a list of all current_user cards' do
-      total = user.cards.all.count
+      total = user.cards.count
       get :index
       expect(response.body).to match total.to_s
     end

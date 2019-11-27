@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
   let(:new_email) { 'new@mail.com' }
-  let(:generated_password) { Array.new(6).map { rand(9) }.join('') }
+  let(:generated_password) { generate :password }
 
   context 'when logged out' do
     describe 'GET #new' do
@@ -17,7 +17,7 @@ RSpec.describe UsersController, type: :controller do
 
     describe 'GET #edit' do
       it 'redirects to login_path' do
-        get :edit, params: { id: 1 }
+        get :edit, params: { id: User.last.id }
         expect(response).to redirect_to(login_path)
       end
     end

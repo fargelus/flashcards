@@ -8,6 +8,8 @@ class HomeController < ApplicationController
     access_allowed if cards?
   end
 
+  private
+
   def cards?
     current_user && current_user.cards.count.positive?
   end

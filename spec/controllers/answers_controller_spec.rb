@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
   let!(:user) { create(:user) }
-  let(:card) { create(:card, user_id: user.id) }
+  let(:card) { create(:card, user: user) }
   let(:test_answer) { create(:answer, card_id: card.id) }
 
   subject(:post_answer) do
