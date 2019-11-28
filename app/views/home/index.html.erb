@@ -1,12 +1,4 @@
-<header class="d-flex justify-content-end">
-  <% if current_user %>
-    <%= render 'partials/user-menu' %>
-  <% else %>
-    <%= render 'partials/guest-menu' %>
-  <% end %>
-</header>
-
-<main>
+<section>
   <%= render partial: 'partials/page-title', locals: {title: t(:title)} %>
 
   <div>
@@ -34,7 +26,7 @@
       <% end %>
     </div>
   <% end %>
-</main>
+</section>
 
 <%= render partial: 'partials/notice',
     locals: {

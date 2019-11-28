@@ -1,12 +1,12 @@
 <ul class="nav">
   <% if cards? %>
     <li class="nav-item">
-      <%= link_to t(:my_cards), cards_path, class: 'nav-link active' %>
+      <%= nav_link(cards_path, t(:my_cards)) %>
     </li>
   <% end %>
 
   <li class="nav-item">
-    <%= link_to t(:add_card), new_card_path, class: 'nav-link active' %>
+    <%= nav_link(new_card_path, t(:add_card)) %>
   </li>
 
   <li class="nav-item">

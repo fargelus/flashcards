@@ -1,9 +1,9 @@
 <ul class="nav">
   <li class="nav-item">
-      <%= link_to t(:sign_in), :login, class: 'nav-link active' %>
+    <%= nav_link(:login, t(:sign_in)) %>
   </li>
 
   <li class="nav-item">
-    <%= link_to t(:sign_up), new_user_path, class: 'nav-link active' %>
+    <%= nav_link(new_user_path, t(:sign_up)) %>
   </li>
 </ul>
