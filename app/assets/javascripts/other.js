@@ -1,5 +1,5 @@
 $(() => {
-  $('#img-upload').change((ev) => {
+  $('#img-upload').change(ev => {
     const el = ev.target;
     makeImgPreview(el);
   });
