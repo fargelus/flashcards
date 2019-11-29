@@ -1,5 +1,5 @@
 <ul class="nav">
-  <% if cards? %>
+  <% if cards?(current_user) %>
     <li class="nav-item">
       <%= nav_link(cards_path, t(:my_cards)) %>
     </li>

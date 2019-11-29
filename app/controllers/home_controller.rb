@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  include ApplicationHelper
+
   skip_before_action :require_login, only: [:index]
 
   def index
-    access_allowed if cards?
+    access_allowed if cards?(current_user)
   end
 
   private
