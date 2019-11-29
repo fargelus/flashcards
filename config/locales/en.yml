@@ -34,3 +34,4 @@ en:
   login_from: 'Login from '
   failed_login_from: 'Failed to login from '
   enter_answer: 'Enter an answer'
+  select_img: 'Choose an image'
