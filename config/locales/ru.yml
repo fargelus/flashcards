@@ -36,3 +36,5 @@ ru:
   external_sign_in: 'Войти через внешние сервисы'
   login_from: 'Вход из '
   failed_login_from: 'Не удалось войти из '
+  enter_answer: 'Введите ответ'
+  select_img: 'Выберите картинку'

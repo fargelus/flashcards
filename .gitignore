@@ -2,4 +2,5 @@
 /tmp/
 /test/
 /config/database.yml
+/public/uploads/
 .env

@@ -1,0 +1,9 @@
+<header class="header">
+  <%= render 'partials/logo' %>
+
+  <% if current_user %>
+    <%= render 'partials/user-menu' %>
+  <% else %>
+    <%= render 'partials/guest-menu' %>
+  <% end %>
+</header>

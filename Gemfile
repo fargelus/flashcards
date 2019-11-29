@@ -3,6 +3,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap', '~> 4.3.1'
+gem 'carrierwave', '~> 2.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'font-awesome-rails'
 gem 'i18n', '~> 0.9.5'

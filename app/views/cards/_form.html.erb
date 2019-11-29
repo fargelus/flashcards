@@ -1,4 +1,4 @@
-<%= simple_form_for @card, html: {class: 'mt-4'} do |f| %>
+<%= simple_form_for @card, html: { class: 'mt-4', multipart: true } do |f| %>
   <%= f.input :original_text, error: t(:original_text_err) %>
   <%= f.input :translated_text, error: t(:translated_text_err) %>
   <%= f.input :review_date, input_html: {
@@ -6,5 +6,22 @@
         min: today
       },
       as: :date, html5: true, :required => false %>
-  <%= f.button :submit, class: 'btn-primary mt-2' %>
+  <div class="d-flex align-items-center">
+    <%= button_tag type: 'button' do %>
+      <%= label_tag 'img-upload', t(:select_img), class: 'mb-0'%>
+    <% end %>
+    <%= f.file_field :image, class: 'd-none', id: 'img-upload' %>
+
+    <% image_exist = @card.image? %>
+    <span class="ml-3 mr-2" id="upload-img-name">
+      <%=@card.image.identifier if image_exist%>
+    </span>
+    <% img_src = image_exist ? @card.image.thumb.url : '' %>
+    <%= image_tag(img_src, id: 'upload-img-preview') %>
+  </div>
+  <div class="mt-3">
+    <%= f.button :submit, class: 'btn-primary mt-2' %>
+  </div>
 <% end %>
+
+<%= javascript_include_tag 'other' %>

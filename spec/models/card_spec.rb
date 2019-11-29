@@ -19,7 +19,7 @@ RSpec.describe Card, type: :model do
       it { should validate_presence_of(:original_text) }
       it { should validate_presence_of(:translated_text) }
       it { should validate_presence_of(:review_date) }
-      it { should validate_uniqueness_of(:original_text) }
+      it { should validate_uniqueness_of(:original_text).scoped_to(:user_id) }
     end
 
     it 'is not valid when original_text eq translated_text' do
