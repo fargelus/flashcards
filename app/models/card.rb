@@ -2,6 +2,9 @@
 # frozen_string_literal: true
 
 class Card < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :original_text, use: :slugged
+
   has_many :answers, dependent: :destroy
   belongs_to :user
   mount_uploader :image, ImageUploader

@@ -49,6 +49,6 @@ class CardsController < ApplicationController
   end
 
   def fetch_card
-    @card = current_user.cards.find(params[:id])
+    @card = current_user.cards.friendly.find(params[:id])
   end
 end
