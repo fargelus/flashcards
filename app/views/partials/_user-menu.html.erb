@@ -1,12 +1,6 @@
 <ul class="nav">
-  <% if cards?(current_user) %>
-    <li class="nav-item">
-      <%= nav_link(cards_path, t(:my_cards)) %>
-    </li>
-  <% end %>
-
   <li class="nav-item">
-    <%= nav_link(new_card_path, t(:add_card)) %>
+    <%= nav_link(decks_path, t(:my_decks)) %>
   </li>
 
   <li class="nav-item">

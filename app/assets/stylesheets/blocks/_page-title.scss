@@ -1,0 +1,9 @@
+.page-title {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+
+  .backlink {
+    flex: 1 1 100%;
+  }
+}

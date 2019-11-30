@@ -7,6 +7,8 @@ ru:
       user:
         create: 'Зарегистрироваться'
         update: 'Обновить'
+      deck:
+        create: 'Создать'
   simple_form:
     required:
       text: 'обязательное поле'
@@ -20,6 +22,8 @@ ru:
         email: 'Ваш email:'
         password: 'Ваш пароль:'
         password_confirmation: 'Повторите пароль:'
+      deck:
+        name: 'Название:'
     placeholders:
       card:
         original_text: 'Ваша фраза для перевода'
@@ -30,6 +34,8 @@ ru:
           email: 'Введите свой email'
           password: 'Введите пароль'
           password_confirmation: 'Пароль повторно'
+      deck:
+        name: 'Введите название новой колоды'
   activerecord:
     errors:
       models:
@@ -39,6 +45,11 @@ ru:
               too_short: 'Пароль должен быть не менее 6 символов'
             password_confirmation:
               confirmation: 'Пароли не совпадают'
+        deck:
+          attributes:
+            name:
+              taken: 'Колода с таким именем уже существует'
   attributes:
     password: ''
     password_confirmation: ''
+    name: ''

@@ -38,3 +38,6 @@ ru:
   failed_login_from: 'Не удалось войти из '
   enter_answer: 'Введите ответ'
   select_img: 'Выберите картинку'
+  my_decks: 'Мои колоды'
+  create_deck: 'Создать колоду'
+  deck_created: 'Колода создана'

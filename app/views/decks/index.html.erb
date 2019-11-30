@@ -1,0 +1,8 @@
+<%= render partial: 'partials/page-title', locals: {title: t(:my_decks)} %>
+
+<%= link_to new_deck_path, class: 'btn btn-secondary' do %>
+  <%= t(:create_deck) %>
+  <i class="fa fa-plus ml-1 align-middle"></i>
+<% end %>
+
+<%= render partial: 'partials/notice', locals: {notice_text: flash.notice} %>
