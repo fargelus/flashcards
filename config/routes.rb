@@ -3,10 +3,10 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :decks
-
-  resources :cards do
-    resources :answers, only: [:create]
+  resources :decks do
+    resources :cards, shallow: true do
+      resources :answers, only: [:create]
+    end
   end
 
   resources :users, except: %i[index destroy]

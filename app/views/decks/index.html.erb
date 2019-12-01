@@ -1,4 +1,4 @@
-<%= render partial: 'partials/page-title', locals: {title: t(:my_decks)} %>
+<%= render partial: 'partials/page-title', locals: {title: t(:decks_list)} %>
 
 <% if decks? %>
 <table class="table mt-4">
@@ -36,9 +36,9 @@
           </button>
         </div>
       </td>
-      <td>
+      <td class="align-middle">
         <% if cards?(deck) %>
-          <% link_to t(:deck_cards), cards_path %>
+          <%= link_to t(:deck_cards), deck_cards_path(deck.id) %>
         <% end %>
       </td>
     </tr>

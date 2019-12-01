@@ -2,7 +2,8 @@
 
 class Deck < ApplicationRecord
   before_update :reset_records_activity, if: :activity
-  has_many :cards
+  has_many :cards, dependent: :destroy
+  belongs_to :user
 
   validates :name, presence: true, uniqueness: true
 

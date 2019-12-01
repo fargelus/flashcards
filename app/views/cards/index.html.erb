@@ -1,6 +1,7 @@
-<%= render partial: 'partials/page-title', locals: {title: t(:my_cards)} %>
+<%= render partial: 'partials/page-title', locals: {title: deck_name(@deck)} %>
 
-<table class="table mt-4">
+<h4 class="mt-2 mb-0"><%=t(:deck_cards)%></h4>
+<table class="table mt-3">
   <thead class="thead-dark">
     <tr>
       <th><%=t(:original_text)%></th>
@@ -34,5 +35,10 @@
     </tr>
   <% end %>
 </table>
+
+<%= link_to new_deck_card_path(@deck.id), class: 'btn btn-secondary mt-3' do %>
+  <%= t(:add_card) %>
+  <i class="fa fa-plus ml-1 align-middle"></i>
+<% end %>
 
 <%= render partial: 'partials/notice', locals: {notice_text: flash.notice} %>

@@ -5,11 +5,11 @@ class DecksController < ApplicationController
   helper_method :decks?
 
   def index
-    @decks = Deck.all
+    @decks = current_user.decks.all
   end
 
   def new
-    @deck = Deck.new
+    @deck = current_user.decks.new
   end
 
   def edit; end
@@ -23,7 +23,7 @@ class DecksController < ApplicationController
   end
 
   def create
-    @deck = Deck.new(deck_params)
+    @deck = current_user.decks.new(deck_params)
 
     if @deck.save
       redirect_to decks_path, notice: I18n.t(:deck_created)
@@ -40,11 +40,11 @@ class DecksController < ApplicationController
   private
 
   def decks?
-    Deck.count.positive?
+    current_user.decks.count.positive?
   end
 
   def fetch_deck
-    @deck = Deck.find(params[:id])
+    @deck = current_user.decks.find(params[:id])
   end
 
   def deck_params

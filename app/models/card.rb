@@ -8,12 +8,11 @@ class Card < ActiveRecord::Base
   def slug_candidates
     [
       :original_text,
-      %i[original_text user_id]
+      %i[original_text deck_id]
     ]
   end
 
   has_many :answers, dependent: :destroy
-  belongs_to :user
   belongs_to :deck
   mount_uploader :image, ImageUploader
 
@@ -24,7 +23,7 @@ class Card < ActiveRecord::Base
   }
 
   validates :original_text, :translated_text, :review_date, presence: true
-  validates :original_text, uniqueness: { scope: :user_id }
+  validates :original_text, uniqueness: { scope: :deck_id }
 
   include ActiveModel::Validations
   validates_with CompareFieldsValidator
