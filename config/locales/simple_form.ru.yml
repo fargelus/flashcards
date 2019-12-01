@@ -24,6 +24,7 @@ ru:
         password_confirmation: 'Повторите пароль:'
       deck:
         name: 'Название:'
+        description: 'Краткое описание:'
     placeholders:
       card:
         original_text: 'Ваша фраза для перевода'
@@ -36,6 +37,7 @@ ru:
           password_confirmation: 'Пароль повторно'
       deck:
         name: 'Введите название новой колоды'
+        description: 'Введите краткое описание колоды'
   activerecord:
     errors:
       models:

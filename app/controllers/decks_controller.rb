@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
 class DecksController < ApplicationController
+  helper_method :decks?
+
   def index
     @decks = Deck.all
+  end
+
+  def decks?
+    Deck.count.positive?
   end
 
   def new

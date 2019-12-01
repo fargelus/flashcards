@@ -38,3 +38,7 @@ en:
   my_decks: 'My decks'
   create_deck: 'Create deck'
   deck_created: 'Deck was created'
+  name: 'Name'
+  description: 'Description'
+  viewed?: 'Currently viewed?'
+  you_have_no_decks: 'You have no decks at this moment'

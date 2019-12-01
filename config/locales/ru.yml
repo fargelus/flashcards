@@ -41,3 +41,7 @@ ru:
   my_decks: 'Мои колоды'
   create_deck: 'Создать колоду'
   deck_created: 'Колода создана'
+  name: 'Название'
+  description: 'Описание'
+  viewed?: 'Просматривается?'
+  you_have_no_decks: 'На данный момент у Вас нет колод.'

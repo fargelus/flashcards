@@ -24,6 +24,7 @@ ru:
         password_confirmation: 'Repeat your password'
       deck:
         name: 'Name:'
+        description: 'Description:'
     placeholders:
       card:
           original_text: 'Your text for translation'
@@ -36,6 +37,7 @@ ru:
           password_confirmation: 'Password again'
       deck:
         name: 'Enter name of the deck'
+        description: 'Short description:'
   activerecord:
     errors:
       models:

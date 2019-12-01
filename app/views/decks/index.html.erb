@@ -1,6 +1,44 @@
 <%= render partial: 'partials/page-title', locals: {title: t(:my_decks)} %>
 
-<%= link_to new_deck_path, class: 'btn btn-secondary' do %>
+<% if decks? %>
+  <thead class="thead-dark">
+    <tr>
+      <th><%=t(:name)%></th>
+      <th><%=t(:description)%></th>
+      <th><%=t(:viewed?)%></th>
+      <th><%=t(:action)%></th>
+    </tr>
+  </thead>
+
+  <% @decks.each do |deck| %>
+    <tr>
+      <td><%=deck.name%></td>
+      <td><%=deck.description%></td>
+      <td><%=deck.activity%></td>
+      <td>
+        <div>
+          <button class="btn card-action-btn mr-1">
+            <%= link_to edit_deck_path(deck) do %>
+              <%=image_tag 'edit.png', :width => '24' %>
+            <% end %>
+          </button>
+
+          <button class="btn card-action-btn">
+            <%= link_to deck_path(deck),
+               method: :delete,
+               data: {confirm: t(:delete_deck_confirm)} do %>
+                  <%=image_tag 'garbage.png', :width => '24' %>
+              <% end %>
+          </button>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <p class="font-size--larger"><%=t(:you_have_no_decks)%></p>
+<% end %>
+
+<%= link_to new_deck_path, class: 'btn btn-secondary mt-4' do %>
   <%= t(:create_deck) %>
   <i class="fa fa-plus ml-1 align-middle"></i>
 <% end %>
