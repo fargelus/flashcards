@@ -50,3 +50,4 @@ ru:
   delete_deck_confirm: 'Вы хотите удалить эту колоду?'
   edit_deck: 'Редактировать колоду'
   deck_updated: 'Колода обновлена'
+  deck_cards: 'Карточки'

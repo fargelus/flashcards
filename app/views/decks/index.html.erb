@@ -8,6 +8,7 @@
       <th><%=t(:description)%></th>
       <th><%=t(:viewed?)%></th>
       <th><%=t(:action)%></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -20,13 +21,13 @@
       </td>
       <td>
         <div>
-          <button class="btn card-action-btn mr-1">
+          <button class="btn mr-1">
             <%= link_to edit_deck_path(deck) do %>
               <%=image_tag 'edit.png', :width => '24' %>
             <% end %>
           </button>
 
-          <button class="btn card-action-btn">
+          <button class="btn">
             <%= link_to deck_path(deck),
                method: :delete,
                data: {confirm: t(:delete_deck_confirm)} do %>
@@ -34,6 +35,11 @@
               <% end %>
           </button>
         </div>
+      </td>
+      <td>
+        <% if cards?(deck) %>
+          <% link_to t(:deck_cards), cards_path %>
+        <% end %>
       </td>
     </tr>
   <% end %>

@@ -9,7 +9,7 @@ ru:
         update: 'Обновить'
       deck:
         create: 'Создать'
-        update: 'Обновить карточку'
+        update: 'Обновить колоду'
   simple_form:
     required:
       text: 'обязательное поле'

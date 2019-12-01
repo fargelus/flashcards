@@ -8,10 +8,6 @@ class DecksController < ApplicationController
     @decks = Deck.all
   end
 
-  def decks?
-    Deck.count.positive?
-  end
-
   def new
     @deck = Deck.new
   end
@@ -42,6 +38,10 @@ class DecksController < ApplicationController
   end
 
   private
+
+  def decks?
+    Deck.count.positive?
+  end
 
   def fetch_deck
     @deck = Deck.find(params[:id])
