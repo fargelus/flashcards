@@ -42,3 +42,8 @@ en:
   description: 'Description'
   viewed?: 'Currently viewed?'
   you_have_no_decks: 'You have no decks at this moment'
+  currently_viewed: 'Yes'
+  currently_not_viewed: 'No'
+  delete_deck_confirm: 'Вы хотите удалить эту колоду?'
+  edit_deck: 'Edit deck'
+  deck_updated: 'Deck was successfully updated'

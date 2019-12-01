@@ -9,6 +9,7 @@ ru:
         update: 'Обновить'
       deck:
         create: 'Создать'
+        update: 'Обновить карточку'
   simple_form:
     required:
       text: 'обязательное поле'
@@ -55,3 +56,4 @@ ru:
     password: ''
     password_confirmation: ''
     name: ''
+    activity: 'Сделать просматриваемой'

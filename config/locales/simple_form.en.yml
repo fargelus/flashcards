@@ -9,6 +9,7 @@ ru:
         update: 'Update'
       deck:
         create: 'Create'
+        update: 'Update'
   simple_form:
     required:
       text: 'required'

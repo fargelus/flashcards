@@ -1,7 +1,2 @@
 <%= render partial: 'partials/page-title', locals: { title: t(:create_deck) } %>
-
-<%= simple_form_for @deck, html: { class: 'mt-4' } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :description, input_html: { maxlength: 80 } %>
-  <%= f.button :submit, class: 'btn-primary mt-2' %>
-<% end %>
+<%= render 'form'%>
