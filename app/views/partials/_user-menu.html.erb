@@ -1,4 +1,11 @@
 <ul class="nav">
+  <% if current_deck %>
+    <li class="nav-item nav-item--deck">
+      <%= nav_link(edit_deck_path(current_deck),
+          current_deck.name.capitalize) %>
+    </li>
+  <% end %>
+
   <li class="nav-item">
     <%= nav_link(decks_path, t(:my_decks)) %>
   </li>

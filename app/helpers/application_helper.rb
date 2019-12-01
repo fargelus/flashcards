@@ -16,4 +16,8 @@ module ApplicationHelper
   def cards?(user)
     user.cards.count.positive? if user
   end
+
+  def current_deck
+    Deck.find_by_activity(true)
+  end
 end

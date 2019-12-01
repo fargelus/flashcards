@@ -1,0 +1,22 @@
+.nav-item--deck {
+  .nav-link {
+    background: $dark-blue;
+    border: 1px solid;
+    color: $snow;
+    padding: 5px 15px;
+
+    &:hover {
+      background: lighten($dark-blue, 10);
+    }
+  }
+}
+
+.nav-link {
+  display: inline-block;
+  margin: 0 16px;
+  padding: 8px 0 0;
+
+  &.active {
+    border-bottom: 2px solid;
+  }
+}
