@@ -4,9 +4,11 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :decks do
-    resources :cards, shallow: true do
-      resources :answers, only: [:create]
-    end
+    resources :cards
+  end
+
+  resources :cards, only: [] do
+    resources :answers, only: [:create]
   end
 
   resources :users, except: %i[index destroy]

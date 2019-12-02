@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class CardsController < ApplicationController
-  before_action :fetch_deck, only: %i[index new create]
+  before_action :fetch_deck
   before_action :fetch_card, only: %i[edit update destroy]
 
   def index
@@ -18,7 +18,7 @@ class CardsController < ApplicationController
   def create
     @card = @deck.cards.new(card_params)
     if @card.save
-      redirect_to deck_cards_path, notice: I18n.t(:card_created)
+      redirect_to deck_cards_path(@deck), notice: I18n.t(:card_created)
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to cards_path, notice: I18n.t(:card_updated)
+      redirect_to deck_cards_path(@deck), notice: I18n.t(:card_updated)
     else
       render 'edit'
     end
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
   def destroy
     @card.destroy
 
-    redirect_to cards_path
+    redirect_to deck_cards_path(@deck)
   end
 
   private
@@ -50,7 +50,7 @@ class CardsController < ApplicationController
   end
 
   def fetch_card
-    @card = current_user.cards.friendly.find(params[:id])
+    @card = Card.friendly.find(params[:id])
   end
 
   def fetch_deck

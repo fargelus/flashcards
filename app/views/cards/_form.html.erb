@@ -1,4 +1,4 @@
-<%= simple_form_for @card, url: deck_cards_path(@deck.id),
+<%= simple_form_for [@deck, @card],
     html: { class: 'mt-4', multipart: true } do |f| %>
   <%= f.input :original_text, error: t(:original_text_err) %>
   <%= f.input :translated_text, error: t(:translated_text_err) %>
