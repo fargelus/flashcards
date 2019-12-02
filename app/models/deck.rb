@@ -1,3 +1,4 @@
+# Model for card's deck
 # frozen_string_literal: true
 
 class Deck < ApplicationRecord
@@ -5,7 +6,7 @@ class Deck < ApplicationRecord
   has_many :cards, dependent: :destroy
   belongs_to :user
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 
   private
 

@@ -24,15 +24,18 @@ class HomeController < ApplicationController
   def define_next_card
     answered_card_id = session[:guess_card_id]
     if answered_card_id
-      @card = Card.find(answered_card_id)
-      @last_answer = @card.answers.last
-      process_last_answer
+      @card = Card.find_by_id(answered_card_id)
+      process_last_answer if @card
     else
       fetch_card_for_review
     end
+
+    # In case of delete reviewing card
+    session[:guess_card_id] = nil
   end
 
   def process_last_answer
+    @last_answer = @card.answers.last
     is_wrong = @last_answer.wrong
     if @last_answer.need_notice
       define_notice_text(is_wrong)

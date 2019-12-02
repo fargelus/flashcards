@@ -1,3 +1,4 @@
+# Controller for card's deck
 # frozen_string_literal: true
 
 class DecksController < ApplicationController
