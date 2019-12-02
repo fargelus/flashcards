@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
 
   describe 'associations' do
-    it { should have_many(:cards) }
+    it { should have_many(:decks) }
     it { should have_many(:authentications) }
     it { should accept_nested_attributes_for(:authentications) }
   end

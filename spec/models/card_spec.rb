@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  let!(:card) { create(:card) }
+  let(:deck) { create(:deck) }
+  let!(:card) { create(:card, deck: deck) }
 
   describe 'associations' do
     it { should have_many(:answers) }
-    it { should belong_to(:user) }
+    it { should belong_to(:deck) }
   end
 
   context 'check attributes' do
@@ -19,7 +20,7 @@ RSpec.describe Card, type: :model do
       it { should validate_presence_of(:original_text) }
       it { should validate_presence_of(:translated_text) }
       it { should validate_presence_of(:review_date) }
-      it { should validate_uniqueness_of(:original_text).scoped_to(:user_id) }
+      it { should validate_uniqueness_of(:original_text).scoped_to(:deck_id) }
     end
 
     it 'is not valid when original_text eq translated_text' do
@@ -36,7 +37,7 @@ RSpec.describe Card, type: :model do
 
       card.review_date = earliest_date
       card.save!
-      expect(Card.need_review).to eq card
+      expect(Card.need_review(deck.id)).to eq card
 
       card.destroy
     end

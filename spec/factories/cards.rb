@@ -7,6 +7,6 @@ FactoryBot.define do
     translated_text { 'translated_text' }
     review_date { Date.today }
 
-    association :user, factory: :user
+    association :deck, factory: :deck
   end
 end

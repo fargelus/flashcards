@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
-  let!(:user) { create(:user) }
-  let(:card) { create(:card, user: user) }
+  let(:user) { create :user }
+  let(:deck) { create(:deck, user: user) }
+  let(:card) { create(:card, deck: deck) }
   let(:test_answer) { create(:answer, card_id: card.id) }
 
   subject(:post_answer) do
@@ -18,7 +19,7 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'POST #create' do
-    before(:each) { login_user(user) }
+    before { login_user(user) }
 
     it 'redirects back to root after create' do
       post :create, params: post_answer

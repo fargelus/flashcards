@@ -5,5 +5,7 @@ FactoryBot.define do
     name { 'MyString' }
     description { 'MyString' }
     activity { false }
+
+    association :user, factory: :user
   end
 end
