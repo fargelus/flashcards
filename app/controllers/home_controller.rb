@@ -57,9 +57,11 @@ class HomeController < ApplicationController
   end
 
   def fetch_card_for_review
-    decks_ids = current_user.decks
-                            .select(:id)
-                            .to_a
+    decks_ids = current_deck&.id || all_user_decks_id
     @card = Card.need_review(decks_ids)
+  end
+
+  def all_user_decks_id
+    current_user.decks.select(:id).to_a
   end
 end

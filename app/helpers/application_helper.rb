@@ -19,6 +19,6 @@ module ApplicationHelper
   end
 
   def current_deck
-    Deck.find_by_activity(true)
+    current_user.decks.find_by_activity(true)
   end
 end

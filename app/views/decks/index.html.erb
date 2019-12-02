@@ -37,9 +37,7 @@
         </div>
       </td>
       <td class="align-middle">
-        <% if cards?(deck) %>
-          <%= link_to t(:deck_cards), deck_cards_path(deck.id) %>
-        <% end %>
+        <%= link_to t(:deck_cards), deck_cards_path(deck.id) %>
       </td>
     </tr>
   <% end %>
