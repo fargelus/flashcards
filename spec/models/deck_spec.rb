@@ -26,7 +26,7 @@ RSpec.describe Deck, type: :model do
     let(:updated_deck) { create(:deck, user: user) }
 
     it 'resets existing decks activity flag' do
-      updated_deck.update(activity: true)
+      updated_deck.update!(activity: true)
       old_deck = Deck.find(deck.id)
       expect(old_deck.activity).to eql(false)
     end

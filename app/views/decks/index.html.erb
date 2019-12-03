@@ -23,7 +23,7 @@
         <div>
           <button class="btn mr-1">
             <%= link_to edit_deck_path(deck) do %>
-              <%=image_tag 'edit.png', :width => '24' %>
+              <%=image_tag 'edit.png', width: '24' %>
             <% end %>
           </button>
 
@@ -31,7 +31,7 @@
             <%= link_to deck_path(deck),
                method: :delete,
                data: {confirm: t(:delete_deck_confirm)} do %>
-                  <%=image_tag 'garbage.png', :width => '24' %>
+                  <%=image_tag 'garbage.png', width: '24' %>
               <% end %>
           </button>
         </div>

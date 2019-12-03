@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller do
   let(:user) { create(:user) }
-  let(:deck) { create(:deck, user: user) }
+  let!(:deck) { create(:deck, user: user) }
   let!(:test_card) { create(:card, deck: deck) }
 
   before { login_user(user) }

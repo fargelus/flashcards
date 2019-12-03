@@ -50,7 +50,7 @@ class CardsController < ApplicationController
   end
 
   def fetch_card
-    @card = Card.friendly.find(params[:id])
+    @card = Card.find(params[:id])
   end
 
   def fetch_deck
