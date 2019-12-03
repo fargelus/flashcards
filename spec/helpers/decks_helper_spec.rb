@@ -2,16 +2,14 @@
 
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the DecksHelper. For example:
-#
-# describe DecksHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe DecksHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#deck_name' do
+    let(:deck) { build(:deck) }
+
+    it 'returns capitalized string' do
+      expected = deck_name(deck)
+      actual = deck.name
+      expect(expected.first).to eq actual.first.upcase
+    end
+  end
 end
