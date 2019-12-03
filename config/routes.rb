@@ -3,7 +3,11 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
-  resources :cards do
+  resources :decks do
+    resources :cards
+  end
+
+  resources :cards, only: [] do
     resources :answers, only: [:create]
   end
 

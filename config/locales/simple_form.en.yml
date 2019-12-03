@@ -7,6 +7,9 @@ ru:
       user:
         create: 'Register'
         update: 'Update'
+      deck:
+        create: 'Create'
+        update: 'Update'
   simple_form:
     required:
       text: 'required'
@@ -20,6 +23,9 @@ ru:
         email: 'Your email:'
         password: 'Your password:'
         password_confirmation: 'Repeat your password'
+      deck:
+        name: 'Name:'
+        description: 'Description:'
     placeholders:
       card:
           original_text: 'Your text for translation'
@@ -30,3 +36,23 @@ ru:
           email: 'Enter your email'
           password: 'Enter your password'
           password_confirmation: 'Password again'
+      deck:
+        name: 'Enter name of the deck'
+        description: 'Short description:'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: 'Password must be at least 6 characters'
+            password_confirmation:
+              confirmation: 'Passwords does not match'
+        deck:
+          attributes:
+            name:
+              taken: 'Deck with this name already exist'
+  attributes:
+    password: ''
+    password_confirmation: ''
+    name: ''

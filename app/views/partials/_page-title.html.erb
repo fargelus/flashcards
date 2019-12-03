@@ -1,7 +1,9 @@
-<% @page_title = title %>
-<% unless current_page?(root_path) %>
-  <%= link_to :back, class: 'mb-3 d-block backlink', title: t(:back) do %>
-      <%= image_tag 'back.png', :width => '24' %>
+<div class="page-title">
+  <% @page_title = title %>
+  <% unless current_page?(root_path) %>
+    <%= link_to :back, class: 'mb-3 d-block backlink', title: t(:back) do %>
+        <%= image_tag 'back.png', width: '24' %>
+    <% end %>
   <% end %>
-<% end %>
-<h1><%=@page_title%></h1>
+  <h1><%=@page_title%></h1>
+</div>

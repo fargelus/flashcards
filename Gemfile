@@ -6,6 +6,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'carrierwave', '~> 2.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'font-awesome-rails'
+gem 'friendly_id', '~> 5.2.4'
 gem 'i18n', '~> 0.9.5'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -37,6 +38,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'rails-controller-testing'
 end
 
 group :development do

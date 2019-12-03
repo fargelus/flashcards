@@ -14,6 +14,11 @@ module ApplicationHelper
   end
 
   def cards?(user)
-    user.cards.count.positive? if user
+    decks = user.decks
+    decks.any? { |deck| deck.cards.count.positive? }
+  end
+
+  def current_deck
+    current_user.decks.find_by_activity(true)
   end
 end

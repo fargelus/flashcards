@@ -1,8 +1,7 @@
-<div class="cards__title">
-  <%= render partial: 'partials/page-title', locals: {title: t(:my_cards)} %>
-</div>
+<%= render partial: 'partials/page-title', locals: {title: deck_name(@deck)} %>
 
-<table class="table mt-4">
+<h4 class="mt-2 mb-0"><%=t(:deck_cards)%></h4>
+<table class="table mt-3">
   <thead class="thead-dark">
     <tr>
       <th><%=t(:original_text)%></th>
@@ -19,16 +18,16 @@
       <td>
         <div>
           <button class="btn card-action-btn mr-1">
-            <%= link_to edit_card_path(card) do %>
-              <%=image_tag 'edit.png', :width => '24' %>
+            <%= link_to edit_deck_card_path(@deck, card) do %>
+              <%=image_tag 'edit.png', width: '24' %>
             <% end %>
           </button>
 
           <button class="btn card-action-btn">
-            <%= link_to card_path(card),
+            <%= link_to deck_card_path(@deck, card),
                method: :delete,
                data: {confirm: t(:delete_card_confirm)} do %>
-                  <%=image_tag 'garbage.png', :width => '24' %>
+                  <%=image_tag 'garbage.png', width: '24' %>
               <% end %>
           </button>
         </div>
@@ -37,4 +36,12 @@
   <% end %>
 </table>
 
-<%= render partial: 'partials/notice', locals: {notice_text: flash.notice} %>
+<%= link_to new_deck_card_path(@deck.id), class: 'btn btn-secondary mt-3' do %>
+  <%= t(:add_card) %>
+  <i class="fa fa-plus ml-1 align-middle"></i>
+<% end %>
+
+<%= render partial: 'partials/notice', locals: {
+    notice_text: flash.notice,
+    class_name: 'alert-success'
+} %>

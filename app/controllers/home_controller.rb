@@ -6,10 +6,14 @@ class HomeController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    access_allowed if cards?(current_user)
+    access_allowed if user_with_cards?
   end
 
   private
+
+  def user_with_cards?
+    current_user && cards?(current_user)
+  end
 
   def access_allowed
     define_next_card
@@ -20,15 +24,18 @@ class HomeController < ApplicationController
   def define_next_card
     answered_card_id = session[:guess_card_id]
     if answered_card_id
-      @card = current_user.cards.find(answered_card_id)
-      @last_answer = @card.answers.last
-      process_last_answer
+      @card = Card.find_by_id(answered_card_id)
+      process_last_answer if @card
     else
       fetch_card_for_review
     end
+
+    # In case of delete reviewing card
+    session[:guess_card_id] = nil
   end
 
   def process_last_answer
+    @last_answer = @card.answers.last
     is_wrong = @last_answer.wrong
     if @last_answer.need_notice
       define_notice_text(is_wrong)
@@ -53,6 +60,11 @@ class HomeController < ApplicationController
   end
 
   def fetch_card_for_review
-    @card = current_user.cards.need_review
+    decks_ids = current_deck&.id || all_user_decks_id
+    @card = Card.need_review(decks_ids)
+  end
+
+  def all_user_decks_id
+    current_user.decks.select(:id).to_a
   end
 end

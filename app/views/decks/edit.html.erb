@@ -1,0 +1,6 @@
+<%= render partial: 'partials/page-title', locals: {title: t(:edit_deck)} %>
+<%= render partial: 'form', locals: { need_activity: true } %>
+<%= render partial: 'partials/notice', locals: {
+  notice_text: flash.notice,
+  class_name: 'alert-success'
+} %>

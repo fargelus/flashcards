@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_127_143_829) do
+ActiveRecord::Schema.define(version: 20_191_201_144_049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -37,14 +37,26 @@ ActiveRecord::Schema.define(version: 20_191_127_143_829) do
   end
 
   create_table 'cards', force: :cascade do |t|
-    t.text     'original_text'
-    t.text     'translated_text'
-    t.date     'review_date'
+    t.text     'original_text',   null: false
+    t.text     'translated_text', null: false
+    t.date     'review_date',     null: false
     t.datetime 'created_at',      null: false
     t.datetime 'updated_at',      null: false
-    t.integer  'user_id'
     t.string   'image'
-    t.index ['user_id'], name: 'index_cards_on_user_id', using: :btree
+    t.string   'slug'
+    t.integer  'deck_id'
+    t.index ['deck_id'], name: 'index_cards_on_deck_id', using: :btree
+    t.index ['slug'], name: 'index_cards_on_slug', unique: true, using: :btree
+  end
+
+  create_table 'decks', force: :cascade do |t|
+    t.string   'name', null: false
+    t.text     'description'
+    t.boolean  'activity', default: false
+    t.integer  'user_id'
+    t.datetime 'created_at',                  null: false
+    t.datetime 'updated_at',                  null: false
+    t.index ['user_id'], name: 'index_decks_on_user_id', using: :btree
   end
 
   create_table 'users', force: :cascade do |t|
@@ -56,5 +68,6 @@ ActiveRecord::Schema.define(version: 20_191_127_143_829) do
     t.index ['email'], name: 'index_users_on_email', unique: true, using: :btree
   end
 
-  add_foreign_key 'cards', 'users'
+  add_foreign_key 'cards', 'decks'
+  add_foreign_key 'decks', 'users'
 end

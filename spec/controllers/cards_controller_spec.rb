@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller do
   let(:user) { create(:user) }
-  let!(:test_card) { create(:card, user: user) }
+  let!(:deck) { create(:deck, user: user) }
+  let!(:test_card) { create(:card, deck: deck) }
 
   before { login_user(user) }
 
@@ -13,20 +14,20 @@ RSpec.describe CardsController, type: :controller do
 
     it 'redirects to login when not authorize' do
       logout_user
-      get :index
+      get :index, params: { deck_id: deck.id }
       expect(response).to redirect_to login_path
     end
 
     it 'shows a list of all current_user cards' do
-      total = user.cards.count
-      get :index
+      total = deck.cards.count
+      get :index, params: { deck_id: deck.id }
       expect(response.body).to match total.to_s
     end
   end
 
   describe 'GET #new' do
     it 'renders :new template' do
-      get :new
+      get :new, params: { deck_id: deck.id }
       expect(response.status).to eq(200)
     end
   end
@@ -34,6 +35,7 @@ RSpec.describe CardsController, type: :controller do
   describe 'POST #create' do
     subject (:post_card) do
       {
+        deck_id: deck.id,
         card: {
           original_text: test_card.original_text.reverse,
           translated_text: test_card.translated_text,
@@ -48,16 +50,21 @@ RSpec.describe CardsController, type: :controller do
 
     it 'redirects to index' do
       post :create, params: post_card
-      expect(response).to redirect_to cards_path
+      expect(response).to redirect_to deck_cards_path(deck)
     end
   end
 
   describe 'DELETE #destroy' do
-    subject (:delete_card) { { id: test_card.id } }
+    subject (:delete_card) do
+      {
+        id: test_card.id,
+        deck_id: deck.id
+      }
+    end
 
     it 'redirects to index after delete' do
       delete :destroy, params: delete_card
-      expect(response).to redirect_to cards_path
+      expect(response).to redirect_to deck_cards_path(deck)
     end
 
     it 'deletes card' do
@@ -69,6 +76,7 @@ RSpec.describe CardsController, type: :controller do
     subject (:update_card) do
       {
         id: test_card.id,
+        deck_id: deck.id,
         card: {
           original_text: 'update',
           translated_text: test_card.translated_text,
@@ -79,7 +87,7 @@ RSpec.describe CardsController, type: :controller do
 
     it 'redirects to index after update' do
       patch :update, params: update_card
-      expect(response).to redirect_to cards_path
+      expect(response).to redirect_to deck_cards_path(deck)
     end
 
     it 'update card original_text' do
