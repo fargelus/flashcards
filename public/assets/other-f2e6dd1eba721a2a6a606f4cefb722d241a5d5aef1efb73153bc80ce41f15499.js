@@ -1,0 +1,1 @@
+$(()=>{function e(e){if(i(e)){const i=new FileReader;i.onload=(i=>{t.attr({src:i.target.result,width:30,height:30}),a.text(e.files[0].name)}),i.readAsDataURL(e.files[0])}}$("#img-upload").change(t=>{e(t.target)});const t=$("#upload-img-preview"),a=$("#upload-img-name"),i=e=>e.files&&e.files[0]});
