@@ -2,6 +2,8 @@
 
 source 'https://rubygems.org'
 
+ruby '2.6.3'
+
 gem 'bootstrap', '~> 4.3.1'
 gem 'carrierwave', '~> 2.0'
 gem 'font-awesome-rails'
@@ -17,7 +19,6 @@ gem 'rake', '~> 13.0.1'
 gem 'rspec', '~> 3.9.0'
 gem 'rspec-rails', '~> 3.9.0'
 gem 'rubocop', '~> 0.75.0'
-gem 'ruby', '~> 2.5.7'
 gem 'sassc-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'shoulda-matchers', '~> 4.1.2'
