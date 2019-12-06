@@ -15,11 +15,9 @@ gem 'oauth2'
 gem 'pg', '~> 0.20'
 gem 'popper_js', '~> 1.14.5'
 gem 'rails', '~> 5.0.7'
-gem 'rake', '~> 13.0.1'
 gem 'rspec', '~> 3.9.0'
 gem 'rspec-rails', '~> 3.9.0'
 gem 'rubocop', '~> 0.75.0'
-gem 'sassc-rails'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'shoulda-matchers', '~> 4.1.2'
 gem 'simple_form'
@@ -36,11 +34,13 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'i18n-debug', '~> 1.2.0'
   gem 'nokogiri', '~> 1.10.4'
+  gem 'sassc-rails'
 end
 
 group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
+  gem 'rake', '~> 13.0.1'
 end
 
 group :development do
