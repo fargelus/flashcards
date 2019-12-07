@@ -1,3 +1,4 @@
+# Controller for user session
 # frozen_string_literal: true
 
 class UserSessionsController < ApplicationController
@@ -8,10 +9,7 @@ class UserSessionsController < ApplicationController
   end
 
   def create
-    email = params[:email] || params[:user][:email]
-    pwd = params[:password] || params[:user][:password]
-
-    @user = login(email, pwd)
+    @user = login(*session_params)
     if @user
       redirect_back_or_to root_path, notice: I18n.t(:login_success)
     else
@@ -23,5 +21,13 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     redirect_to root_path
+  end
+
+  private
+
+  def session_params
+    choose_param = ->(param) { params[param] || params[:user][param] }
+    result_params = %i[email password].map { |param| choose_param.call(param) }
+    result_params << params[:remember_me]
   end
 end

@@ -2,6 +2,8 @@
   <div class="form-inputs">
     <%= f.input :email %>
     <%= f.input :password %>
+    <%= check_box_tag :remember_me, params[:remember_me], true %>
+    <%= label_tag :remember_me, t(:remember_me) %>
   </div>
 
   <div class="form-actions">
