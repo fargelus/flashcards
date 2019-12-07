@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_207_094_914) do
+ActiveRecord::Schema.define(version: 20_191_207_162_509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -36,10 +36,17 @@ ActiveRecord::Schema.define(version: 20_191_207_094_914) do
     t.index %w[provider uid], name: 'index_authentications_on_provider_and_uid', using: :btree
   end
 
+  create_table 'card_checks', force: :cascade do |t|
+    t.integer  'attempt'
+    t.integer  'next_attempt_in_hours'
+    t.datetime 'created_at',            null: false
+    t.datetime 'updated_at',            null: false
+  end
+
   create_table 'cards', force: :cascade do |t|
     t.text     'original_text',   null: false
     t.text     'translated_text', null: false
-    t.date     'review_date',     null: false
+    t.datetime 'review_date',     null: false
     t.datetime 'created_at',      null: false
     t.datetime 'updated_at',      null: false
     t.string   'image'
