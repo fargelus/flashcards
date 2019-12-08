@@ -7,6 +7,8 @@ class UserAnswerHandler < ApplicationService
     @answer = answer
     card ||= Card.find(@answer.card_id)
     @card = card
+    @attempt = Attempt.find_by_card_id(@card.id)
+    @attempt ||= Attempt.create(card_id: @card.id)
   end
 
   def call
@@ -15,8 +17,7 @@ class UserAnswerHandler < ApplicationService
       update_card
       result = true
     else
-      @answer.wrong = true
-      @answer.save!
+      wrong_answer
     end
 
     result
@@ -29,17 +30,16 @@ class UserAnswerHandler < ApplicationService
   end
 
   def update_card
-    set_attempts
-    card_checks = CardCheck.find_by_attempt(@attempts)
-    next_attempt_through = card_checks.next_attempt_in_hours
+    @attempt.success += 1
+    next_attempt_through = AttemptHour.get_attempt_hours(@attempt.success)
     @card.review_date = hours_after(next_attempt_through)
-    @card.attempts_count = @attempts
     @card.save!
   end
 
-  def set_attempts
-    @attempts = @card.attempts_count + 1
-    total_attempts = CardCheck.count
-    @attempts = total_attempts if total_attempts < @attempts
+  def wrong_answer
+    @attempt.failure += 1
+    @answer.wrong = true
+    @attempt.save!
+    @answer.save!
   end
 end

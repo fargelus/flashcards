@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CardChecksSeed
+class AttemptHourSeed
   def initialize
     @dict = []
     @init_hours = 12
@@ -11,9 +11,12 @@ class CardChecksSeed
       4 => 28,
       5 => 56
     }
+  end
 
+  def seed
     fill_dict_data
-    seed
+    AttemptHour.destroy_all
+    AttemptHour.import @dict
   end
 
   def fill_dict_data
@@ -26,11 +29,6 @@ class CardChecksSeed
       @dict << record
     end
   end
-
-  def seed
-    CardCheck.destroy_all
-    CardCheck.import @dict
-  end
 end
 
-CardChecksSeed.new
+AttemptHourSeed.new.seed

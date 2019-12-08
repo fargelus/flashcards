@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_208_135_440) do
+ActiveRecord::Schema.define(version: 20_191_208_151_207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -27,6 +27,22 @@ ActiveRecord::Schema.define(version: 20_191_208_135_440) do
     t.index ['card_id'], name: 'index_answers_on_card_id', using: :btree
   end
 
+  create_table 'attempt_hours', force: :cascade do |t|
+    t.integer  'attempt'
+    t.integer  'next_attempt_in_hours'
+    t.datetime 'created_at',            null: false
+    t.datetime 'updated_at',            null: false
+  end
+
+  create_table 'attempts', force: :cascade do |t|
+    t.integer  'success',    default: 0
+    t.integer  'failure',    default: 0
+    t.integer  'card_id'
+    t.datetime 'created_at',             null: false
+    t.datetime 'updated_at',             null: false
+    t.index ['card_id'], name: 'index_attempts_on_card_id', using: :btree
+  end
+
   create_table 'authentications', force: :cascade do |t|
     t.integer  'user_id',    null: false
     t.string   'provider',   null: false
@@ -36,23 +52,15 @@ ActiveRecord::Schema.define(version: 20_191_208_135_440) do
     t.index %w[provider uid], name: 'index_authentications_on_provider_and_uid', using: :btree
   end
 
-  create_table 'card_checks', force: :cascade do |t|
-    t.integer  'attempt'
-    t.integer  'next_attempt_in_hours'
-    t.datetime 'created_at',            null: false
-    t.datetime 'updated_at',            null: false
-  end
-
   create_table 'cards', force: :cascade do |t|
-    t.text     'original_text',               null: false
-    t.text     'translated_text',             null: false
-    t.datetime 'review_date',                 null: false
-    t.datetime 'created_at',                  null: false
-    t.datetime 'updated_at',                  null: false
+    t.text     'original_text',   null: false
+    t.text     'translated_text', null: false
+    t.datetime 'review_date',     null: false
+    t.datetime 'created_at',      null: false
+    t.datetime 'updated_at',      null: false
     t.string   'image'
     t.string   'slug'
     t.integer  'deck_id'
-    t.integer  'attempts_count',  default: 0
     t.index ['deck_id'], name: 'index_cards_on_deck_id', using: :btree
     t.index ['slug'], name: 'index_cards_on_slug', unique: true, using: :btree
   end
@@ -79,6 +87,7 @@ ActiveRecord::Schema.define(version: 20_191_208_135_440) do
     t.index ['remember_me_token'], name: 'index_users_on_remember_me_token', using: :btree
   end
 
+  add_foreign_key 'attempts', 'cards'
   add_foreign_key 'cards', 'decks'
   add_foreign_key 'decks', 'users'
 end
