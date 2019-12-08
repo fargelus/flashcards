@@ -13,4 +13,8 @@ module CardsHelper
   def days_after(days)
     Date.today.next_day(days).to_s
   end
+
+  def hours_after(hours)
+    DateTime.now + (hours / 24.0)
+  end
 end

@@ -18,7 +18,7 @@ class Card < ActiveRecord::Base
 
   scope :need_review, lambda { |decks_ids|
     relation = where('review_date <= ? AND deck_id IN (?)',
-                     Date.today, decks_ids)
+                     DateTime.now, decks_ids)
                .order(:review_date)
     relation.present? ? relation.first : relation
   }

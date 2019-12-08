@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_207_162_509) do
+ActiveRecord::Schema.define(version: 20_191_208_135_440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -44,14 +44,15 @@ ActiveRecord::Schema.define(version: 20_191_207_162_509) do
   end
 
   create_table 'cards', force: :cascade do |t|
-    t.text     'original_text',   null: false
-    t.text     'translated_text', null: false
-    t.datetime 'review_date',     null: false
-    t.datetime 'created_at',      null: false
-    t.datetime 'updated_at',      null: false
+    t.text     'original_text',               null: false
+    t.text     'translated_text',             null: false
+    t.datetime 'review_date',                 null: false
+    t.datetime 'created_at',                  null: false
+    t.datetime 'updated_at',                  null: false
     t.string   'image'
     t.string   'slug'
     t.integer  'deck_id'
+    t.integer  'attempts_count',  default: 0
     t.index ['deck_id'], name: 'index_cards_on_deck_id', using: :btree
     t.index ['slug'], name: 'index_cards_on_slug', unique: true, using: :btree
   end

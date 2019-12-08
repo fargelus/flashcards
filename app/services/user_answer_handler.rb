@@ -12,7 +12,7 @@ class UserAnswerHandler < ApplicationService
   def call
     result = false
     if translation_correct?
-      update_card_date
+      update_card
       result = true
     else
       @answer.wrong = true
@@ -28,8 +28,18 @@ class UserAnswerHandler < ApplicationService
     @answer.answer == @card.translated_text
   end
 
-  def update_card_date
-    @card.review_date = days_after(3)
+  def update_card
+    set_attempts
+    card_checks = CardCheck.find_by_attempt(@attempts)
+    next_attempt_through = card_checks.next_attempt_in_hours
+    @card.review_date = hours_after(next_attempt_through)
+    @card.attempts_count = @attempts
     @card.save!
+  end
+
+  def set_attempts
+    @attempts = @card.attempts_count + 1
+    total_attempts = CardCheck.count
+    @attempts = total_attempts if total_attempts < @attempts
   end
 end
