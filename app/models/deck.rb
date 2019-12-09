@@ -2,6 +2,16 @@
 # frozen_string_literal: true
 
 class Deck < ApplicationRecord
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+
+  def slug_candidates
+    [
+      :name,
+      %i[name user_id]
+    ]
+  end
+
   before_update :reset_records_activity, if: :activity
   has_many :cards, dependent: :destroy
   belongs_to :user

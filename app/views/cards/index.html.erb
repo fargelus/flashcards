@@ -36,7 +36,7 @@
   <% end %>
 </table>
 
-<%= link_to new_deck_card_path(@deck.id), class: 'btn btn-secondary mt-3' do %>
+<%= link_to new_deck_card_path(@deck.slug), class: 'btn btn-secondary mt-3' do %>
   <%= t(:add_card) %>
   <i class="fa fa-plus ml-1 align-middle"></i>
 <% end %>

@@ -1,0 +1,8 @@
+# frozen_string_literal: true
+
+class AddSlugToDecks < ActiveRecord::Migration[5.0]
+  def change
+    add_column :decks, :slug, :string
+    add_index :decks, :slug, unique: true
+  end
+end
