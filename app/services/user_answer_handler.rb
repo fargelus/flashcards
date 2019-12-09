@@ -20,6 +20,7 @@ class UserAnswerHandler < ApplicationService
       wrong_answer
     end
 
+    @attempt.save!
     result
   end
 
@@ -39,7 +40,6 @@ class UserAnswerHandler < ApplicationService
   def wrong_answer
     @attempt.failure += 1
     @answer.wrong = true
-    @attempt.save!
     @answer.save!
   end
 end
