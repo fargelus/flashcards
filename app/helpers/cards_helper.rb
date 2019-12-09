@@ -15,6 +15,6 @@ module CardsHelper
   end
 
   def hours_after(hours)
-    DateTime.now + (hours / 24.0)
+    hours.hour.since
   end
 end

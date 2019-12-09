@@ -17,8 +17,8 @@ class Attempt < ApplicationRecord
   private
 
   def attempt_success?
-    saved_attempt = Attempt.find(id)
-    success > saved_attempt.success
+    saved_attempt = Attempt.find_by_id(id)
+    success > saved_attempt.success if saved_attempt.present?
   end
 
   def reset_failure

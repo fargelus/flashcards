@@ -1,0 +1,7 @@
+.deck-row {
+  cursor: pointer;
+
+  &:hover {
+    background: darken($snow, 5);
+  }
+}
