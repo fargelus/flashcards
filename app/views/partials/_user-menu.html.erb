@@ -11,12 +11,16 @@
 
   <li class="nav-item">
     <ul class="dropdown show">
-      <li class="btn dropdown-toggle"
+      <li class="btn dropdown-toggle d-flex align-items-center"
           id="dropdownMenuButton"
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false">
-        <i class="icon fa fa-user"></i>
+          <% if current_user.avatar.file %>
+            <%= image_tag(current_user.avatar.url) %>
+          <% else %>
+            <i class="icon fa fa-user mr-1"></i>
+          <% end %>
       </li>
 
       <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">

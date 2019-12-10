@@ -1,2 +1,2 @@
-<%= render partial: 'partials/page-title', locals: {title: t(:account_edit)} %>
-<%= render 'form', user: @user %>
+<%= render partial: 'partials/page-title', locals: { title: t(:account_edit) } %>
+<%= render partial: 'form', locals: { with_avatar: true }, user: @user %>
