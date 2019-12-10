@@ -1,11 +1,11 @@
 <ul class="nav">
   <% if current_deck %>
-    <% deck_id = current_deck.id %>
+    <% deck_slug = current_deck.slug %>
     <li class="nav-item nav-item--deck">
-      <%= nav_link(deck_cards_path(deck_id), deck_name(current_deck)) %>
+      <%= nav_link(deck_cards_path(deck_slug), deck_name(current_deck)) %>
     </li>
     <li class="nav-item">
-      <%= nav_link(new_deck_card_path(deck_id), t(:add_card)) %>
+      <%= nav_link(new_deck_card_path(deck_slug), t(:add_card)) %>
     </li>
   <% end %>
 

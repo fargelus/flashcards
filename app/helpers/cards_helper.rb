@@ -7,11 +7,7 @@ module CardsHelper
   end
 
   def today
-    Date.today.to_time
-  end
-
-  def days_after(days)
-    Date.today.next_day(days).to_s
+    Date.today.to_s
   end
 
   def hours_after(hours)
