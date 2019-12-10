@@ -1,3 +1,4 @@
+# Model for mapping attempts to delay hours
 # frozen_string_literal: true
 
 class AttemptHour < ApplicationRecord

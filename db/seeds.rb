@@ -1,3 +1,4 @@
+# Seed for cards
 # frozen_string_literal: true
 
 require 'nokogiri'

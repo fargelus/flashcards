@@ -1,3 +1,4 @@
+# Seed for attempt_hours table
 # frozen_string_literal: true
 
 class AttemptHourSeed

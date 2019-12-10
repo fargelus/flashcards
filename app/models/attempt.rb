@@ -1,3 +1,4 @@
+# Model for guess attempts countings
 # frozen_string_literal: true
 
 class Attempt < ApplicationRecord

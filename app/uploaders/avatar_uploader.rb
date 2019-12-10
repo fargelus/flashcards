@@ -1,3 +1,4 @@
+# Uploader for user's avatar
 # frozen_string_literal: true
 
 class AvatarUploader < CarrierWave::Uploader::Base
