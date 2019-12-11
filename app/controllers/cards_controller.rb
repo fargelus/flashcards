@@ -25,11 +25,7 @@ class CardsController < ApplicationController
   end
 
   def update
-    if @card.update(card_params)
-      @attempt = Attempt.find_by(card_id: @card.id)
-      AttemptService.new(@attempt).reset_attempts_count
-      @attempt.save!
-
+    if card_and_attempt_updated?
       redirect_to deck_cards_path(@deck), notice: I18n.t(:card_updated)
     else
       render 'edit'
@@ -43,6 +39,11 @@ class CardsController < ApplicationController
   end
 
   private
+
+  def card_and_attempt_updated?
+    card_updated = @card.update(card_params)
+    card_updated && AttemptService.call(@card.id, success: 0, failure: 0)
+  end
 
   def card_params
     params.require(:card).permit(

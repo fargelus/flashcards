@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+# Service for handle user answer to the card.
+#
+# If user entered correct answer then service sets
+# next date for card review.
+# Otherwise number of failure attempts increased.
+# Returns true if answer correct
+
 class UserAnswerService < ApplicationService
   include CardsHelper
 
@@ -7,21 +14,20 @@ class UserAnswerService < ApplicationService
     @answer = answer
     card ||= Card.find(@answer.card_id)
     @card = card
-    @attempt = Attempt.find_by(card_id: @card.id)
-    @attempt ||= Attempt.create!(card_id: @card.id)
+    @success = @failure = 0
   end
 
   def call
-    result = false
     if translation_correct?
+      @success = 1
       update_card
-      result = true
     else
+      @failure = 1
       wrong_answer
     end
 
-    @attempt.save!
-    result
+    AttemptService.call(@card.id, success: @success, failure: @failure)
+    @success > 0
   end
 
   private
@@ -31,14 +37,13 @@ class UserAnswerService < ApplicationService
   end
 
   def update_card
-    @attempt.success += 1
-    next_attempt_through = AttemptHour.get_attempt_hours(@attempt.success)
+    @attempt = Attempt.find_by(card_id: @card.id)
+    next_attempt_through = AttemptHour.get_attempt_hours(@attempt.success + 1)
     @card.review_date = hours_after(next_attempt_through)
     @card.save!
   end
 
   def wrong_answer
-    @attempt.failure += 1
     @answer.wrong = true
     @answer.save!
   end

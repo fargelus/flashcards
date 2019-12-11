@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe AttemptService, type: :service do
-  let(:attempt) { create(:attempt) }
-  let(:attempt_service) { AttemptService.new(attempt) }
+  let!(:card) { create(:card) }
+  let!(:attempt) { create(:attempt, card: card) }
 
-  describe '#reset_attempts_count' do
-    it 'reset_all_attempts_count' do
-      attempt_service.reset_attempts_count
+  describe '#call' do
+    it 'resets all attempts count' do
+      attempt_service = AttemptService.call(card.id, success: 0, failure: 0)
       expect(attempt.success).to eql attempt.failure
     end
   end
