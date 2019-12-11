@@ -27,7 +27,7 @@ class UserAnswerService < ApplicationService
     end
 
     AttemptService.call(@card.id, success: @success, failure: @failure)
-    @success > 0
+    @success.positive?
   end
 
   private

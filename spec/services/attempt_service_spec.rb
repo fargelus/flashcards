@@ -8,7 +8,7 @@ RSpec.describe AttemptService, type: :service do
 
   describe '#call' do
     it 'resets all attempts count' do
-      attempt_service = AttemptService.call(card.id, success: 0, failure: 0)
+      AttemptService.call(card.id, success: 0, failure: 0)
       expect(attempt.success).to eql attempt.failure
     end
   end

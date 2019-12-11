@@ -21,7 +21,7 @@ class AttemptService < ApplicationService
   private
 
   def attempts_count_reset?
-    zero_params = @attempt_success == 0 && @attempt_failure == 0
+    zero_params = @attempt_success.zero? && @attempt_failure.zero?
     many_failures? || zero_params
   end
 
@@ -39,7 +39,7 @@ class AttemptService < ApplicationService
   end
 
   def attempt_success?
-    @attempt_success.present? && @attempt_success > 0
+    @attempt_success.present? && @attempt_success.positive?
   end
 
   def update_attempt
