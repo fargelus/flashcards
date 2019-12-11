@@ -13,7 +13,7 @@ RSpec.describe CardsHelper, type: :helper do
   describe '#today' do
     it 'returns current date' do
       actual = helper.today
-      now = DateTime.now.to_date.to_s
+      now = Time.now.to_date.to_s
       expect(actual).to eq(now)
     end
   end

@@ -7,7 +7,7 @@ class AttemptHour < ApplicationRecord
   validates :attempt, numericality: { less_than: 6 }
 
   scope :get_attempt_hours, lambda { |attempt|
-    record = find_by_attempt(attempt) || last
+    record = find_by(attempt: attempt) || last
     record.next_attempt_in_hours
   }
 end
