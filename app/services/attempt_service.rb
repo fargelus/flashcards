@@ -19,7 +19,7 @@ class AttemptService < ApplicationService
   private
 
   def attempt_success?
-    saved_attempt = Attempt.find(@attempt.id)
+    saved_attempt = Attempt.find_by(id: @attempt.id)
     @attempt.success > saved_attempt.success if saved_attempt.present?
   end
 

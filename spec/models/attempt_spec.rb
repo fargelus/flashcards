@@ -15,11 +15,4 @@ RSpec.describe Attempt, type: :model do
   describe 'associations' do
     it { should belong_to(:card) }
   end
-
-  describe '.reset_attempts_count' do
-    it 'resets all attempts' do
-      attempt.reset_attempts_count
-      expect(attempt.success).to eql attempt.failure
-    end
-  end
 end
