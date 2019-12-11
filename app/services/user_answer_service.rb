@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-class UserAnswerHandler < ApplicationService
+class UserAnswerService < ApplicationService
   include CardsHelper
 
   def initialize(answer, card = nil)
     @answer = answer
     card ||= Card.find(@answer.card_id)
     @card = card
-    @attempt = Attempt.find_by_card_id(@card.id)
-    @attempt ||= Attempt.create(card_id: @card.id)
+    @attempt = Attempt.find_by(card_id: @card.id)
+    @attempt ||= Attempt.create!(card_id: @card.id)
   end
 
   def call

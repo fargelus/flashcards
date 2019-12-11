@@ -26,9 +26,9 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      @attempt = Attempt.find_by_card_id(@card.id)
-      @attempt.reset_attempts_count
-      @attempt.save
+      @attempt = Attempt.find_by(card_id: @card.id)
+      AttemptService.new(@attempt).reset_attempts_count
+      @attempt.save!
 
       redirect_to deck_cards_path(@deck), notice: I18n.t(:card_updated)
     else

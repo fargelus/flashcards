@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserAnswerHandler, type: :service do
+RSpec.describe UserAnswerService, type: :service do
   include CardsHelper
 
   let(:card) { create(:card) }
@@ -12,7 +12,7 @@ RSpec.describe UserAnswerHandler, type: :service do
 
   before(:each) do
     answer.answer = card.translated_text
-    @check_result = UserAnswerHandler.call(answer, card)
+    @check_result = UserAnswerService.call(answer, card)
   end
 
   describe '#translation_correct' do
@@ -22,7 +22,7 @@ RSpec.describe UserAnswerHandler, type: :service do
 
     it 'has wrong answer' do
       answer.answer = card.translated_text.reverse
-      check_result = UserAnswerHandler.call(answer, card)
+      check_result = UserAnswerService.call(answer, card)
       expect(check_result).to be false
     end
   end

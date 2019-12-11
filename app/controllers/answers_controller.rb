@@ -7,7 +7,7 @@ class AnswersController < ApplicationController
     answer.need_notice = true
     answer.save!
 
-    UserAnswerHandler.call(answer)
+    UserAnswerService.call(answer)
 
     session[:guess_card_id] = answer.card_id
     redirect_to root_path

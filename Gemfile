@@ -15,6 +15,7 @@ gem 'oauth2'
 gem 'pg', '~> 0.20'
 gem 'popper_js', '~> 1.14.5'
 gem 'rails', '~> 5.0.7'
+gem 'rake', '~> 13.0.1'
 gem 'rspec', '~> 3.9.0'
 gem 'rspec-rails', '~> 3.9.0'
 gem 'rubocop', '~> 0.75.0'
@@ -40,7 +41,6 @@ end
 group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
-  gem 'rake', '~> 13.0.1'
 end
 
 group :development do
