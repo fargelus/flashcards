@@ -13,9 +13,9 @@ RSpec.describe AttemptHour, type: :model do
     it { should validate_numericality_of(:attempt).is_less_than(6) }
   end
 
-  describe '.get_attempt_hours' do
+  describe '.attempt_hours' do
     it 'returns next_attempt_in_hours field' do
-      hours = AttemptHour.get_attempt_hours(attempt_hour.attempt)
+      hours = AttemptHour.attempt_hours(attempt_hour.attempt)
       expect(hours).to eql attempt_hour.next_attempt_in_hours
     end
   end

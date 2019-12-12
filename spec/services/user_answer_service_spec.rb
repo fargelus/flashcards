@@ -10,7 +10,7 @@ RSpec.describe UserAnswerService, type: :service do
   let!(:attempt) { create(:attempt, card: card) }
   let!(:attempt_hour) { create(:attempt_hour) }
 
-  before(:each) do
+  before do
     answer.answer = card.translated_text
     @check_result = UserAnswerService.call(answer, card)
   end
@@ -28,11 +28,13 @@ RSpec.describe UserAnswerService, type: :service do
   end
 
   describe '#start' do
-    it 'has review_date some hours later when answer correct' do
-      future_check = attempt_hour.next_attempt_in_hours
-      actual = format_date(card.review_date)
-      got = format_date(hours_after(future_check))
-      expect(actual).to eq got
+    context 'when answer correct' do
+      it 'has review_date some hours later' do
+        future_check = attempt_hour.next_attempt_in_hours
+        actual = format_date(card.review_date)
+        got = format_date(hours_after(future_check))
+        expect(actual).to eq got
+      end
     end
   end
 end

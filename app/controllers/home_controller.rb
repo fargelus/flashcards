@@ -36,9 +36,11 @@ class HomeController < ApplicationController
 
   def process_last_answer
     @last_answer = @card.answers.last
-    @wrong_answer = @last_answer.wrong
-    AnswerNoticeCreator.call(@last_answer, flash)
 
+    need_notice = @last_answer.need_notice
+    flash.now[:notice] = AnswerNoticeCreator.call(@last_answer) if need_notice
+
+    @wrong_answer = @last_answer.wrong
     fetch_card_for_review unless @wrong_answer
   end
 

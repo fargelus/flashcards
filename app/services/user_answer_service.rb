@@ -38,7 +38,7 @@ class UserAnswerService < ApplicationService
 
   def update_card
     @attempt = Attempt.find_by(card_id: @card.id)
-    next_attempt_through = AttemptHour.get_attempt_hours(@attempt.success + 1)
+    next_attempt_through = AttemptHour.attempt_hours(@attempt.success + 1)
     @card.review_date = hours_after(next_attempt_through)
     @card.save!
   end

@@ -5,12 +5,11 @@ require 'rails_helper'
 RSpec.describe AnswerNoticeCreator, type: :service do
   let(:card) { create(:card) }
   let(:answer) { create(:answer, card_id: card.id) }
-  let(:flash) { ActionDispatch::Flash::FlashHash.new }
 
   describe '.call' do
-    it 'shows notice when called' do
-      AnswerNoticeCreator.call(answer, flash)
-      expect(flash[:notice]).to be
+    it 'no need for notice after call' do
+      AnswerNoticeCreator.call(answer)
+      expect(answer.need_notice).to be_falsey
     end
   end
 end

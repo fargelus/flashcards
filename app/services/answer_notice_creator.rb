@@ -1,34 +1,25 @@
 # frozen_string_literal: true
 
-# Service for showing notice with answer checking result
+# Service for define notice text when answer was checked
 
 class AnswerNoticeCreator < ApplicationService
-  def initialize(answer, flash)
+  def initialize(answer)
     @answer = answer
-    @flash = flash
   end
 
   def call
-    make_notice if @answer.need_notice
+    notice_done
+    define_notice_text
   end
 
   private
 
-  def make_notice
-    define_notice_text
-    notice_done
-  end
-
-  def define_notice_text
-    @flash.now[:notice] = if @answer.wrong
-                            I18n.t(:wrong_answer)
-                          else
-                            I18n.t(:correct_answer)
-                          end
-  end
-
   def notice_done
     @answer.need_notice = false
     @answer.save!
+  end
+
+  def define_notice_text
+    @answer.wrong ? I18n.t(:wrong_answer) : I18n.t(:correct_answer)
   end
 end
