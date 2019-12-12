@@ -25,7 +25,8 @@ class CardsController < ApplicationController
   end
 
   def update
-    if card_and_attempt_updated?
+    if card_updated?
+      AttemptService.call(@card.id, success: 0, failure: 0)
       redirect_to deck_cards_path(@deck), notice: I18n.t(:card_updated)
     else
       render 'edit'
@@ -40,9 +41,8 @@ class CardsController < ApplicationController
 
   private
 
-  def card_and_attempt_updated?
-    card_updated = @card.update(card_params)
-    card_updated && AttemptService.call(@card.id, success: 0, failure: 0)
+  def card_updated?
+    CardStateService.new(@card.id).update(card_params)
   end
 
   def card_params

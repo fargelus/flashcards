@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Service for showing notice with answer checking result
+
 class AnswerNoticeCreator < ApplicationService
   def initialize(answer, flash)
     @answer = answer
@@ -7,13 +9,15 @@ class AnswerNoticeCreator < ApplicationService
   end
 
   def call
-    if @answer.need_notice
-      define_notice_text
-      notice_done
-    end
+    make_notice if @answer.need_notice
   end
 
   private
+
+  def make_notice
+    define_notice_text
+    notice_done
+  end
 
   def define_notice_text
     @flash.now[:notice] = if @answer.wrong
