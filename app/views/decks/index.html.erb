@@ -8,12 +8,13 @@
       <th><%=t(:description)%></th>
       <th><%=t(:viewed?)%></th>
       <th><%=t(:action)%></th>
-      <th></th>
     </tr>
   </thead>
 
   <% @decks.each do |deck| %>
-    <tr>
+    <tr onclick="document.location='<%=deck_cards_path(deck.slug)%>'"
+        class="deck-row"
+        title="<%=t(:show_deck_cards) + deck.name%>">
       <td><%=deck.name%></td>
       <td><%=deck.description%></td>
       <td>
@@ -35,9 +36,6 @@
               <% end %>
           </button>
         </div>
-      </td>
-      <td class="align-middle">
-        <%= link_to t(:deck_cards), deck_cards_path(deck.id) %>
       </td>
     </tr>
   <% end %>

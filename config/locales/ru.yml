@@ -5,7 +5,7 @@ ru:
   desc: "Первый в мире удобный менеджер флеш-карточек. Именно так."
   original_text: "Оригинал"
   translated_text: "Перевод"
-  review_date: "Дата пересмотра"
+  review_date: "Доступна для проверки"
   action: "Действие"
   delete_card_confirm: "Вы хотите удалить эту карточку?"
   orig_text_trn_text_match_err: "Фраза для перевода не должна совпадать с переводом"
@@ -51,3 +51,7 @@ ru:
   edit_deck: 'Редактировать колоду'
   deck_updated: 'Колода обновлена'
   deck_cards: 'Карточки'
+  remember_me: 'Запомнить меня'
+  show_deck_cards: 'Просмотреть карточки '
+  your_avatar: 'Аватарка:'
+  supported_formats: 'Поддерживаемые форматы: '

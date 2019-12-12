@@ -3,14 +3,14 @@
 
 module CardsHelper
   def format_date(date)
-    date.strftime('%d/%m/%Y')
+    date.strftime('%d/%m/%Y %k:%M')
   end
 
   def today
-    Date.today.to_time
+    Date.today.to_s
   end
 
-  def days_after(days)
-    Date.today.next_day(days).to_s
+  def hours_after(hours)
+    hours.hour.since
   end
 end

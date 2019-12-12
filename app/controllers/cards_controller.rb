@@ -25,7 +25,8 @@ class CardsController < ApplicationController
   end
 
   def update
-    if @card.update(card_params)
+    if card_updated?
+      AttemptService.call(@card.id, success: 0, failure: 0)
       redirect_to deck_cards_path(@deck), notice: I18n.t(:card_updated)
     else
       render 'edit'
@@ -39,6 +40,10 @@ class CardsController < ApplicationController
   end
 
   private
+
+  def card_updated?
+    CardStateService.new(@card.id).update(card_params)
+  end
 
   def card_params
     params.require(:card).permit(

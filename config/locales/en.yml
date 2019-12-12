@@ -48,3 +48,7 @@ en:
   edit_deck: 'Edit deck'
   deck_updated: 'Deck was successfully updated'
   deck_cards: 'All cards'
+  remember_me: 'Remember me'
+  show_deck_cards: 'Show cards of '
+  your_avatar: 'Avatar:'
+  supported_formats: 'Supported formats: '
