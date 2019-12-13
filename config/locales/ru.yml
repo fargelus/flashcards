@@ -47,6 +47,7 @@ ru:
   viewed?: 'Просматривается?'
   currently_viewed: 'Да'
   delete_deck_confirm: 'Вы хотите удалить эту колоду?'
+  delete_deck: 'Удалить колоду'
   currently_not_viewed: 'Нет'
   edit_deck: 'Редактировать колоду'
   deck_updated: 'Колода обновлена'

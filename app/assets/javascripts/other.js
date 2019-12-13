@@ -24,3 +24,13 @@ $(() => {
     }
   }
 });
+
+$(() => {
+  $('.js-deck-row').click(ev => {
+    const [ $target, $self ] = [ $(ev.currentTarget), $(ev.target) ];
+    const notLink = !$self.is('a, a *');
+    if (notLink) {
+      location.href = $target.attr('data-url');
+    }
+  });
+});

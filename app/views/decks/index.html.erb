@@ -12,10 +12,12 @@
   </thead>
 
   <% @decks.each do |deck| %>
-    <tr onclick="document.location='<%=deck_cards_path(deck.slug)%>'"
-        class="deck-row"
+    <tr data-url="<%=deck_cards_path(deck.slug)%>"
+        class="deck-row js-deck-row"
         title="<%=t(:show_deck_cards) + deck.name%>">
-      <td><%=deck.name%></td>
+      <td>
+        <%=deck.name%>
+      </td>
       <td><%=deck.description%></td>
       <td>
         <%= deck.activity ? t(:currently_viewed) : t(:currently_not_viewed) %>
@@ -23,13 +25,14 @@
       <td>
         <div>
           <button class="btn mr-1">
-            <%= link_to edit_deck_path(deck) do %>
+            <%= link_to edit_deck_path(deck), title: t(:edit_deck) do %>
               <%=image_tag 'edit.png', width: '24' %>
             <% end %>
           </button>
 
           <button class="btn">
             <%= link_to deck_path(deck),
+               title: t(:delete_deck),
                method: :delete,
                data: {confirm: t(:delete_deck_confirm)} do %>
                   <%=image_tag 'garbage.png', width: '24' %>
@@ -53,3 +56,5 @@
   notice_text: flash.notice,
   class_name: 'alert-success'
 } %>
+
+<%= javascript_include_tag 'other' %>
