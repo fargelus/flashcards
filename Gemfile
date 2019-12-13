@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.5'
 
+gem 'activerecord-import', '~> 1.0.3'
 gem 'bootstrap', '~> 4.3.1'
 gem 'carrierwave', '~> 2.0'
 gem 'font-awesome-rails'
@@ -26,7 +27,6 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
-  gem 'activerecord-import', '~> 1.0.3'
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'factory_bot_rails', '~> 5.1.1'
