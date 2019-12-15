@@ -1,3 +1,4 @@
+# User typos controller
 # frozen_string_literal: true
 
 class TyposController < ApplicationController

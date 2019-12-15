@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Service for updating card's state
+# Service to determine if the user made a typo
 
 require 'damerau-levenshtein'
 

@@ -55,3 +55,5 @@ en:
   supported_formats: 'Supported formats: '
   typos_answer: 'Answer counted'
   cards_check_empty: 'For now all cards checked. Take a break and come back later.'
+  your_answer: 'Your answer:'
+  right_answer: 'Right answer:'
