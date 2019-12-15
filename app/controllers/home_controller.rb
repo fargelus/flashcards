@@ -36,12 +36,18 @@ class HomeController < ApplicationController
 
   def process_last_answer
     @last_answer = @card.answers.last
-
-    need_notice = @last_answer.need_notice
-    flash.now[:notice] = AnswerNoticeCreator.call(@last_answer) if need_notice
+    make_notice
+    if @last_answer.typo
+      redirect_to typo_path(@last_answer.typo.id), notice: @notice_text
+    end
 
     @wrong_answer = @last_answer.wrong
     fetch_card_for_review unless @wrong_answer
+  end
+
+  def make_notice
+    need_notice = @last_answer.need_notice
+    @notice_text = AnswerNoticeCreator.call(@last_answer) if need_notice
   end
 
   def fetch_card_for_review
