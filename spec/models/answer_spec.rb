@@ -11,4 +11,8 @@ RSpec.describe Answer, type: :model do
     it { should validate_presence_of(:answer) }
     it { should validate_presence_of(:card_id) }
   end
+
+  describe 'associations' do
+    it { should have_one(:typo) }
+  end
 end

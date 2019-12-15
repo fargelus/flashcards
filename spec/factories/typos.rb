@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :typo do
-    presence { false }
-    answer { nil }
+    association :answer, factory: :answer
   end
 end
