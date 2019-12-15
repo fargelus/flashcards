@@ -78,10 +78,9 @@ ActiveRecord::Schema.define(version: 20_191_215_084_706) do
   end
 
   create_table 'typos', force: :cascade do |t|
-    t.boolean  'presence', default: false
     t.integer  'answer_id'
-    t.datetime 'created_at',                 null: false
-    t.datetime 'updated_at',                 null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
     t.index ['answer_id'], name: 'index_typos_on_answer_id', using: :btree
   end
 

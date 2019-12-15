@@ -48,6 +48,7 @@ class HomeController < ApplicationController
   def make_notice
     need_notice = @last_answer.need_notice
     @notice_text = AnswerNoticeCreator.call(@last_answer) if need_notice
+    flash.now[:notice] = @notice_text
   end
 
   def fetch_card_for_review

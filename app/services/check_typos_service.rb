@@ -13,7 +13,7 @@ class CheckTyposService < ApplicationService
 
   def call
     typos = typos?
-    @answer.create_typo!(presence: true) if typos
+    @answer.create_typo! if typos
     typos
   end
 

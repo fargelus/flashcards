@@ -20,6 +20,8 @@ class AnswerNoticeCreator < ApplicationService
   end
 
   def define_notice_text
+    return I18n.t(:typos_answer) if @answer.typo
+
     @answer.wrong ? I18n.t(:wrong_answer) : I18n.t(:correct_answer)
   end
 end

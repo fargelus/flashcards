@@ -2,7 +2,8 @@
 
 class TyposController < ApplicationController
   def show
-    abort flash.inspect
-    abort 'HELLO from typos'
+    typo = Typo.find(params[:id])
+    @answer = Answer.find(typo.answer_id)
+    @card = Card.find(@answer.card_id)
   end
 end
