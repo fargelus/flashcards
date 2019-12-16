@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     resources :answers, only: [:create]
   end
 
-  resources :typos, only: [:show]
   resources :users, except: %i[index destroy]
 
   resources :user_sessions, only: %i[new create destroy]
