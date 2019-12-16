@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_215_084_706) do
+ActiveRecord::Schema.define(version: 20_191_216_123_144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -22,8 +22,9 @@ ActiveRecord::Schema.define(version: 20_191_215_084_706) do
     t.string   'answer'
     t.boolean  'wrong'
     t.boolean  'need_notice', default: true
-    t.datetime 'created_at',                 null: false
-    t.datetime 'updated_at',                 null: false
+    t.datetime 'created_at',                  null: false
+    t.datetime 'updated_at',                  null: false
+    t.boolean  'typo', default: false
     t.index ['card_id'], name: 'index_answers_on_card_id', using: :btree
   end
 
@@ -53,9 +54,9 @@ ActiveRecord::Schema.define(version: 20_191_215_084_706) do
   end
 
   create_table 'cards', force: :cascade do |t|
-    t.text     'original_text'
-    t.text     'translated_text'
-    t.datetime 'review_date'
+    t.text     'original_text',   null: false
+    t.text     'translated_text', null: false
+    t.datetime 'review_date',     null: false
     t.datetime 'created_at',      null: false
     t.datetime 'updated_at',      null: false
     t.string   'image'
@@ -66,26 +67,19 @@ ActiveRecord::Schema.define(version: 20_191_215_084_706) do
   end
 
   create_table 'decks', force: :cascade do |t|
-    t.string   'name'
+    t.string   'name', null: false
     t.text     'description'
     t.boolean  'activity', default: false
+    t.integer  'user_id'
     t.datetime 'created_at',                  null: false
     t.datetime 'updated_at',                  null: false
-    t.integer  'user_id'
     t.string   'slug'
     t.index ['slug'], name: 'index_decks_on_slug', unique: true, using: :btree
     t.index ['user_id'], name: 'index_decks_on_user_id', using: :btree
   end
 
-  create_table 'typos', force: :cascade do |t|
-    t.integer  'answer_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['answer_id'], name: 'index_typos_on_answer_id', using: :btree
-  end
-
   create_table 'users', force: :cascade do |t|
-    t.string   'email',                        null: false
+    t.string   'email', null: false
     t.string   'crypted_password'
     t.string   'salt'
     t.datetime 'created_at',                   null: false
@@ -100,5 +94,4 @@ ActiveRecord::Schema.define(version: 20_191_215_084_706) do
   add_foreign_key 'attempts', 'cards'
   add_foreign_key 'cards', 'decks'
   add_foreign_key 'decks', 'users'
-  add_foreign_key 'typos', 'answers'
 end

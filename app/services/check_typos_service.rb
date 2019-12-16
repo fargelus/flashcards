@@ -5,22 +5,15 @@
 require 'damerau-levenshtein'
 
 class CheckTyposService < ApplicationService
+  MIN_EDITS = 3
+
   def initialize(answer, card)
     @answer = answer
     @card = card
-    @min_edits = 3
   end
 
   def call
-    typos = typos?
-    @answer.create_typo! if typos
-    typos
-  end
-
-  private
-
-  def typos?
     distance = DamerauLevenshtein.distance(@answer.answer, @card.translated_text)
-    distance.positive? && distance <= @min_edits
+    distance.positive? && distance <= MIN_EDITS
   end
 end

@@ -7,7 +7,25 @@
     </p>
   </div>
 
-  <% if @guess_card_text %>
+  <% if @typos %>
+    <div class="mt-4">
+      <div class='font-weight-bold font-size--larger'>
+        <%=@card.original_text + '?'%>
+      </div>
+      <%= image_tag(@card.image.url, class: 'mt-2 mb-2') unless @card.image.file.nil? %>
+      <div>
+        <%=t(:your_answer)%>
+        <i class="text-info"><%=@answer.answer%></i>
+      </div>
+      <div>
+        <%=t(:right_answer)%>
+        <i class="text-success"><%=@card.translated_text%></i>
+      </div>
+    </div>
+
+    <%=link_to t(:next_card), root_path, class: 'btn btn-primary mt-3'%>
+
+  <% elsif @guess_card_text %>
     <div class="mt-4">
       <div>
         <%= label_tag 'answer',

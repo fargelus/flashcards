@@ -33,11 +33,13 @@ class UserAnswerService < ApplicationService
   private
 
   def translation_correct?
-    typos = CheckTyposService.call(@answer, @card)
-    typos || answer_same?
+    has_typos = CheckTyposService.call(@answer, @card)
+    @answer.typo = has_typos
+    @answer.save!
+    has_typos || right_answer?
   end
 
-  def answer_same?
+  def right_answer?
     @answer.answer == @card.translated_text
   end
 

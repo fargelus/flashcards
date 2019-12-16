@@ -3,5 +3,4 @@
 
 class Answer < ApplicationRecord
   validates :phrase, :answer, :card_id, presence: true
-  has_one :typo
 end

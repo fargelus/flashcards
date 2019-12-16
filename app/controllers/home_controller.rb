@@ -37,12 +37,9 @@ class HomeController < ApplicationController
   def process_last_answer
     @last_answer = @card.answers.last
     make_notice
-    if @last_answer.typo
-      redirect_to typo_path(@last_answer.typo.id), notice: @notice_text
-    end
-
     @wrong_answer = @last_answer.wrong
     fetch_card_for_review unless @wrong_answer
+    show_card_with_typos
   end
 
   def make_notice
@@ -58,5 +55,11 @@ class HomeController < ApplicationController
 
   def all_user_decks_id
     current_user.decks.select(:id).to_a
+  end
+
+  def show_card_with_typos
+    @typos = @last_answer.typo
+    @card = Card.find(@last_answer.card_id) if @typos
+    SkipAnswerTypoService.call(@last_answer)
   end
 end
