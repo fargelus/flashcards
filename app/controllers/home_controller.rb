@@ -44,8 +44,8 @@ class HomeController < ApplicationController
 
   def make_notice
     need_notice = @last_answer.need_notice
-    @notice_text = AnswerNoticeCreator.call(@last_answer) if need_notice
-    flash.now[:notice] = @notice_text
+    notice_text = AnswerNoticeCreator.call(@last_answer) if need_notice
+    flash.now[:notice] = notice_text
   end
 
   def fetch_card_for_review
@@ -60,6 +60,6 @@ class HomeController < ApplicationController
   def show_card_with_typos
     @typos = @last_answer.typo
     @card = Card.find(@last_answer.card_id) if @typos
-    SkipAnswerTypoService.call(@last_answer)
+    SetAnswerTypoService.call(@last_answer)
   end
 end

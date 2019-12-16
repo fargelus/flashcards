@@ -34,8 +34,7 @@ class UserAnswerService < ApplicationService
 
   def translation_correct?
     has_typos = CheckTyposService.call(@answer, @card)
-    @answer.typo = has_typos
-    @answer.save!
+    SetAnswerTypoService.call(@answer, has_typos)
     has_typos || right_answer?
   end
 
