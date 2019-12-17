@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
     answer.card_id = params[:card_id]
     answer.save!
 
-    UserAnswerService.call(answer)
+    CheckAnswerService.call(answer)
 
     session[:guess_card_id] = answer.card_id
     redirect_to root_path

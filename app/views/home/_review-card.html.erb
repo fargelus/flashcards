@@ -1,0 +1,37 @@
+<% if @answer.typo %>
+  <div class="mt-4">
+    <div class='font-weight-bold font-size--larger'>
+      <%=@card.original_text + '?'%>
+    </div>
+    <%= image_tag(@card.image.url, class: 'mt-2 mb-2') unless @card.image.file.nil? %>
+    <div>
+      <%=t(:your_answer)%>
+      <i class="text-info"><%=@answer.answer%></i>
+    </div>
+    <div>
+      <%=t(:right_answer)%>
+      <i class="text-success"><%=@card.translated_text%></i>
+    </div>
+  </div>
+
+  <%=link_to t(:next_card), root_path, class: 'btn btn-primary mt-3'%>
+
+<% elsif @card.original_text %>
+  <div class="mt-4">
+    <div>
+      <%= label_tag 'answer',
+          @card.original_text + '?',
+          class: 'font-weight-bold font-size--larger' %>
+    </div>
+    <%= image_tag(@card.image.url, class: 'mt-2 mb-2') unless @card.image.file.nil? %>
+    <%= simple_form_for @answer, html: {class: ''},
+        url: card_answers_path(card_id: @card.id) do |f| %>
+      <%= f.hidden_field :phrase, :value => @card.original_text %>
+      <%= f.input :answer, label: t(:enter_answer) + ':',
+          :required => true,
+          input_html: { id: 'answer', value: nil } %>
+      <%= f.button :submit, t(:check), class: 'btn-primary mt-2',
+          data: { disable_with: t(:checking) } %>
+    <% end %>
+  </div>
+<% end %>

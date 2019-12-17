@@ -18,4 +18,12 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password, length: { minimum: 6 }, confirmation: true
+
+  scope :all_decks_id, lambda { |user|
+    user.decks.select(:id).to_a
+  }
+
+  scope :active_deck, lambda { |user|
+    user.decks.find_by_activity(true)
+  }
 end

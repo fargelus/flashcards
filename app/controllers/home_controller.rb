@@ -17,49 +17,25 @@ class HomeController < ApplicationController
 
   def access_allowed
     define_next_card
-    @answer = Answer.new
-    @guess_card_text = @card.original_text unless @card.blank?
+    create_answer if @card.present?
   end
 
   def define_next_card
-    answered_card_id = session[:guess_card_id]
-    if answered_card_id
-      @card = Card.find_by_id(answered_card_id)
-      process_last_answer if @card
-    else
-      fetch_card_for_review
-    end
+    @card = GetViewedCardService.call(current_user, session[:guess_card_id])
 
     # In case of delete reviewing card
     session[:guess_card_id] = nil
   end
 
-  def process_last_answer
-    @last_answer = @card.answers.last
-    make_notice
-    @wrong_answer = @last_answer.wrong
-    fetch_card_for_review unless @wrong_answer
-    show_card_with_typos
+  def create_answer
+    @answer = UserAnswerCreator.call(@card)
+    show_notice_if_necessary
   end
 
-  def make_notice
-    need_notice = @last_answer.need_notice
-    notice_text = AnswerNoticeCreator.call(@last_answer) if need_notice
-    flash.now[:notice] = notice_text
-  end
-
-  def fetch_card_for_review
-    decks_ids = current_deck&.id || all_user_decks_id
-    @card = Card.need_review(decks_ids)
-  end
-
-  def all_user_decks_id
-    current_user.decks.select(:id).to_a
-  end
-
-  def show_card_with_typos
-    @typos = @last_answer.typo
-    @card = Card.find(@last_answer.card_id) if @typos
-    SetAnswerTypoService.call(@last_answer)
+  def show_notice_if_necessary
+    last_answer = @card.answers.last
+    need_notice = last_answer.need_notice
+    notice = AnswerNoticeCreator.call(last_answer) if need_notice
+    flash.now[notice['status']] = notice['text'] if notice
   end
 end

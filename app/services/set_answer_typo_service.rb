@@ -4,7 +4,8 @@
 
 class SetAnswerTypoService < ApplicationService
   def initialize(answer, value = false)
-    @answer, @value = answer, value
+    @answer = answer
+    @value = value
   end
 
   def call
