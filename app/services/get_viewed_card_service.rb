@@ -6,7 +6,7 @@ class GetViewedCardService < ApplicationService
   def initialize(user, card_id)
     @user = user
     @card = Card.find_by_id(card_id) if card_id
-    fetch_card_for_review if need_review
+    fetch_card_for_review if need_review?
   end
 
   def call
@@ -15,7 +15,7 @@ class GetViewedCardService < ApplicationService
 
   private
 
-  def need_review
+  def need_review?
     @card.nil? || @card.answers.last.wrong == false
   end
 

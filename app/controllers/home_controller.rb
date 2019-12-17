@@ -30,12 +30,13 @@ class HomeController < ApplicationController
   def create_answer
     @answer = UserAnswerCreator.call(@card)
     show_notice_if_necessary
+    SetAnswerTypoService.call(@answer) if @answer.typo
   end
 
   def show_notice_if_necessary
     last_answer = @card.answers.last
     need_notice = last_answer.need_notice
     notice = AnswerNoticeCreator.call(last_answer) if need_notice
-    flash.now[notice['status']] = notice['text'] if notice
+    flash.now[notice[:status]] = notice[:text] if notice
   end
 end

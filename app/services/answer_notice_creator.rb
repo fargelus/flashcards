@@ -21,12 +21,12 @@ class AnswerNoticeCreator < ApplicationService
 
   def define_notice
     notice = {
-      'status': :notice,
-      'text': I18n.t(:correct_answer)
+      status: :notice,
+      text: I18n.t(:correct_answer)
     }
-    notice['text'] = I18n.t(:typos_answer) if @answer.typo
-    notice['status'] = :alert if @answer.wrong
-    notice['text'] = I18n.t(:wrong_answer) if @answer.wrong
+    notice[:text] = I18n.t(:typos_answer) if @answer.typo
+    notice[:status] = :alert if @answer.wrong
+    notice[:text] = I18n.t(:wrong_answer) if @answer.wrong
 
     notice
   end

@@ -6,20 +6,10 @@ class UserAnswerCreator < ApplicationService
   def initialize(card)
     @card = card
     @answer = Answer.new
-    reassign_answer_if_typos
+    @card = card.answers.last if @card.answers.last.typo
   end
 
   def call
     @answer
-  end
-
-  private
-
-  def reassign_answer_if_typos
-    last_answer = @card.answers.last
-    if last_answer.typo
-      @answer = last_answer.dup
-      SetAnswerTypoService.call(last_answer)
-    end
   end
 end
