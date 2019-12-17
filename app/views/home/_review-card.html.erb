@@ -14,7 +14,9 @@
     </div>
   </div>
 
-  <%=link_to t(:next_card), root_path, class: 'btn btn-primary mt-3'%>
+  <%=link_to t(:next_card), card_answer_path(@card.id, @answer.id),
+     method: :put,
+     class: 'btn btn-primary mt-3'%>
 
 <% elsif @card.original_text %>
   <div class="mt-4">

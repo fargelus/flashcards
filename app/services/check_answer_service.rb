@@ -14,20 +14,19 @@ class CheckAnswerService < ApplicationService
     @answer = answer
     card ||= Card.find(@answer.card_id)
     @card = card
-    @success = @failure = 0
+    @check_result = 0
   end
 
   def call
     if translation_correct?
-      @success = 1
+      @check_result = 1
       update_card
-    else
-      @failure = 1
-      wrong_answer
     end
 
-    AttemptService.call(@card.id, success: @success, failure: @failure)
-    @success.positive?
+    update_answer
+    failure = 1 if @check_result.zero?
+    AttemptService.call(@card.id, success: @check_result, failure: failure)
+    @check_result.positive?
   end
 
   private
@@ -49,8 +48,8 @@ class CheckAnswerService < ApplicationService
     @card.save!
   end
 
-  def wrong_answer
-    @answer.wrong = true
+  def update_answer
+    @answer.wrong = @check_result.zero?
     @answer.save!
   end
 end
