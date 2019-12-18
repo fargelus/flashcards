@@ -21,6 +21,8 @@ class GetViewedCardService < ApplicationService
 
   def last_answer_right?
     last_answer = @card.answers.last
+    return false if last_answer.nil?
+
     !last_answer.wrong && !last_answer.typo
   end
 
