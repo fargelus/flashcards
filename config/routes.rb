@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :cards, only: [] do
-    resources :answers, only: [:create]
+    resources :answers, only: %i[create update]
   end
 
   resources :users, except: %i[index destroy]

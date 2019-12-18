@@ -2,13 +2,20 @@
 
 class AnswersController < ApplicationController
   def create
-    answer = Answer.new(answer_params)
-    answer.card_id = params[:card_id]
-    answer.save!
+    @answer = Answer.new(answer_params)
+    @answer.card_id = params[:card_id]
+    @answer.save!
 
-    UserAnswerService.call(answer)
+    CheckAnswerService.call(@answer)
+    make_notice
+    session[:guess_card_id] = @answer.card_id
 
-    session[:guess_card_id] = answer.card_id
+    redirect_to root_path
+  end
+
+  def update
+    answer = Answer.find(params[:id])
+    SetAnswerTypoService.call(answer)
     redirect_to root_path
   end
 
@@ -16,5 +23,10 @@ class AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(:phrase, :answer)
+  end
+
+  def make_notice
+    notice = AnswerNoticeCreator.call(@answer)
+    flash[notice[:status]] = notice[:text]
   end
 end

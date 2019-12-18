@@ -17,39 +17,13 @@ class HomeController < ApplicationController
 
   def access_allowed
     define_next_card
-    @answer = Answer.new
-    @guess_card_text = @card.original_text unless @card.blank?
+    @answer = UserAnswerCreator.call(@card) if @card.present?
   end
 
   def define_next_card
-    answered_card_id = session[:guess_card_id]
-    if answered_card_id
-      @card = Card.find_by_id(answered_card_id)
-      process_last_answer if @card
-    else
-      fetch_card_for_review
-    end
+    @card = GetViewedCardService.call(current_user, session[:guess_card_id])
 
     # In case of delete reviewing card
     session[:guess_card_id] = nil
-  end
-
-  def process_last_answer
-    @last_answer = @card.answers.last
-
-    need_notice = @last_answer.need_notice
-    flash.now[:notice] = AnswerNoticeCreator.call(@last_answer) if need_notice
-
-    @wrong_answer = @last_answer.wrong
-    fetch_card_for_review unless @wrong_answer
-  end
-
-  def fetch_card_for_review
-    decks_ids = current_deck&.id || all_user_decks_id
-    @card = Card.need_review(decks_ids)
-  end
-
-  def all_user_decks_id
-    current_user.decks.select(:id).to_a
   end
 end

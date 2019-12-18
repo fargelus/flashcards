@@ -18,7 +18,7 @@ module ApplicationHelper
     decks.any? { |deck| deck.cards.count.positive? }
   end
 
-  def current_deck
-    current_user.decks.find_by_activity(true)
+  def active_deck(user)
+    User.active_deck(user)
   end
 end

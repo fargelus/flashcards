@@ -9,7 +9,7 @@ class AnswerNoticeCreator < ApplicationService
 
   def call
     notice_done
-    define_notice_text
+    define_notice
   end
 
   private
@@ -19,7 +19,15 @@ class AnswerNoticeCreator < ApplicationService
     @answer.save!
   end
 
-  def define_notice_text
-    @answer.wrong ? I18n.t(:wrong_answer) : I18n.t(:correct_answer)
+  def define_notice
+    notice = {
+      status: :notice,
+      text: I18n.t(:correct_answer)
+    }
+    notice[:text] = I18n.t(:typos_answer) if @answer.typo
+    notice[:status] = :alert if @answer.wrong
+    notice[:text] = I18n.t(:wrong_answer) if @answer.wrong
+
+    notice
   end
 end

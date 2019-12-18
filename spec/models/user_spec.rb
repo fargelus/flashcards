@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
+  let!(:deck) { create(:deck, activity: true, user: user) }
 
   describe 'associations' do
     it { should have_many(:decks) }
@@ -18,5 +19,32 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of :password }
     it { should validate_length_of(:password).is_at_least(6) }
     it { should validate_presence_of :password_confirmation }
+  end
+
+  describe '.active_deck' do
+    let(:active_deck) { User.active_deck(user) }
+    let!(:other_deck) do
+      create(
+        :deck,
+        name: 'Abc',
+        activity: true,
+        user: user
+      )
+    end
+
+    it 'has active deck' do
+      expect(active_deck).to be
+    end
+
+    it 'has only one active deck' do
+      expect(active_deck).to be_an_instance_of(Deck)
+    end
+  end
+
+  describe '.all_decks_id' do
+    it 'returns ids of all decks' do
+      ids = User.all_decks_id(user)
+      expect(ids.size).to eql user.decks.count
+    end
   end
 end

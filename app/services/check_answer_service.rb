@@ -7,32 +7,37 @@
 # Otherwise number of failure attempts increased.
 # Returns true if answer correct
 
-class UserAnswerService < ApplicationService
+class CheckAnswerService < ApplicationService
   include CardsHelper
 
   def initialize(answer, card = nil)
     @answer = answer
     card ||= Card.find(@answer.card_id)
     @card = card
-    @success = @failure = 0
+    @check_result = 0
   end
 
   def call
     if translation_correct?
-      @success = 1
+      @check_result = 1
       update_card
-    else
-      @failure = 1
-      wrong_answer
     end
 
-    AttemptService.call(@card.id, success: @success, failure: @failure)
-    @success.positive?
+    update_answer
+    failure = 1 if @check_result.zero?
+    AttemptService.call(@card.id, success: @check_result, failure: failure)
+    @check_result.positive?
   end
 
   private
 
   def translation_correct?
+    has_typos = CheckTyposService.call(@answer, @card)
+    SetAnswerTypoService.call(@answer, has_typos)
+    has_typos || right_answer?
+  end
+
+  def right_answer?
     @answer.answer == @card.translated_text
   end
 
@@ -43,8 +48,8 @@ class UserAnswerService < ApplicationService
     @card.save!
   end
 
-  def wrong_answer
-    @answer.wrong = true
+  def update_answer
+    @answer.wrong = @check_result.zero?
     @answer.save!
   end
 end
