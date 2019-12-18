@@ -23,7 +23,7 @@ class User < ApplicationRecord
     user.decks.select(:id).to_a
   }
 
-  scope :active_deck, lambda { |user|
+  def self.active_deck(user)
     user.decks.find_by_activity(true)
-  }
+  end
 end

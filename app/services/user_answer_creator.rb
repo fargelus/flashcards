@@ -6,7 +6,8 @@ class UserAnswerCreator < ApplicationService
   def initialize(card)
     @card = card
     @answer = Answer.new
-    @answer = card.answers.last if card.answers.last.typo
+    last_answer = card.answers.last
+    @answer = last_answer if last_answer&.typo
   end
 
   def call
