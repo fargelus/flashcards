@@ -5,7 +5,7 @@ addons:
   postgresql: 9.6
 env:
   global:
-    - CC_TEST_REPORTER_ID=ABC123
+    - CC_TEST_REPORTER_ID=146d8f2d057309414efe547598ed9fbdc20c94c3e1195c1028cad6e363f4cbfb
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database travis_ci_test;' -U postgres
