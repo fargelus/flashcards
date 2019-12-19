@@ -42,6 +42,7 @@ group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
   gem 'rake', '~> 13.0.1'
+  gem 'simplecov'
 end
 
 group :development do

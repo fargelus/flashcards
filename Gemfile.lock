@@ -76,6 +76,7 @@ GEM
     damerau-levenshtein (1.3.2)
     debug_inspector (0.0.3)
     diff-lcs (1.3)
+    docile (1.3.2)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -255,6 +256,11 @@ GEM
     simple_form (5.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    simplecov (0.17.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     sorcery (0.14.0)
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
@@ -324,6 +330,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   shoulda-matchers (~> 4.1.2)
   simple_form
+  simplecov
   sorcery
   spring
   turbolinks
