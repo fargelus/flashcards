@@ -17,12 +17,11 @@ class Card < ActiveRecord::Base
   belongs_to :deck
   mount_uploader :image, ImageUploader
 
-  scope :need_review, lambda { |decks_ids|
-    relation = where('review_date <= ? AND deck_id IN (?)',
-                     Time.now, decks_ids)
-               .order(:review_date)
-    relation.present? ? relation.first : relation
-  }
+  def self.need_review(decks_ids)
+    where('review_date <= ? AND deck_id IN (?)',
+          Time.now, decks_ids)
+      .order(:review_date)
+  end
 
   validates :original_text, :translated_text, :review_date, presence: true
   validates :original_text, uniqueness: { scope: :deck_id }

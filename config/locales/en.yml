@@ -57,3 +57,5 @@ en:
   cards_check_empty: 'For now all cards checked. Take a break and come back later.'
   your_answer: 'Your answer:'
   right_answer: 'Right answer:'
+  pending_cards: 'You have some cards pending for check'
+  pending_cards_email_subject: 'Flashcards: You have some cards pending for check'

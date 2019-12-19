@@ -28,6 +28,6 @@ class GetViewedCardService < ApplicationService
 
   def fetch_card_for_review
     decks_ids = User.active_deck(@user) || User.all_decks_id(@user)
-    @card = Card.need_review(decks_ids)
+    @card = Card.need_review(decks_ids).first
   end
 end
