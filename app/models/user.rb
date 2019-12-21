@@ -33,4 +33,10 @@ class User < ApplicationRecord
     user_ids = Deck.find(deck_ids).pluck(:user_id)
     User.find(user_ids)
   end
+
+  def self.notify_about_cards
+    User.with_review_cards.each do |user|
+      NotificationMailer.pending_cards(user.email).deliver_now
+    end
+  end
 end
