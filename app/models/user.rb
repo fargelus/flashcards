@@ -36,7 +36,7 @@ class User < ApplicationRecord
 
   def self.notify_about_cards
     User.with_review_cards.each do |user|
-      NotificationMailer.pending_cards(user.email).deliver_now
+      NotificationMailer.pending_cards(user.email).deliver_later
     end
   end
 end

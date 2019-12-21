@@ -18,7 +18,6 @@ class Card < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   def self.need_review(decks_ids)
-    abort decks_ids.inspect
     where('review_date <= ? AND deck_id IN (?)',
           Time.now, decks_ids)
       .order(:review_date)
