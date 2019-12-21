@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   let!(:user) { create(:user) }
   let!(:deck) { create(:deck, activity: true, user: user) }
+  let!(:card) { create(:card, deck: deck) }
 
   describe 'associations' do
     it { should have_many(:decks) }
@@ -21,30 +22,46 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of :password_confirmation }
   end
 
-  describe '.active_deck' do
-    let(:active_deck) { User.active_deck(user) }
-    let!(:other_deck) do
-      create(
-        :deck,
-        name: 'Abc',
-        activity: true,
-        user: user
-      )
+  context 'methods' do
+    describe '.active_deck' do
+      let(:active_deck) { User.active_deck(user) }
+      let!(:other_deck) do
+        create(
+          :deck,
+          name: 'Abc',
+          activity: true,
+          user: user
+        )
+      end
+
+      it 'has active deck' do
+        expect(active_deck).to be
+      end
+
+      it 'has only one active deck' do
+        expect(active_deck).to be_an_instance_of(Deck)
+      end
     end
 
-    it 'has active deck' do
-      expect(active_deck).to be
+    describe '.all_decks_id' do
+      it 'returns ids of all decks' do
+        ids = User.all_decks_id(user)
+        expect(ids.size).to eql user.decks.count
+      end
     end
 
-    it 'has only one active deck' do
-      expect(active_deck).to be_an_instance_of(Deck)
+    describe '.with_review_cards' do
+      it 'returns user with cards need to review' do
+        users_with_cards = User.with_review_cards
+        expect(users_with_cards).to include(user)
+      end
     end
-  end
 
-  describe '.all_decks_id' do
-    it 'returns ids of all decks' do
-      ids = User.all_decks_id(user)
-      expect(ids.size).to eql user.decks.count
+    describe '.notify_about_cards' do
+      it 'delays sending email' do
+        ActiveJob::Base.queue_adapter = :test
+        expect { User.notify_about_cards }.to have_enqueued_job.on_queue('mailers')
+      end
     end
   end
 end

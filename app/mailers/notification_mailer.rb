@@ -1,3 +1,4 @@
+# Mailer for all system notifacations
 # frozen_string_literal: true
 
 class NotificationMailer < ApplicationMailer
