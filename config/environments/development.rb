@@ -16,7 +16,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = {
     host: 'http://localhost',
     port: '3000'
@@ -31,6 +31,7 @@ Rails.application.configure do
     authentication: 'plain',
     enable_starttls_auto: true
   }
+  config.action_mailer.deliver_later_queue_name = 'mailers'
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

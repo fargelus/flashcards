@@ -44,6 +44,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rake', '~> 13.0.1'
   gem 'simplecov'
+  gem 'whenever-test'
 end
 
 group :development do

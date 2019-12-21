@@ -46,6 +46,7 @@ Rails.application.configure do
     authentication: 'plain',
     enable_starttls_auto: true
   }
+  config.action_mailer.deliver_later_queue_name = 'mailers'
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
