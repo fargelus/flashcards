@@ -7,7 +7,7 @@
 # Otherwise number of failure attempts increased.
 # Returns true if answer correct
 
-class CheckAnswerService < ApplicationService
+class CheckAnswerService < Callable
   include CardsHelper
 
   def initialize(answer, card = nil)

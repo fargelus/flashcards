@@ -2,7 +2,7 @@
 
 # Service to determine next viewed card
 
-class GetViewedCardService < ApplicationService
+class GetViewedCardService < Callable
   def initialize(user, card_id)
     @user = user
     @card = Card.find_by_id(card_id) if card_id

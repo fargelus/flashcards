@@ -2,7 +2,7 @@
 
 # Service that determine next user answer
 
-class UserAnswerCreator < ApplicationService
+class UserAnswerCreator < Callable
   def initialize(card)
     @card = card
     @answer = Answer.new

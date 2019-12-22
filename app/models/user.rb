@@ -28,10 +28,7 @@ class User < ApplicationRecord
   end
 
   def self.with_review_cards
-    review_cards = Card.need_review(Deck.ids)
-    deck_ids = review_cards.pluck(:deck_id)
-    user_ids = Deck.find(deck_ids).pluck(:user_id)
-    User.find(user_ids)
+    FindUsersWithReviewCards.call
   end
 
   def self.notify_about_cards

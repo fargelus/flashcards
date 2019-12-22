@@ -2,7 +2,7 @@
 
 # Service for updating card's state
 
-class CardStateService < ApplicationService
+class CardStateService < Callable
   def initialize(card_id)
     @card = Card.find_by(id: card_id)
   end
