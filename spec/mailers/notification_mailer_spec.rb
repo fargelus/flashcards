@@ -16,7 +16,7 @@ RSpec.describe NotificationMailer, type: :mailer do
     end
 
     it 'has correct mail sender' do
-      expect(mail.from).to include ENV['GMAIL_LOGIN']
+      expect(mail.from).to include Settings.gmail.login
     end
   end
 end

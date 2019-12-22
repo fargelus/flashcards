@@ -36,16 +36,12 @@ Rails.application.configure do
     host: 'http://localhost',
     port: '3000'
   }
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     address: 'localhost',
-    port: 1025,
-    domain: 'gmail.com',
-    user_name: ENV['GMAIL_LOGIN'],
-    password: ENV['GMAIL_PWD'],
-    authentication: 'plain',
-    enable_starttls_auto: true
+    port: 1025
   }
-  config.action_mailer.deliver_later_queue_name = 'mailers'
+  config.active_job.queue_adapter = :sidekiq
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random
