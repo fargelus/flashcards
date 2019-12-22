@@ -1,5 +1,5 @@
 # Simple callable interface that allows
-# call objects through call class methods
+# call objects through static class method
 # frozen_string_literal: true
 
 class Callable
