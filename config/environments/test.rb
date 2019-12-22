@@ -37,8 +37,8 @@ Rails.application.configure do
     port: '3000'
   }
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
+    address: 'localhost',
+    port: 1025,
     domain: 'gmail.com',
     user_name: ENV['GMAIL_LOGIN'],
     password: ENV['GMAIL_PWD'],
