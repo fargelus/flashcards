@@ -37,7 +37,7 @@ RSpec.describe Card, type: :model do
 
       card.review_date = earliest_date
       card.save!
-      expect(Card.need_review(deck.id)).to eq card
+      expect(Card.need_review(deck.id)).to include card
 
       card.destroy
     end
