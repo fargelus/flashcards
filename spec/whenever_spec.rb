@@ -14,8 +14,8 @@ describe 'Whenever Schedule' do
   end
 
   it 'performs User.notify_about_cards task every day' do
-    job = jobs.find { |job| job[:task] == 'User.notify_about_cards' }
-    duration = job[:every]
+    target_job = jobs.find { |job| job[:task] == 'User.notify_about_cards' }
+    duration = target_job[:every]
     expect(duration).to include 1.day
   end
 end
