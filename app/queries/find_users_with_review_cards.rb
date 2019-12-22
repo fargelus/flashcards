@@ -1,3 +1,4 @@
+# Returns users with cards need to review
 # frozen_string_literal: true
 
 class FindUsersWithReviewCards < Callable
