@@ -20,10 +20,18 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, confirmation: true
 
   scope :all_decks_id, lambda { |user|
-    user.decks.select(:id).to_a
+    user.decks.ids
   }
 
   def self.active_deck(user)
     user.decks.find_by_activity(true)
+  end
+
+  def self.with_review_cards
+    FindUsersWithReviewCards.call
+  end
+
+  def self.notify_about_cards
+    NotifyAboutCardsService.call
   end
 end

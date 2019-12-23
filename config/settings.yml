@@ -1,0 +1,3 @@
+gmail:
+  login: <%=ENV['GMAIL_LOGIN']%>
+  pwd: <%=ENV['GMAIL_PWD']%>

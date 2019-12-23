@@ -32,6 +32,16 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = {
+    host: 'http://localhost',
+    port: '3000'
+  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    address: 'localhost',
+    port: 1025
+  }
+  config.active_job.queue_adapter = :sidekiq
 
   # Randomize the order test cases are executed.
   config.active_support.test_order = :random

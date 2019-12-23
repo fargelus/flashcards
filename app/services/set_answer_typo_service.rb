@@ -2,7 +2,7 @@
 
 # Service for setting answer's typo flag
 
-class SetAnswerTypoService < ApplicationService
+class SetAnswerTypoService < Callable
   def initialize(answer, value = false)
     @answer = answer
     @value = value

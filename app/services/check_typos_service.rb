@@ -4,7 +4,7 @@
 
 require 'damerau-levenshtein'
 
-class CheckTyposService < ApplicationService
+class CheckTyposService < Callable
   MIN_EDITS = 3
 
   def initialize(answer, card)

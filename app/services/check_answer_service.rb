@@ -7,7 +7,7 @@
 # Otherwise number of failure attempts increased.
 # Returns true if answer correct
 
-class CheckAnswerService < ApplicationService
+class CheckAnswerService < Callable
   include CardsHelper
 
   def initialize(answer, card = nil)
@@ -18,15 +18,14 @@ class CheckAnswerService < ApplicationService
   end
 
   def call
-    if translation_correct?
-      @check_result = 1
-      update_card
-    end
-
+    @check_result = 1 if translation_correct?
     update_answer
     failure = 1 if @check_result.zero?
     AttemptService.call(@card.id, success: @check_result, failure: failure)
-    @check_result.positive?
+
+    is_check_result_positive = @check_result.positive?
+    update_card if is_check_result_positive
+    is_check_result_positive
   end
 
   private

@@ -7,6 +7,7 @@ ruby '2.6.5'
 gem 'activerecord-import', '~> 1.0.3'
 gem 'bootstrap', '~> 4.3.1'
 gem 'carrierwave', '~> 2.0'
+gem 'config'
 gem 'damerau-levenshtein', '~> 1.1'
 gem 'font-awesome-rails'
 gem 'friendly_id', '~> 5.2.4'
@@ -17,15 +18,19 @@ gem 'oauth2'
 gem 'pg', '~> 0.20'
 gem 'popper_js', '~> 1.14.5'
 gem 'rails', '~> 5.0.7'
+gem 'redis'
+gem 'redis-namespace'
 gem 'rspec', '~> 3.9.0'
 gem 'rspec-rails', '~> 3.9.0'
 gem 'rubocop', '~> 0.75.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'shoulda-matchers', '~> 4.1.2'
+gem 'sidekiq'
 gem 'simple_form'
 gem 'sorcery'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'byebug'
@@ -43,6 +48,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rake', '~> 13.0.1'
   gem 'simplecov'
+  gem 'whenever-test'
 end
 
 group :development do

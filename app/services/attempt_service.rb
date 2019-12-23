@@ -4,7 +4,7 @@
 #
 # Resets success/failures attributes to zero under certain conditions.
 
-class AttemptService < ApplicationService
+class AttemptService < Callable
   def initialize(card_id, success: nil, failure: nil)
     @attempt = Attempt.find_by(card_id: card_id)
     @attempt ||= Attempt.create!(card_id: card_id)

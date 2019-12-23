@@ -2,7 +2,7 @@
 
 # Service for define notice text when answer was checked
 
-class AnswerNoticeCreator < ApplicationService
+class AnswerNoticeCreator < Callable
   def initialize(answer)
     @answer = answer
   end
