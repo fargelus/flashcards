@@ -4,6 +4,7 @@
 <table class="table mt-3">
   <thead class="thead-dark">
     <tr>
+      <th><%=t(:picture)%></th>
       <th><%=t(:original_text)%></th>
       <th><%=t(:translated_text)%></th>
       <th><%=t(:review_date)%></th>
@@ -12,6 +13,11 @@
   </thead>
   <% @cards.each do |card| %>
     <tr>
+      <td>
+        <% if card&.image&.thumb&.url %>
+          <%= image_tag(card.image.thumb.url) %>
+        <% end %>
+      </td>
       <td><%=card.original_text%></td>
       <td><%=card.translated_text%></td>
       <td><%=format_date(card.review_date)%></td>

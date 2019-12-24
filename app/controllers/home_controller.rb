@@ -6,7 +6,6 @@ class HomeController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    User.notify_about_cards
     access_allowed if user_with_cards?
   end
 

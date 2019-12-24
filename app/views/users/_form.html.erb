@@ -1,8 +1,10 @@
 <%= simple_form_for @user, html: {class: 'mt-4'} do |f| %>
   <div class="form-inputs">
-    <%= f.input :email %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation, :required => true %>
+    <% unless @authorized_by_oauth %>
+      <%= f.input :email %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation, :required => true %>
+    <% end %>
     <% if defined? with_avatar %>
       <div class="mb-3">
         <%= label_tag t(:your_avatar) %>

@@ -9,7 +9,9 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit; end
+  def edit
+    @authorized_by_oauth = authorized_by_oauth?
+  end
 
   def create
     @user = User.new(user_params)
@@ -23,7 +25,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
+    if authorized_by_oauth?
+      update_avatar_only
+    elsif @user.update(user_params)
       redirect_to root_path, notice: I18n.t(:account_updated)
     else
       render 'edit'
@@ -34,6 +38,17 @@ class UsersController < ApplicationController
 
   def fetch_user
     @user = User.find(params[:id])
+  end
+
+  def authorized_by_oauth?
+    current_user.authentications.present?
+  end
+
+  def update_avatar_only
+    avatar = params[:user] && params[:user][:avatar]
+    was_updated = @user.update_attribute(:avatar, avatar) if avatar.present?
+    notice_text = I18n.t(:account_updated) if was_updated
+    redirect_to root_path, notice: notice_text
   end
 
   def user_params
