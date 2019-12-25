@@ -1,20 +1,29 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'home#index'
+  scope '(:locale)', locale: /en/ do
+    root to: 'home#index'
+  end
 
-  resources :decks do
-    resources :cards
+  scope '(:locale)', locale: /en/ do
+    resources :decks do
+      resources :cards
+    end
   end
 
   resources :cards, only: [] do
     resources :answers, only: %i[create update]
   end
 
-  resources :users, except: %i[index destroy]
+  scope '(:locale)', locale: /en/ do
+    resources :users, except: %i[index destroy]
+  end
 
   resources :user_sessions, only: %i[new create destroy]
-  get 'login' => 'user_sessions#new', as: :login
+  scope '(:locale)', locale: /en/ do
+    get 'login' => 'user_sessions#new', as: :login
+  end
+
   delete 'logout' => 'user_sessions#destroy', as: :logout
 
   get 'oauth/callback' => 'oauths#callback' # For github
