@@ -3,26 +3,20 @@
 Rails.application.routes.draw do
   scope '(:locale)', locale: /en/ do
     root to: 'home#index'
-  end
 
-  scope '(:locale)', locale: /en/ do
     resources :decks do
       resources :cards
     end
+
+    resources :users, except: %i[index destroy]
+    get 'login' => 'user_sessions#new', as: :login
   end
 
   resources :cards, only: [] do
     resources :answers, only: %i[create update]
   end
 
-  scope '(:locale)', locale: /en/ do
-    resources :users, except: %i[index destroy]
-  end
-
   resources :user_sessions, only: %i[new create destroy]
-  scope '(:locale)', locale: /en/ do
-    get 'login' => 'user_sessions#new', as: :login
-  end
 
   delete 'logout' => 'user_sessions#destroy', as: :logout
 
