@@ -25,7 +25,7 @@ gem 'rspec-rails', '~> 3.9.0'
 gem 'rubocop', '~> 0.75.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'shoulda-matchers', '~> 4.1.2'
-gem 'sidekiq'
+gem 'sidekiq', '5.2.7'
 gem 'simple_form'
 gem 'sorcery'
 gem 'turbolinks'
