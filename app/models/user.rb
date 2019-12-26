@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :decks, dependent: :destroy
   has_many :authentications, dependent: :destroy
+  has_one :locale, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
   validates :email, :password, :password_confirmation, presence: true
