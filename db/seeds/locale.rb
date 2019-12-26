@@ -20,7 +20,7 @@ class LocaleSeed
     user_ids.each do |id|
       @dict.push ({
         locale: I18n.default_locale,
-        user_id: id,
+        user_id: id
       })
     end
   end
