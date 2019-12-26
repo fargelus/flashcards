@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   private
 
   def browser_locale
-    locale = BrowserLocaleService.call(I18n.available_locales)
+    app_locales = I18n.available_locales
+    locale = http_accept_language.compatible_language_from(app_locales)
     session[:locale] = locale
     redirect_to url_for(locale: locale)
   end
@@ -21,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+    I18n.locale = current_user&.locale&.locale || params[:locale]
   end
 
   def default_url_options
