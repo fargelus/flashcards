@@ -10,7 +10,7 @@ class SetUserLocaleService < Callable
 
   def call
     if @attrs
-      @user.locale.update_attributes(@attrs)
+      @user.locale.update_attributes!(@attrs)
     else
       @user.create_locale
     end

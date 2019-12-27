@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  scope '(:locale)', locale: /en/ do
-    root to: 'home#index'
+  root to: 'home#index'
 
-    resources :decks do
-      resources :cards
-    end
-
-    resources :users, except: %i[index destroy]
-    get 'login' => 'user_sessions#new', as: :login
+  resources :decks do
+    resources :cards
   end
+
+  resources :users, except: %i[index destroy]
+  get 'login' => 'user_sessions#new', as: :login
 
   resources :cards, only: [] do
     resources :answers, only: %i[create update]

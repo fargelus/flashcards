@@ -24,8 +24,8 @@ module ApplicationHelper
 
   def locale_link(locale, classes)
     sym_locale = locale.to_sym
-    locale = '' if I18n.default_locale == locale
-    path = url_for(locale: locale)
+    is_default_locale = I18n.default_locale == locale
+    path = is_default_locale ? request.path : url_for(locale: locale)
     link_to I18n.t(sym_locale), path, class: classes
   end
 end

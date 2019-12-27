@@ -30,8 +30,7 @@ class UsersController < ApplicationController
       update_avatar_only
     elsif @user.update(user_params)
       SetUserLocaleService.call(@user, locale: params[:user_locale])
-      redirect_to root_path(locale: params[:user_locale]),
-                  notice: I18n.t(:account_updated)
+      redirect_to root_path, notice: I18n.t(:account_updated)
     else
       render 'edit'
     end
