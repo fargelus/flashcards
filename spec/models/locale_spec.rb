@@ -3,5 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Locale, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { belong_to :user }
+  end
+
+  describe 'validations' do
+    it { validate_inclusion_of(:locale).in_array(Locale.list) }
+  end
 end

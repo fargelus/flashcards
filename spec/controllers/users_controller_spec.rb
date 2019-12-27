@@ -6,6 +6,7 @@ RSpec.describe UsersController, type: :controller do
   let!(:user) { create(:user) }
   let(:new_email) { 'new@mail.com' }
   let(:generated_password) { generate :password }
+  let!(:locale) { create(:locale, user: user) }
 
   context 'when logged out' do
     describe 'GET #new' do
@@ -57,7 +58,8 @@ RSpec.describe UsersController, type: :controller do
             email: new_email,
             password: generated_password,
             password_confirmation: generated_password
-          }
+          },
+          user_locale: locale.locale
         }
       end
 

@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :locale do
-    locale { 'MyString' }
-    user { nil }
+    locale { 'en' }
+
+    association :user, factory: :user
   end
 end

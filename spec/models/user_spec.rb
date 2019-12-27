@@ -11,6 +11,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:decks) }
     it { should have_many(:authentications) }
     it { should accept_nested_attributes_for(:authentications) }
+    it { should have_one(:locale) }
   end
 
   describe 'validations' do

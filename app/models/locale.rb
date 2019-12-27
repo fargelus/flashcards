@@ -4,5 +4,9 @@
 class Locale < ApplicationRecord
   belongs_to :user
 
-  validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s) }
+  def self.list
+    I18n.available_locales.map(&:to_s)
+  end
+
+  validates :locale, inclusion: { in: list }
 end
