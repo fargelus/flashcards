@@ -2,7 +2,7 @@
 
 # Service for updating locale
 
-class LocaleService < Callable
+class SetUserLocaleService < Callable
   def initialize(user, attrs = nil)
     @user = user
     @attrs = attrs

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      LocaleService.call(@user)
+      SetUserLocaleService.call(@user)
       auto_login(@user)
       redirect_to root_path, notice: I18n.t(:reg_success)
     else
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if authorized_by_oauth?
       update_avatar_only
     elsif @user.update(user_params)
-      LocaleService.call(@user, locale: params[:user_locale])
+      SetUserLocaleService.call(@user, locale: params[:user_locale])
       redirect_to root_path(locale: params[:user_locale]),
                   notice: I18n.t(:account_updated)
     else
