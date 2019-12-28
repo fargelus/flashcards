@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Set active deck', type: :feature do
-  let(:user) { create(:user) }
-  let(:deck) { create(:deck, user: user) }
+  let!(:user) { create(:user) }
+  let!(:deck) { create(:deck, user: user) }
+  let(:locale) { create(:locale, user: user).locale }
 
   describe 'deck activation' do
     before do

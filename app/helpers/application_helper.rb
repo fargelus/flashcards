@@ -21,4 +21,11 @@ module ApplicationHelper
   def active_deck(user)
     User.active_deck(user)
   end
+
+  def locale_link(locale, classes)
+    sym_locale = locale.to_sym
+    is_default_locale = I18n.default_locale == locale
+    path = is_default_locale ? request.path : url_for(locale: locale)
+    link_to I18n.t(sym_locale), path, class: classes
+  end
 end

@@ -7,14 +7,15 @@ Rails.application.routes.draw do
     resources :cards
   end
 
+  resources :users, except: %i[index destroy]
+  get 'login' => 'user_sessions#new', as: :login
+
   resources :cards, only: [] do
     resources :answers, only: %i[create update]
   end
 
-  resources :users, except: %i[index destroy]
-
   resources :user_sessions, only: %i[new create destroy]
-  get 'login' => 'user_sessions#new', as: :login
+
   delete 'logout' => 'user_sessions#destroy', as: :logout
 
   get 'oauth/callback' => 'oauths#callback' # For github

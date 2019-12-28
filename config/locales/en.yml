@@ -60,3 +60,7 @@ en:
   pending_cards: 'You have some cards pending for check'
   pending_cards_email_subject: 'Flashcards: You have some cards pending for check'
   picture: 'Picture'
+  en: 'English'
+  ru: 'Russian'
+  change_lang: 'Change app language'
+  select_lang: 'Select app language:'

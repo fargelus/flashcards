@@ -5,17 +5,8 @@
       <%= f.input :password %>
       <%= f.input :password_confirmation, :required => true %>
     <% end %>
-    <% if defined? with_avatar %>
-      <div class="mb-3">
-        <%= label_tag t(:your_avatar) %>
-        <%= render partial: 'partials/upload-img',
-            locals: {
-              form: f,
-              model: @user,
-              image_field: 'avatar',
-              formats: '.gif, .png'
-            } %>
-      </div>
+    <% if defined? edit %>
+      <%= render partial: 'edit-form-part', locals: { form: f, user: @user } %>
     <% end %>
   </div>
 

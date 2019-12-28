@@ -1,0 +1,18 @@
+<ul class="dropdown show pl-2">
+  <li class="btn dropdown-toggle d-flex align-items-center"
+      id="dropdownMenuButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">
+      <i title="<%=t(:change_lang)%>"
+         class="fa icon fa-language" aria-hidden="true"></i>
+  </li>
+
+  <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <% I18n.available_locales.each do |locale| %>
+      <% active_locale = I18n.locale == locale %>
+      <% classes = 'dropdown-item' + (active_locale ? ' active' : '') %>
+      <%= locale_link locale, classes %>
+    <% end %>
+  </li>
+</ul>
