@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# Service for updating user model.
+# Updates all attributes for users that registered manually,
+# Or updates only side attributes for oauth users.
+
 class UpdateUserService < Callable
   def initialize(user, params)
     @user = user

@@ -21,14 +21,14 @@ class ApplicationController < ActionController::Base
     session[:locale].nil? && current_user.blank?
   end
 
-  def select_locale
-    current_user&.locale&.locale || params[:locale] || I18n.default_locale
-  end
-
   def browser_locale
     app_locales = I18n.available_locales
     locale = http_accept_language.compatible_language_from(app_locales)
     session[:locale] = locale
+  end
+
+  def select_locale
+    current_user&.locale&.locale || params[:locale] || I18n.default_locale
   end
 
   def not_authenticated
