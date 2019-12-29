@@ -8,10 +8,10 @@ RSpec.describe User, type: :model do
   let!(:card) { create(:card, deck: deck) }
 
   describe 'associations' do
-    it { should have_many(:decks) }
-    it { should have_many(:authentications) }
+    it { should have_many(:decks).dependent(:destroy) }
+    it { should have_many(:authentications).dependent(:destroy) }
     it { should accept_nested_attributes_for(:authentications) }
-    it { should have_one(:locale) }
+    it { should have_one(:locale).dependent(:destroy) }
   end
 
   describe 'validations' do

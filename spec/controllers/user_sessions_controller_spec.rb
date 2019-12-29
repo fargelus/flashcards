@@ -43,4 +43,20 @@ RSpec.describe UserSessionsController, type: :controller do
       end
     end
   end
+
+  context 'when logged_in' do
+    before { login_user(user) }
+
+    describe 'DELETE #destroy' do
+      it 'redirects to login_path' do
+        delete :destroy
+        expect(response).to redirect_to root_path
+      end
+
+      it 'logout when destroy session' do
+        delete :destroy
+        expect(logged_in?).to eq false
+      end
+    end
+  end
 end
