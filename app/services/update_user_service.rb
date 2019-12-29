@@ -23,7 +23,7 @@ class UpdateUserService < Callable
 
   def update_side_attributes
     avatar = @params[:user] && @params[:user][:avatar]
-    @user.update_attribute!(:avatar, avatar) if avatar.present?
+    @user.update_attribute(:avatar, avatar) if avatar.present?
     update_locale
   end
 

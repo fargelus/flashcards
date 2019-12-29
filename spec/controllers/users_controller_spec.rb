@@ -65,7 +65,8 @@ RSpec.describe UsersController, type: :controller do
 
       it 'redirects to root after update' do
         patch :update, params: update_user
-        expect(response).to redirect_to root_path
+        path = LocaleUrlCreator.call(locale.locale, root_path)
+        expect(response).to redirect_to path
       end
 
       it "updates user's email" do

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    
     if @user.save
       SetUserLocaleService.call(@user)
       auto_login(@user)
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
       :password_confirmation,
       :authentications_attributes,
       :avatar
-    )
+    ) if params[:user]
   end
 
   def all_params
