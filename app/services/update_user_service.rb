@@ -15,7 +15,7 @@ class UpdateUserService < Callable
       update_side_attributes
     else
       update_locale
-      @user.update!(@params[:user])
+      @user.update(@params[:user])
     end
   end
 

@@ -62,6 +62,12 @@ RSpec.describe DecksController, type: :controller do
       post :create, params: post_deck
       expect(flash[:notice]).to eq I18n.t(:deck_created)
     end
+
+    it 'renders new template when deck params bad' do
+      post_deck[:deck][:name] = nil
+      post :create, params: post_deck
+      expect(response).to render_template(:new)
+    end
   end
 
   describe 'POST #destroy' do
@@ -89,6 +95,12 @@ RSpec.describe DecksController, type: :controller do
       patch :update, params: updated_deck
       saved_deck = Deck.find(deck.id)
       expect(saved_deck.name).to eq(deck_name)
+    end
+
+    it 'renders edit template when update params bad' do
+      updated_deck[:deck][:name] = nil
+      patch :update, params: updated_deck
+      expect(response).to render_template(:edit)
     end
   end
 end

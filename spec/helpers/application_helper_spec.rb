@@ -6,6 +6,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   let!(:user) { create(:user) }
   let!(:deck) { create(:deck, activity: true, user: user) }
   let!(:card) { create(:card, deck: deck) }
+  let(:locale) { create(:locale, user: user).locale }
 
   describe '.cards' do
     it 'has cards' do

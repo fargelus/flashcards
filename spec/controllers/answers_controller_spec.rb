@@ -19,9 +19,9 @@ RSpec.describe AnswersController, type: :controller do
     }
   end
 
-  describe 'POST #create' do
-    before { login_user(user) }
+  before { login_user(user) }
 
+  describe 'POST #create' do
     it 'redirects back to root after create' do
       post :create, params: post_answer
       expect(response).to redirect_to(root_path)
@@ -29,6 +29,13 @@ RSpec.describe AnswersController, type: :controller do
 
     it 'creates one more answer after post' do
       expect { post :create, params: post_answer }.to change { Answer.count }.by(2)
+    end
+  end
+
+  describe 'PATCH #update' do
+    it 'redirects to root_path after update' do
+      patch :update, params: { card_id: card.id, id: test_answer.id }
+      expect(response).to redirect_to root_path
     end
   end
 end

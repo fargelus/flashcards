@@ -53,6 +53,12 @@ RSpec.describe CardsController, type: :controller do
       post :create, params: post_card
       expect(response).to redirect_to deck_cards_path(deck)
     end
+
+    it 'renders new template when card params bad' do
+      post_card[:card][:original_text] = nil
+      post :create, params: post_card
+      expect(response).to render_template(:new)
+    end
   end
 
   describe 'DELETE #destroy' do
@@ -96,6 +102,12 @@ RSpec.describe CardsController, type: :controller do
       updated_text = Card.find(test_card.id).original_text
       need_match_text = update_card[:card][:original_text]
       expect(updated_text).to eq(need_match_text)
+    end
+
+    it 'renders edit template when card update params bad' do
+      update_card[:card][:original_text] = nil
+      patch :update, params: update_card
+      expect(response).to render_template(:edit)
     end
   end
 end

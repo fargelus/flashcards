@@ -27,6 +27,13 @@ RSpec.describe UsersController, type: :controller do
   context 'when logged in' do
     before(:each) { login_user(user) }
 
+    describe 'GET #edit' do
+      it 'has edit action' do
+        get :edit, params: { id: user.id }
+        expect(response).to have_http_status(:success)
+      end
+    end
+
     describe 'POST #create' do
       subject (:post_user) do
         {
@@ -47,6 +54,12 @@ RSpec.describe UsersController, type: :controller do
         logout_user
         post :create, params: post_user
         expect(logged_in?).to eq(true)
+      end
+
+      it 'renders new template when new user bad' do
+        post_user[:user][:email] = ''
+        post :create, params: post_user
+        expect(response).to render_template(:new)
       end
     end
 
@@ -73,6 +86,12 @@ RSpec.describe UsersController, type: :controller do
         patch :update, params: update_user
         saved_email = User.find(update_user[:id]).email
         expect(saved_email).to eq(new_email)
+      end
+
+      it 'renders edit template when get bad user params' do
+        update_user[:user][:password_confirmation] = generate :password
+        patch :update, params: update_user
+        expect(response).to render_template(:edit)
       end
     end
   end
