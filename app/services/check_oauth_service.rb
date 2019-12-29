@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# This service checks authorization by oauth 
+# This service checks authorization by oauth
 
 class CheckOauthService < Callable
   def initialize(user)
