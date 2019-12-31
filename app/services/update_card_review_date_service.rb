@@ -11,7 +11,7 @@ class UpdateCardReviewDateService < Callable
 
   def call
     interval = RepetitionInterval.last_interval(@card.id)
-    # @card.review_date = hours_after(interval)
-    # @card.save!
+    @card.review_date = hours_after(interval)
+    @card.save!
   end
 end

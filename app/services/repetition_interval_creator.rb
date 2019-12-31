@@ -2,6 +2,7 @@
 
 class RepetitionIntervalCreator < Callable
   DEFAULT_E_FACTOR = 2.5
+  PREASSIGNED_INTERVALS_AMOUNT = 2
 
   def initialize(card_id, quality)
     @interval = RepetitionInterval.new
@@ -18,13 +19,17 @@ class RepetitionIntervalCreator < Callable
   private
 
   def set_e_factor
+    @interval.EF = e_factor_value
+  end
+
+  def e_factor_value
     card_id = @interval.card_id
     existing_intervals = RepetitionInterval.card_intervals(card_id)
-    if existing_intervals.count > 2
+    if existing_intervals.count > PREASSIGNED_INTERVALS_AMOUNT
       prev_e_factor = RepetitionInterval.last_e_factor(card_id)
-      @interval.EF = CalcEFactorService.call(prev_e_factor, @quality)
+      CalcEFactorService.call(prev_e_factor, @quality)
     else
-      @interval.EF = DEFAULT_E_FACTOR
+      DEFAULT_E_FACTOR
     end
   end
 
