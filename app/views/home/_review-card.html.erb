@@ -32,8 +32,10 @@
       <%= f.input :answer, label: t(:enter_answer) + ':',
           :required => true,
           input_html: { id: 'answer', value: nil } %>
+      <%= hidden_field_tag 'guess_time', '0' %>
       <%= f.button :submit, t(:check), class: 'btn-primary mt-2',
           data: { disable_with: t(:checking) } %>
     <% end %>
   </div>
+  <%= javascript_include_tag 'card_guess_timer' %>
 <% end %>

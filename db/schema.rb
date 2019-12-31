@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_226_072_422) do
+ActiveRecord::Schema.define(version: 20_191_230_115_833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20_191_226_072_422) do
     t.datetime 'created_at',                  null: false
     t.datetime 'updated_at',                  null: false
     t.boolean  'typo', default: false
+    t.integer  'quality'
     t.index ['card_id'], name: 'index_answers_on_card_id', using: :btree
   end
 

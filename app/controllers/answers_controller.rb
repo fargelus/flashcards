@@ -4,9 +4,10 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
     @answer.card_id = params[:card_id]
+    @answer.wrong = !CheckAnswerService.call(@answer)
+    @answer.quality = AnswerQualityBuilder.call(@answer, params[:guess_time])
     @answer.save!
 
-    CheckAnswerService.call(@answer)
     make_notice
     session[:guess_card_id] = @answer.card_id
 

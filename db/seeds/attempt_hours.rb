@@ -7,10 +7,7 @@ class AttemptHourSeed
     @init_hours = 12
     @ratios = {
       1 => 1,
-      2 => 6,
-      3 => 14,
-      4 => 28,
-      5 => 56
+      2 => 6
     }
   end
 
@@ -21,7 +18,7 @@ class AttemptHourSeed
   end
 
   def fill_dict_data
-    1.upto(5) do |i|
+    1.upto(2) do |i|
       record = {}
       ratio = @ratios[i]
       hours = @init_hours * ratio
