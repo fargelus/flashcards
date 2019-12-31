@@ -26,7 +26,6 @@ class CardsController < ApplicationController
 
   def update
     if card_updated?
-      AttemptService.call(@card.id, success: 0, failure: 0)
       redirect_to deck_cards_path(@deck), notice: I18n.t(:card_updated)
     else
       render 'edit'

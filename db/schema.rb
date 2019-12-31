@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_230_115_833) do
+ActiveRecord::Schema.define(version: 20_191_231_092_547) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -27,22 +27,6 @@ ActiveRecord::Schema.define(version: 20_191_230_115_833) do
     t.boolean  'typo', default: false
     t.integer  'quality'
     t.index ['card_id'], name: 'index_answers_on_card_id', using: :btree
-  end
-
-  create_table 'attempt_hours', force: :cascade do |t|
-    t.integer  'attempt'
-    t.integer  'next_attempt_in_hours'
-    t.datetime 'created_at',            null: false
-    t.datetime 'updated_at',            null: false
-  end
-
-  create_table 'attempts', force: :cascade do |t|
-    t.integer  'success',    default: 0
-    t.integer  'failure',    default: 0
-    t.integer  'card_id'
-    t.datetime 'created_at',             null: false
-    t.datetime 'updated_at',             null: false
-    t.index ['card_id'], name: 'index_attempts_on_card_id', using: :btree
   end
 
   create_table 'authentications', force: :cascade do |t|
@@ -87,8 +71,18 @@ ActiveRecord::Schema.define(version: 20_191_230_115_833) do
     t.index ['user_id'], name: 'index_locales_on_user_id', using: :btree
   end
 
+  create_table 'repetion_intervals', force: :cascade do |t|
+    t.integer  'attempts'
+    t.integer  'interval'
+    t.datetime 'created_at',                 null: false
+    t.datetime 'updated_at',                 null: false
+    t.decimal  'EF', default: '2.5'
+    t.integer  'card_id'
+    t.index ['card_id'], name: 'index_repetion_intervals_on_card_id', using: :btree
+  end
+
   create_table 'users', force: :cascade do |t|
-    t.string   'email',                        null: false
+    t.string   'email', null: false
     t.string   'crypted_password'
     t.string   'salt'
     t.datetime 'created_at',                   null: false
@@ -100,8 +94,8 @@ ActiveRecord::Schema.define(version: 20_191_230_115_833) do
     t.index ['remember_me_token'], name: 'index_users_on_remember_me_token', using: :btree
   end
 
-  add_foreign_key 'attempts', 'cards'
   add_foreign_key 'cards', 'decks'
   add_foreign_key 'decks', 'users'
   add_foreign_key 'locales', 'users'
+  add_foreign_key 'repetion_intervals', 'cards'
 end
