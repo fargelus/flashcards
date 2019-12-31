@@ -8,6 +8,8 @@ class AnswersController < ApplicationController
     @answer.quality = AnswerQualityBuilder.call(@answer, params[:guess_time])
     @answer.save!
 
+    UpdateCardReviewDateService.call(@answer.card_id, @answer.quality)
+
     make_notice
     session[:guess_card_id] = @answer.card_id
 

@@ -13,6 +13,7 @@ class Card < ActiveRecord::Base
   end
 
   has_many :answers, dependent: :destroy
+  has_many :repetion_intervals, dependent: :destroy
   belongs_to :deck
   mount_uploader :image, ImageUploader
 

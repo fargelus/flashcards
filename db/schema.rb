@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_231_092_547) do
+ActiveRecord::Schema.define(version: 20_191_231_091_810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -71,18 +71,17 @@ ActiveRecord::Schema.define(version: 20_191_231_092_547) do
     t.index ['user_id'], name: 'index_locales_on_user_id', using: :btree
   end
 
-  create_table 'repetion_intervals', force: :cascade do |t|
-    t.integer  'attempts'
+  create_table 'repetition_intervals', force: :cascade do |t|
     t.integer  'interval'
-    t.datetime 'created_at',                 null: false
-    t.datetime 'updated_at',                 null: false
-    t.decimal  'EF', default: '2.5'
+    t.datetime 'created_at',                                         null: false
+    t.datetime 'updated_at',                                         null: false
+    t.decimal  'EF', precision: 5, scale: 3, default: '2.5'
     t.integer  'card_id'
-    t.index ['card_id'], name: 'index_repetion_intervals_on_card_id', using: :btree
+    t.index ['card_id'], name: 'index_repetition_intervals_on_card_id', using: :btree
   end
 
   create_table 'users', force: :cascade do |t|
-    t.string   'email', null: false
+    t.string   'email',                        null: false
     t.string   'crypted_password'
     t.string   'salt'
     t.datetime 'created_at',                   null: false
@@ -97,5 +96,5 @@ ActiveRecord::Schema.define(version: 20_191_231_092_547) do
   add_foreign_key 'cards', 'decks'
   add_foreign_key 'decks', 'users'
   add_foreign_key 'locales', 'users'
-  add_foreign_key 'repetion_intervals', 'cards'
+  add_foreign_key 'repetition_intervals', 'cards'
 end
