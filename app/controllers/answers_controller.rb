@@ -11,8 +11,6 @@ class AnswersController < ApplicationController
     UpdateCardReviewDateService.call(@answer.card_id, @answer.quality)
 
     make_notice
-    session[:guess_card_id] = @answer.card_id
-
     redirect_to root_path
   end
 

@@ -21,9 +21,6 @@ class HomeController < ApplicationController
   end
 
   def define_next_card
-    @card = GetViewedCardService.call(current_user, session[:guess_card_id])
-
-    # In case of delete reviewing card
-    session[:guess_card_id] = nil
+    @card = GetViewedCardService.call(current_user)
   end
 end

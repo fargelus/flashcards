@@ -34,6 +34,8 @@ class RepetitionIntervalCreator < Callable
   end
 
   def set_interval_value
-    @interval.interval = 12
+    card_id = @interval.card_id
+    e_factor = @interval.EF
+    @interval.interval = CalcNextRepeatIntervalService.call(card_id, e_factor)
   end
 end
