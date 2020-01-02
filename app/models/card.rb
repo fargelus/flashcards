@@ -23,6 +23,10 @@ class Card < ActiveRecord::Base
       .order(:review_date)
   end
 
+  scope :last_answer, lambda { |id|
+    Card.find(id).answers.last
+  }
+
   validates :original_text, :translated_text, :review_date, presence: true
   validates :original_text, uniqueness: { scope: :deck_id }
 

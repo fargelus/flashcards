@@ -31,7 +31,6 @@ class RepetitionIntervalCreator < Callable
   end
 
   def e_factor_value
-    card_id = @interval.card_id
     CalcEFactorService.call(@current_e_factor, @quality)
   end
 

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CalcEFactorService < Callable
+  include AnswerQualityGrades
   MINIMUM_E_FACTOR = 1.3
   DEFAULT_E_FACTOR = 2.5
 
@@ -10,13 +11,17 @@ class CalcEFactorService < Callable
   end
 
   def call
+    @answer_quality < DIFFICULT_RESPONSE ? DEFAULT_E_FACTOR : calc_e_factor
+  end
+
+  private
+
+  def calc_e_factor
     value = e_factor_formula
     value = MINIMUM_E_FACTOR if value < MINIMUM_E_FACTOR
     value = DEFAULT_E_FACTOR if value > DEFAULT_E_FACTOR
     value
   end
-
-  private
 
   def e_factor_formula
     @prev_e_factor + (0.1 - (5 - @answer_quality) * (0.08 + (5 - @answer_quality) * 0.02))
