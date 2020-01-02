@@ -3,17 +3,17 @@
 class CalcNextRepeatIntervalService < Callable
   RATIO = 5
 
-  def initialize(card_id, ef)
+  def initialize(card_id, factor)
     @card_id = card_id
-    @EF = ef
+    @e_factor = factor
     @intervals = RepetitionInterval.card_intervals(card_id)
   end
 
   def call
-    amount = @intervals.count
-    return amount * RATIO + 1 if amount < 2
+    attempts = @intervals.count
+    return attempts * RATIO + 1 if attempts < 2
 
     last_interval = RepetitionInterval.last_interval(@card_id)
-    (last_interval * @EF).to_i
+    (last_interval * @e_factor).to_i
   end
 end

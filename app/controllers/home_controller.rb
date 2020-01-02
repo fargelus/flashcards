@@ -21,6 +21,7 @@ class HomeController < ApplicationController
   end
 
   def define_next_card
-    @card = GetViewedCardService.call(current_user)
+    @card = GetViewedCardService.call(current_user, session[:guess_card_id])
+    session[:guess_card_id] = nil
   end
 end

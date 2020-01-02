@@ -2,6 +2,7 @@
 
 class CalcEFactorService < Callable
   MINIMUM_E_FACTOR = 1.3
+  DEFAULT_E_FACTOR = 2.5
 
   def initialize(prev_e_factor, answer_quality)
     @prev_e_factor = prev_e_factor
@@ -11,6 +12,7 @@ class CalcEFactorService < Callable
   def call
     value = e_factor_formula
     value = MINIMUM_E_FACTOR if value < MINIMUM_E_FACTOR
+    value = DEFAULT_E_FACTOR if value > DEFAULT_E_FACTOR
     value
   end
 

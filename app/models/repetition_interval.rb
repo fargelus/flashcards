@@ -8,17 +8,11 @@ class RepetitionInterval < ApplicationRecord
     where("card_id = #{card_id}")
   }
 
-  scope :last_interval, lambda { |card_id|
-    record = card_intervals(card_id)
-    return nil if record.blank?
+  def self.last_interval(card_id)
+    card_intervals(card_id).last&.interval
+  end
 
-    record.last.interval
-  }
-
-  scope :last_e_factor, lambda { |card_id|
-    record = card_intervals(card_id)
-    return nil if record.blank?
-
-    record.last.EF
-  }
+  def self.last_e_factor(card_id)
+    card_intervals(card_id).last&.EF
+  end
 end
