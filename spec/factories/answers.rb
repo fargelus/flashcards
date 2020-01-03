@@ -1,13 +1,13 @@
 # This will guess the Answer class
 # frozen_string_literal: true
 
-include AnswerQualityGrades
-
 FactoryBot.define do
+  AnswerQualities = Class.new { include AnswerQualityGrades }
+
   factory :answer do
     phrase { 'phrase' }
     answer { 'answer' }
-    quality { PERFECT_RESPONSE }
+    quality { AnswerQualities::PERFECT_RESPONSE }
 
     association :card_id, factory: :card
   end

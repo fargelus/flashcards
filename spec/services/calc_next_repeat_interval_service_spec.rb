@@ -2,9 +2,6 @@
 
 require 'rails_helper'
 
-include AnswerQualityGrades
-include EFactorValues
-
 RSpec.describe CalcNextRepeatIntervalService, type: :service do
   let!(:card) { create(:card) }
   let!(:answer) { create(:answer, card_id: card.id) }

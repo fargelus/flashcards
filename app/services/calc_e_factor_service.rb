@@ -5,8 +5,7 @@
 
 class CalcEFactorService < Callable
   include AnswerQualityGrades
-  MINIMUM_E_FACTOR = 1.3
-  DEFAULT_E_FACTOR = 2.5
+  include EFactorValues
 
   def initialize(prev_e_factor, answer_quality)
     @prev_e_factor = prev_e_factor
