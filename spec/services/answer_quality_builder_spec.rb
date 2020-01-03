@@ -34,16 +34,20 @@ RSpec.describe AnswerQualityBuilder, type: :service do
       expect(result).to eql AnswerQualityGrades::PERFECT_RESPONSE
     end
 
-    it 'returns hesitation response' do
-      response_time = ResponseTimeMeasures::DELAY_RESPONSE_TIME
-      result = AnswerQualityBuilder.call(answer, response_time)
-      expect(result).to eql AnswerQualityGrades::HESITATION_RESPONSE
+    context 'when response time delayed' do
+      it 'returns hesitation response' do
+        response_time = ResponseTimeMeasures::DELAY_RESPONSE_TIME
+        result = AnswerQualityBuilder.call(answer, response_time)
+        expect(result).to eql AnswerQualityGrades::HESITATION_RESPONSE
+      end
     end
 
-    it 'returns difficult response' do
-      response_time = 10_000
-      result = AnswerQualityBuilder.call(answer, response_time)
-      expect(result).to eql AnswerQualityGrades::DIFFICULT_RESPONSE
+    context 'when response_time too much' do
+      it 'returns difficult response' do
+        response_time = 10_000
+        result = AnswerQualityBuilder.call(answer, response_time)
+        expect(result).to eql AnswerQualityGrades::DIFFICULT_RESPONSE
+      end
     end
   end
 end

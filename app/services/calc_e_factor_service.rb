@@ -20,8 +20,9 @@ class CalcEFactorService < Callable
 
   def calc_e_factor
     value = e_factor_formula
-    value = MINIMUM_E_FACTOR if value < MINIMUM_E_FACTOR
-    value = DEFAULT_E_FACTOR if value > DEFAULT_E_FACTOR
+    return MINIMUM_E_FACTOR if value < MINIMUM_E_FACTOR
+    return DEFAULT_E_FACTOR if value > DEFAULT_E_FACTOR
+
     value
   end
 

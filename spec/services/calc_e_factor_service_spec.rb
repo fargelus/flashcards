@@ -13,7 +13,7 @@ RSpec.describe CalcEFactorService, type: :service do
 
     let(:quality) { AnswerQualityGrades::BAD_RESPONSE }
     let(:result) do
-      CalcEFactorService.call(interval.EF, quality)
+      CalcEFactorService.call(interval.e_factor, quality)
     end
 
     it 'returns DEFAULT_E_FACTOR when quality not enough' do
@@ -22,7 +22,7 @@ RSpec.describe CalcEFactorService, type: :service do
 
     it 'calculates e_factor' do
       quality = AnswerQualityGrades::PERFECT_RESPONSE
-      result = CalcEFactorService.call(interval.EF, quality)
+      result = CalcEFactorService.call(interval.e_factor, quality)
       expect(result).to be_between(
         EFactorValues::MINIMUM_E_FACTOR,
         EFactorValues::DEFAULT_E_FACTOR

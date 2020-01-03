@@ -29,7 +29,7 @@ class RepetitionIntervalCreator < Callable
   end
 
   def set_e_factor
-    @interval.EF = e_factor_value
+    @interval.e_factor = e_factor_value
   end
 
   def e_factor_value

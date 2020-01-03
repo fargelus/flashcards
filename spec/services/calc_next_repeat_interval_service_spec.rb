@@ -10,7 +10,7 @@ RSpec.describe CalcNextRepeatIntervalService, type: :service do
 
   describe '.call' do
     it 'returns calculated interval' do
-      result = CalcNextRepeatIntervalService.call(card.id, interval.EF)
+      result = CalcNextRepeatIntervalService.call(card.id, interval.e_factor)
       expect(result).to be_a(Integer)
     end
   end

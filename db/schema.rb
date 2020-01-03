@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20_191_231_091_810) do
     t.integer  'interval'
     t.datetime 'created_at',                                         null: false
     t.datetime 'updated_at',                                         null: false
-    t.decimal  'EF', precision: 5, scale: 3, default: '2.5'
+    t.decimal  'e_factor', precision: 5, scale: 3, default: '2.5'
     t.integer  'card_id'
     t.index ['card_id'], name: 'index_repetition_intervals_on_card_id', using: :btree
   end

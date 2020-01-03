@@ -13,7 +13,7 @@ class CalcNextRepeatIntervalService < Callable
     @card_id = card_id
     @e_factor = factor
     @intervals = RepetitionInterval.card_intervals(card_id)
-    @last_answer = Card.last_answer(@card_id)
+    @last_answer = Card.find(card_id).answers.last
     @attempts = @intervals.count
   end
 

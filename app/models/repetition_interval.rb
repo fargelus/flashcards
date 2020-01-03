@@ -4,7 +4,7 @@
 
 class RepetitionInterval < ApplicationRecord
   belongs_to :card
-  validates :interval, :EF, :card, presence: true
+  validates :interval, :e_factor, :card, presence: true
 
   scope :card_intervals, lambda { |card_id|
     where("card_id = #{card_id}")
@@ -15,6 +15,6 @@ class RepetitionInterval < ApplicationRecord
   end
 
   def self.last_e_factor(card_id)
-    card_intervals(card_id).last&.EF
+    card_intervals(card_id).last&.e_factor
   end
 end

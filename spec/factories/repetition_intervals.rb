@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :repetition_interval do
     interval { 5 }
-    EF { 2.5 }
+    e_factor { 2.5 }
 
     association :card, factory: :card
   end
