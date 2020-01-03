@@ -15,6 +15,7 @@ class AnswerQualityBuilder < Callable
   def call
     return BAD_RESPONSE if @answer.wrong
     return typo_response if @answer.typo
+
     correct_response
   end
 
