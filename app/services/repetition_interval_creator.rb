@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Service creates one instance for RepetitionInterval model.
+
 class RepetitionIntervalCreator < Callable
   DEFAULT_E_FACTOR = 2.5
 

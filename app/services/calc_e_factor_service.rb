@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Service for calculating E_FACTOR value which part of
+# repetition interval formula.
+
 class CalcEFactorService < Callable
   include AnswerQualityGrades
   MINIMUM_E_FACTOR = 1.3
@@ -24,6 +27,8 @@ class CalcEFactorService < Callable
   end
 
   def e_factor_formula
-    @prev_e_factor + (0.1 - (5 - @answer_quality) * (0.08 + (5 - @answer_quality) * 0.02))
+    quality_updates = 5 - @answer_quality
+    ratio = 0.08 + quality_updates * 0.02
+    @prev_e_factor + 0.1 - quality_updates * ratio
   end
 end

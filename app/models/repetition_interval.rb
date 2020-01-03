@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Repeat intervals model
+
 class RepetitionInterval < ApplicationRecord
   belongs_to :card
   validates :interval, :EF, :card, presence: true

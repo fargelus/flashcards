@@ -7,8 +7,6 @@ RSpec.describe CheckAnswerService, type: :service do
 
   let(:card) { create(:card) }
   let(:answer) { create(:answer, card_id: card.id) }
-  let!(:attempt) { create(:attempt, card: card) }
-  let!(:attempt_hour) { create(:attempt_hour) }
 
   before do
     answer.answer = card.translated_text
@@ -24,17 +22,6 @@ RSpec.describe CheckAnswerService, type: :service do
       answer.answer = card.translated_text.reverse
       check_result = CheckAnswerService.call(answer, card)
       expect(check_result).to be false
-    end
-  end
-
-  describe '#start' do
-    context 'when answer correct' do
-      it 'has review_date some hours later' do
-        future_check = attempt_hour.next_attempt_in_hours
-        actual = format_date(card.review_date)
-        got = format_date(hours_after(future_check))
-        expect(actual).to eq got
-      end
     end
   end
 end

@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+# This service calculate next repeat interval for card.
+# It returns default interval (between 1 and 6 hours) or
+# process previous interval value for calculating new one.
+
 class CalcNextRepeatIntervalService < Callable
   include AnswerQualityGrades
   RATIO = 5

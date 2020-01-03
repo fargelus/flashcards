@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# This service determine quality of user answer.
+# Quality depends on answer correction & time of response.
+
 class AnswerQualityBuilder < Callable
   include AnswerQualityGrades
   include ResponseTimeMeasures
@@ -12,16 +15,13 @@ class AnswerQualityBuilder < Callable
   def call
     return BAD_RESPONSE if @answer.wrong
     return typo_response if @answer.typo
-
     correct_response
   end
 
   private
 
   def typo_response
-    return FAST_TYPO_RESPONSE if @guess_time <= FAST_RESPONSE_TIME
-
-    SLOW_TYPO_RESPONSE
+    @guess_time <= FAST_TYPO_RESPONSE ? FAST_TYPO_RESPONSE : SLOW_TYPO_RESPONSE
   end
 
   def correct_response

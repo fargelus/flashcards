@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Service updates card next review date.
+# It uses RepetitionInterval model within.
+
 class UpdateCardReviewDateService < Callable
   include CardsHelper
 
