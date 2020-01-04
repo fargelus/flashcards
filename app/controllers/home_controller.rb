@@ -17,7 +17,7 @@ class HomeController < ApplicationController
 
   def access_allowed
     define_next_card
-    @answer = UserAnswerCreator.call(@card) if @card.present?
+    @answer = PrevUserAnswerService.call(@card) if @card.present?
   end
 
   def define_next_card

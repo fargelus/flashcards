@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
-# Service that determine next user answer
-
 class UserAnswerCreator < Callable
-  def initialize(card)
-    @card = card
-    @answer = Answer.new
-    last_answer = card.answers.last
-    @answer = last_answer if last_answer&.typo
+  def initialize(params, guess_time)
+    @params = params
+    @guess_time = guess_time
   end
 
   def call
-    @answer
+    answer = Answer.new(@params)
+    answer.wrong = !CheckAnswerService.call(answer)
+    answer.quality = AnswerQualityBuilder.call(answer, @guess_time)
+    answer.save!
+    UpdateCardReviewDateService.call(answer.card_id, answer.quality)
+    answer
   end
 end
