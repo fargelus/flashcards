@@ -17,13 +17,11 @@ class HomeController < ApplicationController
 
   def access_allowed
     define_next_card
-    @answer = UserAnswerCreator.call(@card) if @card.present?
+    @answer = PrevUserAnswerService.call(@card) if @card.present?
   end
 
   def define_next_card
     @card = GetViewedCardService.call(current_user, session[:guess_card_id])
-
-    # In case of delete reviewing card
     session[:guess_card_id] = nil
   end
 end

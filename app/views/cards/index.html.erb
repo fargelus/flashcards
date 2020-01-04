@@ -1,4 +1,6 @@
-<%= render partial: 'partials/page-title', locals: {title: deck_name(@deck)} %>
+<%= render partial: 'partials/page-title', locals: {
+  title: t(:deck) + ': ' + deck_name(@deck)
+} %>
 
 <h4 class="mt-2 mb-0"><%=t(:deck_cards)%></h4>
 <table class="table mt-3">

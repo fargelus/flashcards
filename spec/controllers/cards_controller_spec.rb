@@ -6,7 +6,6 @@ RSpec.describe CardsController, type: :controller do
   let(:user) { create(:user) }
   let!(:deck) { create(:deck, user: user) }
   let!(:test_card) { create(:card, deck: deck) }
-  let!(:attempt) { create(:attempt, card: test_card) }
 
   before { login_user(user) }
 

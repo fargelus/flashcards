@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe UserAnswerCreator, type: :service do
+RSpec.describe PrevUserAnswerService, type: :service do
   let!(:card) { create(:card) }
-  let!(:answer) { UserAnswerCreator.call(card) }
+  let!(:answer) { PrevUserAnswerService.call(card) }
 
   describe '.call' do
     it 'returns answer in any case' do

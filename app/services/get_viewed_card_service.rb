@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-# Service to determine next viewed card
+# Service for determine next viewed card
 
 class GetViewedCardService < Callable
   def initialize(user, card_id)
     @user = user
-    @card = Card.find_by_id(card_id) if card_id
-    fetch_card_for_review if need_review?
+    @card = Card.find_by(id: card_id)
+    fetch_card_for_review unless last_answer_with_typo?
   end
 
   def call
@@ -15,15 +15,8 @@ class GetViewedCardService < Callable
 
   private
 
-  def need_review?
-    @card.nil? || last_answer_right?
-  end
-
-  def last_answer_right?
-    last_answer = @card.answers.last
-    return false if last_answer.nil?
-
-    !last_answer.wrong && !last_answer.typo
+  def last_answer_with_typo?
+    @card&.answers&.last&.typo
   end
 
   def fetch_card_for_review

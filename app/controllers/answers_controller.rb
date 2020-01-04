@@ -2,14 +2,9 @@
 
 class AnswersController < ApplicationController
   def create
-    @answer = Answer.new(answer_params)
-    @answer.card_id = params[:card_id]
-    @answer.save!
-
-    CheckAnswerService.call(@answer)
+    @answer = UserAnswerCreator.call(answer_params, params[:guess_time])
     make_notice
-    session[:guess_card_id] = @answer.card_id
-
+    session[:guess_card_id] = params[:card_id]
     redirect_to root_path
   end
 
@@ -22,7 +17,9 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:phrase, :answer)
+    all_params = params.require(:answer).permit(:phrase, :answer)
+    all_params[:card_id] = params[:card_id]
+    all_params
   end
 
   def make_notice
