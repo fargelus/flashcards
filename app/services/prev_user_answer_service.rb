@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# Service that determine next user answer
+# Service that determine previous user answer.
+# If answer doesn't exist, it creates new one.
 
 class PrevUserAnswerService < Callable
   def initialize(card)

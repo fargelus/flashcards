@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Service creates new answer & run UpdateCardReviewDateService.
+# Returns recently saved answer.
+
 class UserAnswerCreator < Callable
   def initialize(params, guess_time)
     @params = params
