@@ -8,18 +8,20 @@ class CalcNextRepeatIntervalService < Callable
   include AnswerQualityGrades
   RATIO = 5
   MINIMUM_INTERVAL = 1
+  ATTEMPTS_WITH_DEFAULT_INTERVAL = 2
 
   def initialize(card_id, factor)
     @card_id = card_id
     @e_factor = factor
     @intervals = RepetitionInterval.card_intervals(card_id)
     @last_answer = Card.find(card_id).answers.last
-    @attempts = @intervals.count
+    @intervals_count = @intervals.count
+    @few_intervals = @intervals_count < ATTEMPTS_WITH_DEFAULT_INTERVAL
   end
 
   def call
     if default_interval?
-      @attempts < 2 ? @attempts * RATIO + 1 : MINIMUM_INTERVAL
+      @few_intervals ? @intervals_count * RATIO + 1 : MINIMUM_INTERVAL
     else
       last_interval = RepetitionInterval.last_interval(@card_id)
       (last_interval * @e_factor).to_i
@@ -29,6 +31,6 @@ class CalcNextRepeatIntervalService < Callable
   private
 
   def default_interval?
-    @attempts < 2 || @last_answer.quality < DIFFICULT_RESPONSE
+    @few_intervals || @last_answer.quality < DIFFICULT_RESPONSE
   end
 end

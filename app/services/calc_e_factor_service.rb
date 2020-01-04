@@ -7,6 +7,10 @@ class CalcEFactorService < Callable
   include AnswerQualityGrades
   include EFactorValues
 
+  E_FACTOR_DIFFERENCE = 0.8
+  QUALITY_PART_RATIO = 0.28
+  DOUBLED_QUALITY_RATIO = 0.02
+
   def initialize(prev_e_factor, answer_quality)
     @prev_e_factor = prev_e_factor
     @answer_quality = answer_quality
@@ -27,8 +31,8 @@ class CalcEFactorService < Callable
   end
 
   def e_factor_formula
-    quality_updates = 5 - @answer_quality
-    ratio = 0.08 + quality_updates * 0.02
-    @prev_e_factor + 0.1 - quality_updates * ratio
+    doubled_quality_part = DOUBLED_QUALITY_RATIO * @answer_quality**2
+    quality_part = QUALITY_PART_RATIO * @answer_quality
+    @prev_e_factor - E_FACTOR_DIFFERENCE + quality_part - doubled_quality_part
   end
 end
