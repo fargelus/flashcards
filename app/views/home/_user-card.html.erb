@@ -1,0 +1,7 @@
+<% if current_user %>
+  <% if @card.present? %>
+    <%= render 'review-card' %>
+  <% else %>
+    <p><i><%= t(:cards_check_empty)%></i></p>
+  <% end %>
+<% end %>

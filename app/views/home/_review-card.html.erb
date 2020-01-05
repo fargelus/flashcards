@@ -27,7 +27,7 @@
     </div>
     <%= image_tag(@card.image.url, class: 'mt-2 mb-2') unless @card.image.file.nil? %>
     <%= simple_form_for @answer, html: {class: ''},
-        url: card_answers_path(card_id: @card.id) do |f| %>
+        url: card_answers_path(card_id: @card.id), remote: true do |f| %>
       <%= f.hidden_field :phrase, :value => @card.original_text %>
       <%= f.input :answer, label: t(:enter_answer) + ':',
           :required => true,

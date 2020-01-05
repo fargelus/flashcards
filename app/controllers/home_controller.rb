@@ -18,10 +18,17 @@ class HomeController < ApplicationController
   def access_allowed
     define_next_card
     @answer = PrevUserAnswerService.call(@card) if @card.present?
+    response_js if session[:guess_card_id]
+    session[:guess_card_id] = nil
   end
 
   def define_next_card
     @card = GetViewedCardService.call(current_user, session[:guess_card_id])
-    session[:guess_card_id] = nil
+  end
+
+  def response_js
+    respond_to do |format|
+      format.js
+    end
   end
 end
