@@ -14,8 +14,10 @@
     </div>
   </div>
 
-  <%=link_to t(:next_card), card_answer_path(@card.id, @answer.id),
+  <%=link_to t(:next_card),
+     card_answer_path(@card.id, @answer.id),
      method: :put,
+     remote: true,
      class: 'btn btn-primary mt-3'%>
 
 <% else %>
