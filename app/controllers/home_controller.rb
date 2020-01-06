@@ -29,7 +29,7 @@ class HomeController < ApplicationController
   def make_response
     respond_to do |format|
       format.html
-      format.js { flash = flash }
+      format.js
     end
   end
 end
