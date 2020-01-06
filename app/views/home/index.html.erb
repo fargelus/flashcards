@@ -11,9 +11,3 @@
     <%= render 'user-card' %>
   </div>
 </section>
-
-<%= render partial: 'partials/notice',
-    locals: {
-      notice_text: flash.notice || flash.alert,
-      class_name: flash.alert ? 'alert-danger' : 'alert-success',
-    } %>
