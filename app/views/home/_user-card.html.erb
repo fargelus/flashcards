@@ -1,0 +1,15 @@
+<div>
+  <% if current_user %>
+    <% if @card.present? %>
+      <%= render 'review-card' %>
+    <% else %>
+      <p><i><%= t(:cards_check_empty)%></i></p>
+    <% end %>
+  <% end %>
+
+  <%= render partial: 'partials/notice',
+      locals: {
+        notice_text: flash.notice || flash.alert,
+        class_name: flash.alert ? 'alert-danger' : 'alert-success',
+      } %>
+</div>

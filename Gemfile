@@ -29,7 +29,6 @@ gem 'shoulda-matchers', '~> 4.1.2'
 gem 'sidekiq', '5.2.7'
 gem 'simple_form'
 gem 'sorcery'
-gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 

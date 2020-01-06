@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
   def update
     answer = Answer.find(params[:id])
     SetAnswerTypoService.call(answer)
-    redirect_to root_path
+    redirect_to root_path, status: 303
   end
 
   private
