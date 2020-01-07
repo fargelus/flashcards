@@ -1,7 +1,7 @@
 # Controller for card's deck
 # frozen_string_literal: true
 
-class DecksController < ApplicationController
+class Dashboard::DecksController < ApplicationController
   before_action :fetch_deck, only: %i[edit update destroy]
   helper_method :decks?
 
@@ -17,7 +17,7 @@ class DecksController < ApplicationController
 
   def update
     if @deck.update(deck_params)
-      redirect_to decks_path, notice: I18n.t(:deck_updated)
+      redirect_to dashboard_decks_path, notice: I18n.t(:deck_updated)
     else
       render 'edit'
     end
@@ -27,7 +27,7 @@ class DecksController < ApplicationController
     @deck = current_user.decks.new(deck_params)
 
     if @deck.save
-      redirect_to decks_path, notice: I18n.t(:deck_created)
+      redirect_to dashboard_decks_path, notice: I18n.t(:deck_created)
     else
       render 'new'
     end
@@ -35,7 +35,7 @@ class DecksController < ApplicationController
 
   def destroy
     @deck.destroy
-    redirect_to decks_path
+    redirect_to dashboard_decks_path
   end
 
   private
