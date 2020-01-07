@@ -2,10 +2,10 @@
   <% if current_deck = active_deck(current_user) %>
     <% deck_slug = current_deck.slug %>
     <li class="nav-item nav-item--deck">
-      <%= nav_link(deck_cards_path(deck_slug), deck_name(current_deck)) %>
+      <%= nav_link(dashboard_deck_cards_path(deck_slug), deck_name(current_deck)) %>
     </li>
     <li class="nav-item">
-      <%= nav_link(new_deck_card_path(deck_slug), t(:add_card)) %>
+      <%= nav_link(new_dashboard_deck_card_path(deck_slug), t(:add_card)) %>
     </li>
   <% end %>
 

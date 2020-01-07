@@ -32,4 +32,9 @@ module ApplicationHelper
   def root_page?
     current_page?(root_path) || current_page?(dashboard_root_path)
   end
+
+  def root_page
+    return dashboard_root_path if current_user
+    root_path
+  end
 end

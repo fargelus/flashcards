@@ -1,3 +1,3 @@
 <%= render partial: 'partials/page-title', locals: {title: t(:edit_card)} %>
-<%= render 'form'%>
-<%= render partial: 'partials/notice', locals: {notice_text: flash.notice} %>
+<%= render partial: 'form', locals: { url: dashboard_deck_card_path(@deck.id) }%>
+<%= render partial: 'partials/notice', locals: { notice_text: flash.notice } %>

@@ -1,2 +1,2 @@
 <%= render partial: 'partials/page-title', locals: {title: t(:add_card)} %>
-<%= render 'form' %>
+<%= render partial: 'form', locals: { url: dashboard_deck_cards_path } %>

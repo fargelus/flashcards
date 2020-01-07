@@ -1,5 +1,5 @@
 <%= simple_form_for [@deck, @card],
-    url: dashboard_deck_cards_path,
+    url: url,
     html: { class: 'mt-4', multipart: true } do |f| %>
   <%= f.input :original_text, error: t(:original_text_err) %>
   <%= f.input :translated_text, error: t(:translated_text_err) %>

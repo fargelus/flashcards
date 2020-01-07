@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller do
+RSpec.describe Welcome::HomeController, type: :controller do
   describe 'GET #home' do
     it 'renders :index template' do
       get :index

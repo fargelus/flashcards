@@ -26,13 +26,13 @@
       <td>
         <div>
           <button class="btn card-action-btn mr-1">
-            <%= link_to edit_deck_card_path(@deck, card) do %>
+            <%= link_to edit_dashboard_deck_card_path(@deck, card) do %>
               <%=image_tag 'edit.png', width: '24' %>
             <% end %>
           </button>
 
           <button class="btn card-action-btn">
-            <%= link_to deck_card_path(@deck, card),
+            <%= link_to dashboard_deck_card_path(@deck, card),
                method: :delete,
                data: {confirm: t(:delete_card_confirm)} do %>
                   <%=image_tag 'garbage.png', width: '24' %>

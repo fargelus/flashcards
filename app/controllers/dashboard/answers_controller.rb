@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-class AnswersController < ApplicationController
+class Dashboard::AnswersController < ApplicationController
   def create
     @answer = UserAnswerCreator.call(answer_params, params[:guess_time])
     make_notice
     session[:guess_card_id] = params[:card_id]
-    redirect_to root_path
+    redirect_to dashboard_root_path
   end
 
   def update
     answer = Answer.find(params[:id])
     SetAnswerTypoService.call(answer)
-    redirect_to root_path, status: 303
+    redirect_to dashboard_root_path, status: 303
   end
 
   private

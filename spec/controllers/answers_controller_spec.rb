@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AnswersController, type: :controller do
+RSpec.describe Dashboard::AnswersController, type: :controller do
   let!(:user) { create :user }
   let(:deck) { create(:deck, user: user) }
   let!(:card) { create(:card, deck: deck) }

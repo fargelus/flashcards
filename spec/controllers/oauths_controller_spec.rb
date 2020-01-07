@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe OauthsController, type: :controller do
+RSpec.describe Welcome::OauthsController, type: :controller do
   describe 'GET #oauth' do
     let(:provider) { 'github' }
 
