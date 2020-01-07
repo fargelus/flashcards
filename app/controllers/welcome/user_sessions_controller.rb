@@ -1,9 +1,7 @@
-# Controller for user session
+# Controller for user session creation
 # frozen_string_literal: true
 
-class UserSessionsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
-
+class Welcome::UserSessionsController < WelcomeController
   def new
     @user = User.new
   end
@@ -11,16 +9,11 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(*session_params)
     if @user
-      redirect_back_or_to root_path, notice: I18n.t(:login_success)
+      redirect_back_or_to dashboard_root_path, notice: I18n.t(:login_success)
     else
       flash.now[:alert] = I18n.t(:login_failed)
       render 'new'
     end
-  end
-
-  def destroy
-    logout
-    redirect_to root_path
   end
 
   private

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   end
 
   namespace :dashboard do
+    root to: 'home#index'
+
     resources :decks, except: :show do
       resources :cards, except: :show
     end
