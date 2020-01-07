@@ -1,0 +1,22 @@
+<%= simple_form_for [@deck, @card],
+    url: dashboard_deck_cards_path,
+    html: { class: 'mt-4', multipart: true } do |f| %>
+  <%= f.input :original_text, error: t(:original_text_err) %>
+  <%= f.input :translated_text, error: t(:translated_text_err) %>
+  <%= f.input :review_date, input_html: {
+        value: today,
+        min: today
+      },
+      as: :date, html5: true, :required => false %>
+
+  <%= render partial: 'partials/upload-img',
+      locals: {
+        form: f,
+        image_field: 'image',
+        model: @card,
+        formats: '.jpg, .png'
+      } %>
+  <div class="mt-3">
+    <%= f.button :submit, class: 'btn-primary mt-2' %>
+  </div>
+<% end %>

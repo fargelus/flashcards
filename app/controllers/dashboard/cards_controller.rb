@@ -1,7 +1,7 @@
 # Controller for cards resources
 # frozen_string_literal: true
 
-class CardsController < ApplicationController
+class Dashboard::CardsController < ApplicationController
   before_action :fetch_deck
   before_action :fetch_card, only: %i[edit update destroy]
 
@@ -18,7 +18,7 @@ class CardsController < ApplicationController
   def create
     @card = @deck.cards.new(card_params)
     if @card.save
-      redirect_to deck_cards_path(@deck), notice: I18n.t(:card_created)
+      redirect_to dashboard_deck_cards_path(@deck), notice: I18n.t(:card_created)
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class CardsController < ApplicationController
 
   def update
     if card_updated?
-      redirect_to deck_cards_path(@deck), notice: I18n.t(:card_updated)
+      redirect_to dashboard_deck_cards_path(@deck), notice: I18n.t(:card_updated)
     else
       render 'edit'
     end
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
   def destroy
     @card.destroy
 
-    redirect_to deck_cards_path(@deck)
+    redirect_to dashboard_deck_cards_path(@deck)
   end
 
   private

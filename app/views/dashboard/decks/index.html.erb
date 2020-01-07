@@ -1,0 +1,60 @@
+<%= render partial: 'partials/page-title', locals: {title: t(:decks_list)} %>
+
+<% if decks? %>
+<table class="table mt-4">
+  <thead class="thead-dark">
+    <tr>
+      <th><%=t(:name)%></th>
+      <th><%=t(:description)%></th>
+      <th><%=t(:viewed?)%></th>
+      <th><%=t(:action)%></th>
+    </tr>
+  </thead>
+
+  <% @decks.each do |deck| %>
+    <tr data-url="<%=dashboard_deck_cards_path(deck.slug)%>"
+        class="deck-row js-deck-row"
+        title="<%=t(:show_deck_cards) + deck.name%>">
+      <td>
+        <%=deck.name%>
+      </td>
+      <td><%=deck.description%></td>
+      <td>
+        <%= deck.activity ? t(:currently_viewed) : t(:currently_not_viewed) %>
+      </td>
+      <td>
+        <div>
+          <button class="btn mr-1">
+            <%= link_to edit_dashboard_deck_path(deck), title: t(:edit_deck) do %>
+              <%=image_tag 'edit.png', width: '24' %>
+            <% end %>
+          </button>
+
+          <button class="btn">
+            <%= link_to dashboard_deck_path(deck),
+               title: t(:delete_deck),
+               method: :delete,
+               data: {confirm: t(:delete_deck_confirm)} do %>
+                  <%=image_tag 'garbage.png', width: '24' %>
+              <% end %>
+          </button>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+  <p class="font-size--larger"><%=t(:you_have_no_decks)%></p>
+<% end %>
+
+<%= link_to new_dashboard_deck_path, class: 'btn btn-secondary mt-4' do %>
+  <%= t(:create_deck) %>
+  <i class="fa fa-plus ml-1 align-middle"></i>
+<% end %>
+
+<%= render partial: 'partials/notice', locals: {
+  notice_text: flash.notice,
+  class_name: 'alert-success'
+} %>
+
+<%= javascript_include_tag 'other' %>

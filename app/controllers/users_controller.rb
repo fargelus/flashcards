@@ -10,6 +10,7 @@ class UsersController < ApplicationController
         :email,
         :password,
         :password_confirmation,
+        :avatar,
         :authentications_attributes
       )
     end

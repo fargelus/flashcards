@@ -1,0 +1,38 @@
+<%= simple_form_for @user, url: dashboard_user_path,
+    html: {class: 'mt-4'} do |f| %>
+  <div class="form-inputs">
+    <% unless @authorized_by_oauth %>
+      <%= f.input :email %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation, :required => true %>
+    <% end %>
+
+    <div>
+      <div class="mb-3">
+        <%= label_tag t(:your_avatar) %>
+        <%= render partial: 'partials/upload-img',
+            locals: {
+              form: f,
+              model: @user,
+              image_field: 'avatar',
+              formats: '.gif, .png'
+            } %>
+      </div>
+
+      <div class="mb-3">
+        <%= label_tag t(:select_lang) %>
+        <% I18n.available_locales.each do |locale| %>
+          <div>
+            <% active_locale = locale == I18n.locale %>
+            <%= radio_button_tag 'user_locale', locale, active_locale %>
+            <%= label_tag "user_locale_#{locale}", t(locale.to_sym) %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'btn-primary mt-2' %>
+  </div>
+<% end %>

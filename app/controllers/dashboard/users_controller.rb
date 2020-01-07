@@ -25,4 +25,11 @@ class Dashboard::UsersController < UsersController
   def all_params
     { user: user_params, locale: params[:user_locale] }
   end
+
+  def user_was_updated
+    path = LocaleUrlCreator.call(params[:user_locale], dashboard_root_path)
+    sym_locale = params[:user_locale].to_sym
+    notice_text = I18n.t :account_updated, locale: sym_locale
+    redirect_to path, notice: notice_text
+  end
 end
