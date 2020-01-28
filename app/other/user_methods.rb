@@ -1,9 +1,6 @@
-# General methods for UsersController descendants
 # frozen_string_literal: true
 
-class UsersController < ApplicationController
-  protected
-
+module UserMethods
   def user_params
     if params[:user]
       params.require(:user).permit(

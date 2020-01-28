@@ -1,3 +1,5 @@
 # frozen_string_literal: true
 
-class Welcome::HomeController < WelcomeController; end
+module Welcome
+  class HomeController < WelcomeController; end
+end
