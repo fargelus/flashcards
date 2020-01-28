@@ -28,4 +28,14 @@ module ApplicationHelper
     path = is_default_locale ? request.path : url_for(locale: locale)
     link_to I18n.t(sym_locale), path, class: classes
   end
+
+  def root_page?
+    current_page?(root_path) || current_page?(dashboard_root_path)
+  end
+
+  def root_page(user)
+    return dashboard_root_path if user
+
+    root_path
+  end
 end

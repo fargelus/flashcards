@@ -26,6 +26,9 @@ module App
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
+    config.time_zone = 'Moscow'
+    config.active_record.default_timezone = :local
+    config.active_record.time_zone_aware_attributes = false
 
     config.active_job.queue_adapter = :sidekiq
 

@@ -19,9 +19,17 @@ RSpec.describe CalcEFactorService, type: :service do
     it 'returns DEFAULT_E_FACTOR when quality not enough' do
       expect(result).to eql EFactorValues::DEFAULT_E_FACTOR
     end
+  end
 
-    it 'calculates e_factor' do
+  describe '.calc_e_factor' do
+    it 'returns default e_factor with response perfect' do
       quality = AnswerQualityGrades::PERFECT_RESPONSE
+      result = CalcEFactorService.call(interval.e_factor, quality)
+      expect(result).to be EFactorValues::DEFAULT_E_FACTOR
+    end
+
+    it 'returns calculated e_factor value with difficult response' do
+      quality = AnswerQualityGrades::DIFFICULT_RESPONSE
       result = CalcEFactorService.call(interval.e_factor, quality)
       expect(result).to be_between(
         EFactorValues::MINIMUM_E_FACTOR,

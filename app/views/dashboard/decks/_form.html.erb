@@ -1,0 +1,9 @@
+<%= simple_form_for @deck, url: url,
+    html: { class: 'mt-4' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description, input_html: { maxlength: 80 } %>
+  <% if defined? need_activity %>
+    <%= f.input :activity %>
+  <% end %>
+  <%= f.button :submit, class: 'btn-primary mt-2' %>
+<% end %>

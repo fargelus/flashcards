@@ -25,6 +25,6 @@ class LocaleUrlCreator < Callable
   end
 
   def queried_url
-    '?' + { locale: @locale }.to_query
+    @path + '?' + { locale: @locale }.to_query
   end
 end

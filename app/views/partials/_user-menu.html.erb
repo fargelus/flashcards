@@ -2,10 +2,10 @@
   <% if current_deck = active_deck(current_user) %>
     <% deck_slug = current_deck.slug %>
     <li class="nav-item nav-item--deck">
-      <%= nav_link(deck_cards_path(deck_slug), deck_name(current_deck)) %>
+      <%= nav_link(dashboard_deck_cards_path(deck_slug), deck_name(current_deck)) %>
     </li>
     <li class="nav-item">
-      <%= nav_link(new_deck_card_path(deck_slug), t(:add_card)) %>
+      <%= nav_link(new_dashboard_deck_card_path(deck_slug), t(:add_card)) %>
     </li>
   <% end %>
 
@@ -24,16 +24,16 @@
       </li>
 
       <li class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <%= link_to decks_path, class: 'dropdown-item' do %>
+        <%= link_to dashboard_decks_path, class: 'dropdown-item' do %>
             <%= t(:decks_list) %>
             <i class="fa fa-clone ml-1"></i>
         <% end %>
-        <%= link_to edit_user_path(current_user),
+        <%= link_to edit_dashboard_user_path(current_user),
             class: 'dropdown-item' do %>
               <%= t(:profile) %>
               <i class="fa fa-edit ml-1"></i>
             <% end %>
-        <%= link_to logout_path,
+        <%= link_to dashboard_logout_path,
             method: :delete,
             class: 'dropdown-item' do %>
               <%= t(:logout) %>
