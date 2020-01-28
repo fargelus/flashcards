@@ -50,7 +50,7 @@ RSpec.describe Dashboard::CardsController, type: :controller do
 
     it 'redirects to index' do
       post :create, params: post_card
-      expect(response).to redirect_to deck_cards_path(deck)
+      expect(response).to redirect_to dashboard_deck_cards_path(deck)
     end
 
     it 'renders new template when card params bad' do
@@ -70,7 +70,7 @@ RSpec.describe Dashboard::CardsController, type: :controller do
 
     it 'redirects to index after delete' do
       delete :destroy, params: delete_card
-      expect(response).to redirect_to deck_cards_path(deck)
+      expect(response).to redirect_to dashboard_deck_cards_path(deck)
     end
 
     it 'deletes card' do
@@ -93,7 +93,7 @@ RSpec.describe Dashboard::CardsController, type: :controller do
 
     it 'redirects to index after update' do
       patch :update, params: update_card
-      expect(response).to redirect_to deck_cards_path(deck)
+      expect(response).to redirect_to dashboard_deck_cards_path(deck)
     end
 
     it 'update card original_text' do

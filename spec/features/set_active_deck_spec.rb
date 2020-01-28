@@ -10,7 +10,7 @@ RSpec.describe 'Set active deck', type: :feature do
   describe 'deck activation' do
     before do
       login_user(user, user_sessions_url)
-      visit edit_deck_path(deck)
+      visit edit_dashboard_deck_path(deck)
       find(:css, '#deck_activity').set(true)
       click_button 'commit'
     end
@@ -21,7 +21,7 @@ RSpec.describe 'Set active deck', type: :feature do
 
     it 'renders link to current deck cards in menu' do
       looking_name = deck.name.capitalize
-      expect(page).to have_link looking_name, href: deck_cards_path(deck)
+      expect(page).to have_link looking_name, href: dashboard_deck_cards_path(deck)
     end
   end
 end

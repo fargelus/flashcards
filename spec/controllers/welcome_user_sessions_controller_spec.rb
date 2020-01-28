@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UserSessionsController, type: :controller do
+RSpec.describe Welcome::UserSessionsController, type: :controller do
   let(:user) { create(:user) }
   let(:user_attrs) { attributes_for(:user) }
 
@@ -11,13 +11,6 @@ RSpec.describe UserSessionsController, type: :controller do
       it 'response 200' do
         get :new
         expect(response.status).to eq(200)
-      end
-    end
-
-    describe 'DELETE #destroy' do
-      it 'redirects to login_path' do
-        delete :destroy
-        expect(response).to redirect_to login_path
       end
     end
 
@@ -40,22 +33,6 @@ RSpec.describe UserSessionsController, type: :controller do
         post_user[:user][:password] = '1'
         post :create, params: post_user
         expect(logged_in?).to eq(false)
-      end
-    end
-  end
-
-  context 'when logged_in' do
-    before { login_user(user) }
-
-    describe 'DELETE #destroy' do
-      it 'redirects to login_path' do
-        delete :destroy
-        expect(response).to redirect_to root_path
-      end
-
-      it 'logout when destroy session' do
-        delete :destroy
-        expect(logged_in?).to eq false
       end
     end
   end

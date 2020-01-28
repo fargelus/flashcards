@@ -55,7 +55,7 @@ RSpec.describe Dashboard::DecksController, type: :controller do
 
     it 'redirects to decks_path' do
       post :create, params: post_deck
-      expect(response).to redirect_to decks_path
+      expect(response).to redirect_to dashboard_decks_path
     end
 
     it 'shows notice after create' do

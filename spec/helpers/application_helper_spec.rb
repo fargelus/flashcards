@@ -24,4 +24,10 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(active_deck(user)).to eq deck
     end
   end
+
+  describe '.root_page' do
+    it 'returns root path if user not logged in' do
+      expect(root_page(nil)).to eq root_path
+    end
+  end
 end
