@@ -39,7 +39,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'i18n-debug', '~> 1.2.0'
-  gem 'nokogiri', '~> 1.10.4'
+  gem 'nokogiri', '~> 1.10.10'
   gem 'sassc-rails'
 end
 
