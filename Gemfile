@@ -6,7 +6,7 @@ ruby '2.6.5'
 
 gem 'activerecord-import', '~> 1.0.3'
 gem 'bootstrap', '~> 4.3.1'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'config'
 gem 'damerau-levenshtein', '~> 1.1'
 gem 'font-awesome-rails'
